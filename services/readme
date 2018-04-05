@@ -1,0 +1,65 @@
+
+
+Html
+--------------------------------------------------
+login.html
+register.html
+users.html
+selfie.html
+papers.html
+paper.html
+
+
+
+
+Mysql
+-----------------------------------------------------
+create user zhangweiguo identified by "Python520";
+grant all on *.* to zhangweiguo;
+mysql -u zhangweiguo -p
+create database blogs;
+use blogs;
+
+create table user_info(
+    id int(6) primary key not null auto_increment,
+    name varchar(32) not null,
+    password varchar(160) not null,
+    create_time int(20) not null,
+    age int(4),
+    image varchar(64),
+    description varchar(2056)
+);
+
+alter table user_info add column description varchar(1028);
+
+create table paper_info(
+    id int(6) primary key not null auto_increment,
+    user int(6),
+    create_time int(20) not null,
+    title varchar(256) not null,
+    content text
+);
+
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int(6)        | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(32)   | NO   |     | NULL    |                |
+| password    | varchar(160)  | NO   |     | NULL    |                |
+| create_time | int(20)       | NO   |     | NULL    |                |
+| age         | int(4)        | YES  |     | NULL    |                |
+| image       | varchar(64)   | YES  |     | NULL    |                |
+| description | varchar(1028) | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(6)       | NO   | PRI | NULL    | auto_increment |
+| user        | int(6)       | YES  |     | NULL    |                |
+| create_time | int(20)      | NO   |     | NULL    |                |
+| title       | varchar(256) | NO   |     | NULL    |                |
+| content     | text         | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+
+

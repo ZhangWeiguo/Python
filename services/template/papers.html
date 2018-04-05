@@ -1,0 +1,78 @@
+$def with (papers)
+
+<html>
+<head>
+<title>
+The Papers
+</title>
+</head>
+<style>
+#container{
+    background:pink;
+    width=100%;height:620px
+}
+#header{
+    background-color:#99bbbb;
+    height:70px;width:100%;
+    float:left;
+    line-height:30px;
+    text-align-center
+}
+#menu{
+    clear:both;
+    background-color:#ffff99;
+    height:520px;width:20%;
+    float:left
+}
+#content{
+    background-color:#EEEEEE;
+    height:520px;width:80%;float:left
+}
+#footer{
+    background-color:red;
+    height:30px;line-height:30px;
+    width:100%;text-align:center
+}
+</style>
+
+
+<body>
+<div id="container">
+	<div id="header">
+		<h2 align="center">The Papers</h2>
+	</div>
+	<div id="menu">
+		<h2>Menu</h2>
+   		<ul>
+			<li>Papers</li>
+			<li>Others</li>
+   			</ul>
+    </div>
+	<div id="content">
+		<table width="100%" cellpadding="1" cellspaceing='2' id=tab>
+			<tr>
+			<th width='20%'><big><strong>id</strong></big></th>
+			<th width='20%'><big><strong>title</strong></big></th>
+			<th width='20%'><big><strong>create time</strong></big></th>
+			<th width='20%'><big><strong>title</strong></big></th>
+			<th width='20%'><big><strong>content</strong></big></th>
+			</tr>
+		$for a in papers:
+			<tr>
+			<th>$a[0]</th>
+			<th>$a[1]</th>
+			<th>$a[2]</th>
+			<th>$a[3]</th>
+			<th>$a[4]</th>
+			</tr>
+		</table>
+	</div>
+
+	<div id="footer">
+		<p align="center">2018 SYSU</p>
+	</div>
+
+</div>
+
+</body>
+</html>
