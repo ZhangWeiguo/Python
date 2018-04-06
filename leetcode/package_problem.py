@@ -143,3 +143,40 @@ def maxContent2D(weight1s, weight2s, content1, content2, values, nums):
 # values = [1,5,2,4]
 # nums = [1,2,3,2]
 # print maxContent2D(weight1s, weight2s, content1, content2, values, nums)
+
+
+
+def customMaxContent(weight1s, weight2s, content1, content2, nums):
+    N = len(weight1s)
+    M1 = int(content1)
+    M2 = int(content2)
+    W = [[0]*(M1+1) for i in range(M2+1)]
+    L = [[{"add":[0]*N} for j in range(M1+1)] for i in range(M2+1)]
+    L1 = [0]*N
+    for i in range(N):
+        for k in range(nums[i]):
+            for j in range(M1,-1,-1):
+                for p in range(M2,-1,-1):
+                    if j >= weight1s[i] and p >= weight2s[i]:
+                        if W[p][j] < W[p-weight2s[i]][j-weight1s[i]] + weight2s[i]:
+                            L[p][j]["origin"] = (p-weight2s[i],j-weight1s[i])
+                            L[p][j]["add"][i] += 1
+                        W[p][j] = max([W[p][j], W[p-weight2s[i]][j-weight1s[i]] + weight2s[i]])
+    for i in range(M2+1):
+        for j in range(M1+1):
+            print i,j,L[i][j]
+    keyi = M2
+    keyj = M1
+    for i in range(N-1,-1,-1):
+        L1[i] = L[keyi][keyj]["add"][i]
+        keyi,keyj = L[keyi][keyj]["origin"]
+    return W[M2][M1],L1
+
+content1 = 10
+content2 = 15
+weight1s = [2,3,1,2]
+weight2s = [3,2,1,4]
+nums = [1,2,3,3]
+print (customMaxContent(weight1s, weight2s, content1, content2, nums))
+
+
