@@ -1,5 +1,13 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler,RotatingFileHandler
+'''
+logger = logClient("Test","test", rotate = "Time", when = 'H', keepNum = 48)
+logger = logClient("Test","test", rotate = "Size", maxBytes = 1028, keepNum = 48)
+logger = logClient("Test","test", rotate = "None")
+'''
+
+
+
 
 class logClient:
     def __init__(self, appName, fileName, roate = "None", when ='H', keepNum = 24, maxBytes = 1024*1024*10 ):
