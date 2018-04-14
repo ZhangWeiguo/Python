@@ -72,9 +72,10 @@ class LogServer:
         self.appName = appName
         self.fileName = "%s.%s.log"
         if 'Windows' in platform.system():
-            isUnix = False
+            self.isUnix = False
         else:
             import fcntl
+            self.isUnix = True
     
     def log(self,data):
         num = len(self.buffer)
@@ -83,7 +84,7 @@ class LogServer:
                 name = sys._getframe().f_back.f_code.co_filename
                 line = str(sys._getframe().f_back.f_lineno)
                 dt = time.strftime("%Y-%m-%d %H:%M:%S")
-                s = "%15s %20s %5s  :  %s\n"%(dt, name, line, data)
+                s = "log_time=%s`locate=%s`data=%s\n"%(dt, name+":"+line, data)
                 self.buffer.append(s)
         else:
             self.flush()
@@ -92,7 +93,7 @@ class LogServer:
         ymdh = time.strftime("%Y%m%d%H")
         fileName = self.fileName%(self.appName, ymdh)
         f = file(fileName, 'a+')
-        if isUnix:
+        if self.isUnix:
             fcntl.flock(f, fcntl.LOCK_EX)
             f.writelines(self.buffer)
             fcntl.flock(f,fcntl.LOCK_UN)
