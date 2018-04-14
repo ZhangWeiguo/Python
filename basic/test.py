@@ -1,9 +1,9 @@
 import time
-from logger import logClient,LogServer
+from logger import LogClient,LogServer
 
 def test1():
     import time
-    logger = logClient("Test","test", rotate = "Time", when = 'M', keepNum = 48)
+    logger = LogClient("Test","test", rotate = "Time", when = 'M', keepNum = 48)
     while True:
         logger.error("zhangweiuoerror")
         logger.info("zhangweiuoinfo")
