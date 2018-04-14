@@ -11,7 +11,7 @@ logger = logClient("Test","test", rotate = "None")
 
 
 
-class logClient:
+class LogClient:
     def __init__(self, 
             appName, 
             fileName, 
