@@ -53,3 +53,14 @@ class MysqlClient:
             self.conn.commit()
         except Exception,e:
             self.logger("Mysql Executemany Failed: "+ str(e))
+
+'''
+mysqlConfig = {
+    'name'   : 'ugc_video_consume',
+    'host'   : '127.0.0.1',
+    'port'   : 55556,
+    'user'   : 'main_wapka_mobi',
+    'passwd' : 'JKjk^%$lddada',
+    'db'     : 'ugc_online'
+}
+'''
