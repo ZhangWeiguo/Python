@@ -32,7 +32,7 @@ class MysqlClient:
         conn.close()
         return result
 
-    def executemany(self,sql,data):
+    def execute_many(self,sql,data):
         conn = self.pool.get_connection()
         cursor = conn.cursor()
         msg = "succ"

@@ -8,17 +8,17 @@ import MySQLdb
 import MySQLdb.cursors
 
 class MysqlClient:
-    def __init__(self,mysqlConfig,logger):
+    def __init__(self,config,logger):
         self.logger = logger
         self.conn = None
         self.cursor = None
         try:
             self.conn = MySQLdb.connect(
-                host        =   mysqlConfig["host"],
-                port        =   mysqlConfig["port"],
-                user        =   mysqlConfig["user"],
-                passwd      =   mysqlConfig["passwd"],
-                db          =   mysqlConfig["db"],
+                host        =   config["host"],
+                port        =   config["port"],
+                user        =   config["user"],
+                passwd      =   config["passwd"],
+                db          =   config["db"],
                 use_unicode =   True,
                 charset     =   'UTF8',
                 cursorclass =   MySQLdb.cursors.DictCursor
@@ -27,7 +27,7 @@ class MysqlClient:
         except Exception,e:
             self.logger("Connect Mysql Failed: "+ str(e))
 
-    def queryAndFetchAll(self,sql):
+    def query_fetchall(self,sql):
         data = None
         try:
             self.cursor.execute(sql)
@@ -47,7 +47,7 @@ class MysqlClient:
             print e,sql
             self.logger("Mysql Execute Failed: " + str(e))
 
-    def executeMany(self,sql,parm):
+    def execute_many(self,sql,parm):
         try:
             self.cursor.executemany(sql,parm)
             self.conn.commit()

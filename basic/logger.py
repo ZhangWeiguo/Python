@@ -3,8 +3,8 @@ import logging,time,sys,os,platform
 from logging.handlers import TimedRotatingFileHandler,RotatingFileHandler
 
 '''
-logger = logClient("Test","test", rotate = "Time", when = 'H', keepNum = 48)
-logger = logClient("Test","test", rotate = "Size", maxBytes = 1028, keepNum = 48)
+logger = logClient("Test","test", rotate = "Time", when = 'H', keep_num = 48)
+logger = logClient("Test","test", rotate = "Size", max_bytes = 1028, keep_num = 48)
 logger = logClient("Test","test", rotate = "None")
 '''
 
@@ -13,41 +13,39 @@ logger = logClient("Test","test", rotate = "None")
 
 class LogClient:
     def __init__(self, 
-            appName, 
-            fileName, 
-            rotate      =   "None", 
-            when        =   'H', 
-            keepNum     =   24, 
-            maxBytes    =   1024*1024*10,
-            maxBuffer   =   100 ):
+            app_name, 
+            file_name, 
+            rotate       =   "None", 
+            when         =   'H', 
+            keep_num     =   24, 
+            max_bytes    =   1024*1024*10,
+            max_buffer   =   100 ):
         '''
         rotate : None,Time,Size
         '''
-        self.logger = logging.getLogger(appName)
-        self.fileName = fileName
-        self.appName = appName
+        self.logger = logging.getLogger(app_name)
+        self.file_name = file_name
+        self.app_name = app_ame
         formater = logging.Formatter(
             fmt         = "%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)-8s %(message)s",
             datefmt     = "%Y-%m-%d %H:%M:%S")
         
         if rotate == 'Time':
-            fileHandler = TimedRotatingFileHandler(fileName, 
+            file_handler = TimedRotatingFileHandler(file_name, 
                                                     when        =   when, 
                                                     interval    =   1, 
-                                                    backupCount =   keepNum)
-            fileHandler.suffix = "%Y%m%d%H%M.log"
+                                                    backupCount =   keep_num)
+            file_handler.suffix = "%Y%m%d%H%M.log"
         elif rotate == 'Size':
-            fileHandler = RotatingFileHandler(filename = fileName, 
-                                            maxBytes = maxBytes, 
-                                            backupCount = keepNum)
+            file_handler = RotatingFileHandler(filename = file_name, 
+                                            maxBytes = max_bytes, 
+                                            backupCount = keep_num)
         else:
-            fileHandler = logging.FileHandler(filename = fileName)
+            file_handler = logging.FileHandler(filename = file_name)
 
-        fileHandler.formatter = formater
-        self.logger.addHandler(fileHandler)
+        file_handler.formatter = formater
+        self.logger.addHandler(file_handler)
         self.logger.setLevel(logging.DEBUG)
-        self.logBuffer = []
-        self.errorBuffer = []
 
         
 
@@ -66,20 +64,20 @@ class LogClient:
 
 
 class LogServer:
-    def __init__(self, appName, keepNum = 24, bufferNum = 100):
-        self.bufferNum = bufferNum
+    def __init__(self, app_name, keep_num = 24, buffer_num = 100):
+        self.buffer_num = buffer_num
         self.buffer = []
-        self.appName = appName
-        self.fileName = "%s.%s.log"
+        self.app_name = app_name
+        self.file_name = "%s.%s.log"
         if 'Windows' in platform.system():
-            self.isUnix = False
+            self.is_unix = False
         else:
             import fcntl
-            self.isUnix = True
+            self.is_unix = True
     
     def log(self,data):
         num = len(self.buffer)
-        if num <= self.bufferNum:
+        if num <= self.buffer_num:
             if data.strip() != "":
                 name = sys._getframe().f_back.f_code.co_filename
                 line = str(sys._getframe().f_back.f_lineno)
@@ -91,9 +89,9 @@ class LogServer:
     
     def flush(self):
         ymdh = time.strftime("%Y%m%d%H")
-        fileName = self.fileName%(self.appName, ymdh)
-        f = file(fileName, 'a+')
-        if self.isUnix:
+        file_name = self.file_name%(self.app_name, ymdh)
+        f = file(file_name, 'a+')
+        if self.is_unix:
             fcntl.flock(f, fcntl.LOCK_EX)
             f.writelines(self.buffer)
             fcntl.flock(f,fcntl.LOCK_UN)

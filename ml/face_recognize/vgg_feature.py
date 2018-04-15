@@ -7,6 +7,7 @@ STYLE_WEIGHT = 1
 CONTENT_WEIGHT = 1
 STYLE_LAYERS = ['relu1_2','relu2_2','relu3_2']
 CONTENT_LAYERS = ['relu1_2']
+_vgg_params = None
 
 class VggVec:
     def __init__(self,model_file):

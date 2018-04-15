@@ -3,7 +3,7 @@ from logger import LogClient,LogServer
 
 def test1():
     import time
-    logger = LogClient("Test","test", rotate = "Time", when = 'M', keepNum = 48)
+    logger = LogClient("Test","test", rotate = "Time", when = 'M', keep_num = 48)
     while True:
         logger.error("zhangweiuoerror")
         logger.info("zhangweiuoinfo")
@@ -13,7 +13,7 @@ def test1():
         time.sleep(10)
 
 def test2():
-    logger = LogServer(appName = 'test', keepNum = 24, bufferNum = 100)
+    logger = LogServer(app_name = 'test', keep_num = 24, buffer_num = 100)
     while True:
         logger.log(time.strftime("%Y%m%d %H:%M:%S") + "zhangweiuoinfo")
         time.sleep(0.1)
