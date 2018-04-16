@@ -21,6 +21,7 @@ class ObjectDetector:
         options.detection_window_size = detection_window_size
         options.epsilon = epsilon
         self.options = options
+        self.detector = None
 
     def recover_model_from_file(self,detector_path):
         self.detector = dlib.simple_object_detector(detector_path)
@@ -47,7 +48,6 @@ class ObjectDetector:
             </dataset>
         '''
         training_xml_path = os.path.join(data_path, "training.xml")
-        testing_xml_path = os.path.join(data_path, "testing.xml")
         dlib.train_simple_object_detector(training_xml_path, detector_path, self.options)
         self.detector = dlib.simple_object_detector(detector_path)
 
