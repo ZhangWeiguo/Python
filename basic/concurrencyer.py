@@ -1,85 +1,77 @@
 # -*- encoding:utf-8 -*-
-import Queue
+from multiprocessing import Pool,freeze_support
+import os, time
+import urllib2
 import threading
-import sys
-import time
-import urllib
+import thread
+
+Lock = threading.RLock()
+
+def threads(task, thread_num = 10):
+    t1 = time.time()
+    for i in range(10):
+        thread.start_new_thread(task,())
+    t2 = time.time()
+    all_cost_time = t2 - t1
+    print "Avg Reauest Cost Time: %2.3f" % (all_cost_time / thread_num)
 
 
-class MyThread(threading.Thread):
-    def __init__(self, workQueue, resultQueue, timeout=30, **kwargs):
-        threading.Thread.__init__(self, kwargs=kwargs)
-        # 线程在结束前等待任务队列多长时间
-        self.timeout = timeout
-        self.setDaemon(True)
-        self.workQueue = workQueue
-        self.resultQueue = resultQueue
-        self.start()
-
-    def run(self):
-        while True:
-            try:
-                # 从工作队列中获取一个任务
-                callable, args, kwargs = self.workQueue.get(timeout=self.timeout)
-                # 我们要执行的任务
-                res = callable(args, kwargs)
-                # 报任务返回的结果放在结果队列中
-                self.resultQueue.put(res + " | " + self.getName())
-            except Queue.Empty:  # 任务队列空的时候结束此线程
-                break
-            except:
-                print sys.exc_info()
-                raise
+def threadings(task, thread_num = 10):
+    t1 = time.time()
+    p = []
+    for i in range(thread_num):
+        p.append(threading.Thread(target=task))
+    for i in p:
+        i.start()
+    for i in p:
+        i.join()
+    t2 = time.time()
+    all_cost_time = t2 - t1
+    Lock.acquire()
+    print "Avg Reauest Cost Time: %2.3f" % (all_cost_time / thread_num)
+    Lock.release()
 
 
-class ThreadPool:
-    def __init__(self, num_of_threads=10):
-        self.workQueue = Queue.Queue()
-        self.resultQueue = Queue.Queue()
-        self.threads = []
-        self.__createThreadPool(num_of_threads)
 
-    def __createThreadPool(self, num_of_threads):
-        for i in range(num_of_threads):
-            thread = MyThread(self.workQueue, self.resultQueue)
-            self.threads.append(thread)
-
-    def wait_for_complete(self):
-        # 等待所有线程完成。
-        while len(self.threads):
-            thread = self.threads.pop()
-            # 等待线程结束
-            if thread.isAlive():  # 判断线程是否还存活来决定是否调用join
-                thread.join()
-
-    def add_job(self, callable, *args, **kwargs):
-        self.workQueue.put((callable, args, kwargs))
+def process(task, process_num=10, all_num =100):
+    t1 = time.time()
+    p = Pool(process_num)
+    T = []
+    for i in range(all_num):
+        T.append(p.apply_async(task))
+    print 'Waiting for all subprocesses done...'
+    p.close()
+    p.join()
+    print 'All subprocesses done.'
+    t2 = time.time()
+    all_cost_time = t2 - t1
+    every_cost_time = [i.get() for i in T]
+    print "One Reauest Cost Time: %2.3f" % (sum(every_cost_time)/all_num)
+    print "Avg Reauest Cost Time: %2.3f" % (all_cost_time/all_num)
 
 
-def test_job(id, sleep=0.001):
-    html = ""
-    try:
-        time.sleep(1)
-        conn = urllib.urlopen('http://www.google.com/')
-        html = conn.read(20)
-    except:
-        print  sys.exc_info()
-    return html
+def fun1():
+    t1 = time.time()
+    a = urllib2.urlopen("http://www.baidu.com").read()
+    time.sleep(3)
+    t2 = time.time()
+    print t2 - t1
+    return t2 - t1
+
+def fun2():
+    t1 = time.time()
+    f = file('test.txt', 'a+')
+    f.writelines(["I am zhangweiguo\n"]*10)
+    f.close()
+    time.sleep(3)
+    t2 = time.time()
+    print t2 - t1
+    return t2 - t1
+
+if __name__ == "__main__":
+    # process(fun1,10,20)
+    # fun()
+    threadings(fun2,10)
 
 
-def test():
-    print 'start testing'
-    tp = ThreadPool(10)
-    for i in range(50):
-        time.sleep(0.2)
-        tp.add_job(test_job, i, i * 0.001)
-    tp.wait_for_complete()
-    # 处理结果
-    print 'result Queue\'s length == %d ' % tp.resultQueue.qsize()
-    while tp.resultQueue.qsize():
-        print tp.resultQueue.get()
-    print 'end testing'
 
-
-if __name__ == '__main__':
-    test()
