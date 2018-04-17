@@ -2,7 +2,7 @@ import threading
 import Queue
 
 class ThreadingUnit(threading.Thread):
-    def __init__(self, name, work_queue, result_queue, timeout = 30,**kwargs):
+    def __init__(self, name, work_queue, result_queue, timeout = 3,**kwargs):
         threading.Thread.__init__(self, kwargs=kwargs)
         self.timeout        = timeout
         self.work_queue     = work_queue
