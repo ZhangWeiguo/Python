@@ -1,66 +1,79 @@
-# -*- coding: utf-8 -*-
-'''
-created by zwg in 2018-03-08
-'''
-
-
-import MySQLdb
-import MySQLdb.cursors
+from mysql.connector import connection
 
 class MysqlClient:
     def __init__(self,config,logger):
+        self.config = config
         self.logger = logger
-        self.conn = None
-        self.cursor = None
-        try:
-            self.conn = MySQLdb.connect(
-                host        =   config["host"],
-                port        =   config["port"],
-                user        =   config["user"],
-                passwd      =   config["passwd"],
-                db          =   config["db"],
-                use_unicode =   True,
-                charset     =   'UTF8',
-                cursorclass =   MySQLdb.cursors.DictCursor
-            )
-            self.cursor = self.conn.cursor()
-        except Exception,e:
-            self.logger("Connect Mysql Failed: "+ str(e))
-
-    def query_fetchall(self,sql):
-        data = None
-        try:
-            self.cursor.execute(sql)
-        except Exception,e:
-            self.logger("Mysql Execute Failed: "+ str(e))
-        try:
-            data = self.cursor.fetchall()
-        except Exception,e:
-            self.logger("Get Data Failed: " + str(e))
-        return data
+        self.conn = connection.MySQLConnection(user      =   config["user"], 
+                                               password  =   config["password"],
+                                               host      =   config["host"],
+                                               port      =   config["port"],
+                                               database  =   config["database"],
+                                               charset   =   "utf8")
+        self.cursor = self.conn.cursor(dictionary = True)
 
     def execute(self,sql):
+        cursor = self.cursor
+        msg = "succ"
+        succ = True
         try:
-            self.cursor.execute(sql)
-            self.conn.commit()
-        except Exception,e:
-            print e,sql
-            self.logger("Mysql Execute Failed: " + str(e))
+            cursor.execute(sql)
+        except Exception as e:
+            msg = str(e)
+            succ = False
+            self.logger("Execute Sql Failed:%s"%sql)
+        result = {}
+        result["msg"] = msg
+        result["succ"] = succ
+        self.conn.commit()
+        return result
 
-    def execute_many(self,sql,parm):
+    def execute_many(self,sql,data):
+        cursor = self.cursor
+        msg = "succ"
+        succ = True
         try:
-            self.cursor.executemany(sql,parm)
-            self.conn.commit()
-        except Exception,e:
-            self.logger("Mysql Executemany Failed: "+ str(e))
+            cursor.executemany(sql,data)
+        except Exception as e:
+            msg = str(e)
+            succ = False
+            self.logger("ExecuteMany Sql Failed:%s"%sql)
+        result = {}
+        result["msg"] = msg
+        result["succ"] = succ
+        self.conn.commit()
+        return result
 
-'''
-mysqlConfig = {
-    'name'   : 'ugc_video_consume',
-    'host'   : '127.0.0.1',
-    'port'   : 55556,
-    'user'   : 'main_wapka_mobi',
-    'passwd' : 'JKjk^%$lddada',
-    'db'     : 'ugc_online'
-}
-'''
+    def query(self,sql):
+        cursor = self.cursor
+        msg = "succ"
+        succ = True
+        try:
+            cursor.execute(sql)
+        except Exception as e:
+            msg = str(e)
+            succ = False
+            self.logger("Query Data Failed:%s"%sql)
+        result = {}
+        result["msg"] = msg
+        result["succ"] = succ
+        try:
+            result["data"] = cursor.fetchall()
+        except Exception as e:
+            result["data"] = []
+            result["succ"] = False
+            result["msg"] = str(e)
+        return result
+    
+    def close(self):
+        result = {}
+        try:
+            self.cursor.close()
+            self.conn.close()
+            result["succ"] = True
+            result["msg"] = ""
+        except Exception as e:
+            self.logger("Conn Close Failed:%s"%str(e))
+            result["succ"] = False
+            result["msg"] = str(e)
+        return result
