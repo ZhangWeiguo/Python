@@ -25,7 +25,7 @@ class LogClient:
         '''
         self.logger = logging.getLogger(app_name)
         self.file_name = file_name
-        self.app_name = app_ame
+        self.app_name = app_name,
         formater = logging.Formatter(
             fmt         = "%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)-8s %(message)s",
             datefmt     = "%Y-%m-%d %H:%M:%S")
