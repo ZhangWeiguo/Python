@@ -3,6 +3,7 @@ import logging,time,sys,os,platform
 from logging.handlers import TimedRotatingFileHandler,RotatingFileHandler
 
 '''
+使用的时候只能使用单进程写，可以使用消息队列读取，避免写冲突
 logger = logClient("Test","test", rotate = "Time", when = 'H', keep_num = 48)
 logger = logClient("Test","test", rotate = "Size", max_bytes = 1028, keep_num = 48)
 logger = logClient("Test","test", rotate = "None")
@@ -46,8 +47,7 @@ class LogClient:
         file_handler.formatter = formater
         self.logger.addHandler(file_handler)
         self.logger.setLevel(logging.DEBUG)
-
-        
+    
 
     def info(self, message):
         self.logger.info(message)
