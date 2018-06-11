@@ -1,8 +1,8 @@
 import multiprocessing,time,os
-from logger import LogClient
+from logger import Logger
 
 def test(process_name):
-    logger = LogClient("Test","test", rotate = "Time", when = 'M', keep_num = 5)
+    logger = Logger("Test","test", rotate = "Time", when = 'M', keep_num = 5)
     k = 0
     pid = os.getpid()
     while True:

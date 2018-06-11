@@ -12,7 +12,7 @@ logger = logClient("Test","test", rotate = "None")
 
 
 
-class LogClient:
+class Logger:
     def __init__(self, 
             app_name, 
             file_name, 
@@ -63,7 +63,7 @@ class LogClient:
         self.logger.critical(message)    
 
 
-class LogServer:
+class LoggerCustom:
     def __init__(self, app_name, keep_num = 24, buffer_num = 100):
         self.buffer_num = buffer_num
         self.buffer = []

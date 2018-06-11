@@ -2,7 +2,8 @@
 # created by zwg WegoZng in 20180501
 from flask import Flask,request
 from flask.views import MethodView
-from recall_model import RecallModel
+# from recall_model import RecallModel
+from model_pai_swing import SwingPai as RecallModel
 import json
 
 def index():
@@ -23,7 +24,9 @@ def similar():
 
 
 if __name__ == "__main__":
-    model = RecallModel()
+    video_filename = "videos.csv"
+    rec_filename = "rec.csv"
+    model = RecallModel(rec_filename, video_filename)
     app = Flask(__name__)
     app.add_url_rule('/',          view_func=index)
     app.add_url_rule('/similar',   view_func=similar)
