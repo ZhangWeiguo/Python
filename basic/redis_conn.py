@@ -44,7 +44,15 @@ class RedisClient(redis.Redis):
         return self.sscan(name)
 
 
+    def set_zset_all(self, name, data):
+        if isinstance(data, dict):
+            self.delete(name)
+            self.zadd(name, **data)
+        else:
+            raise Exception("data should be dict")
 
+    def get_zset_all(self, name):
+        return self.zscan(name)
 
 
 if __name__ == "__main__":
@@ -67,6 +75,9 @@ if __name__ == "__main__":
 
     r.set_set_all("videos",set(range(10)))
     print r.get_set_all("videos")
+
+    r.set_zset_all("videos",{"1":12,"2":34,"4":56})
+    print r.get_zset_all("videos")
 
 
 
