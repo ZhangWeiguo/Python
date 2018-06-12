@@ -4,6 +4,7 @@ import redis
 class RedisClient(redis.Redis):
     '''
     5 kind data struct: string;hash;list;set;zset
+    getAll/setAll
     '''
     def __init__(self, host, port=6379, db=0, password=None, **kwargs):
         redis.Redis.__init__(self, host=host, port=port, db=db, password=password, **kwargs)
