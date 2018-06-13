@@ -13,6 +13,16 @@ class ElasticClient:
         self.user = user
         self.pwd = pwd
 
+    def get_health(self):
+        try:
+            url = '%s/%s' % (self.__server(), "_cluster/health")
+            result = self.session.get(url, auth=(self.user, self.pwd), headers=self.headers)
+            return result.content
+        except:
+            return None
+
+
+
     # https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
     def index(self, index, type, id, query):
         try:
