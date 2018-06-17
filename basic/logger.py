@@ -50,17 +50,23 @@ class Logger:
     
 
     def info(self, message):
-        self.logger.info(message)
+        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
+        self.logger.info(location + message)
     def error(self, message):
-        self.logger.error(message)
+        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
+        self.logger.error(location + message)
     def debug(self, message):
-        self.logger.debug(message)
+        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
+        self.logger.debug(location + message)
     def warning(self, message):
-        self.logger.warning(message)       
+        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
+        self.logger.warning(location + message)       
     def fatal(self, message):
-        self.logger.fatal(message)
+        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
+        self.logger.fatal(location + message)
     def critical(self, message):
-        self.logger.critical(message)    
+        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
+        self.logger.critical(location + message)    
 
 
 class LoggerCustom:
