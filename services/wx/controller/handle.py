@@ -30,9 +30,17 @@ class Handle(object):
                 content = u"编写中，尚未完成".encode('utf-8')
                 reply_msg = reply.TextMsg(to_user, from_user, content)
                 return reply_msg.send()
-        reply_msg = reply.TextMsg(to_user, from_user, u"这是个我不知道的类型".encode("utf-8"))
-        return reply_msg().send()
-    
+        elif isinstance(rec_msg,receive.EventMsg):
+            to_user = rec_msg.from_username
+            from_user = rec_msg.to_usermame
+            reply_msg = reply.TextMsg(to_user, from_user, u"这是个事件，具体做什么我还没想好".encode("utf-8"))
+            return reply_msg.send()
+        else:
+            to_user = rec_msg.from_username
+            from_user = rec_msg.to_usermame
+            reply_msg = reply.TextMsg(to_user, from_user, u"这是个我未定义的类型".encode("utf-8"))
+            return reply_msg.send()
+        
     # 初始化认证
     def GET(self):
         try:
@@ -44,7 +52,7 @@ class Handle(object):
             timestamp   = data.timestamp
             nonce       = data.nonce
             echostr     = data.echostr
-            token       = "zhangweiguo"
+            token       = ini_configer.get("app","token")
             L = [token, timestamp, nonce]
             L.sort()
             sha1 = hashlib.sha1()

@@ -1,0 +1,1 @@
+sudo uwsgi wx-uwsgi.ini

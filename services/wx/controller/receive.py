@@ -47,6 +47,8 @@ def parse_xml(web_data):
         event_type = xml_data.find('Event').text
         if event_type == 'CLICK':
             return Click(xml_data)
+        else:
+            return EventMsg(xml_data)
     elif msg_type == 'text':
         return TextMsg(xml_data)
     elif msg_type == 'image':

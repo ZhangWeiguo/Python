@@ -16,7 +16,6 @@ class TokenAccess:
                             % (app_id, app_secret)      
         url_resp = urllib.urlopen(post_url)
         url_resp = json.loads(url_resp.read())
-        print url_resp
         self.__access_token = url_resp['access_token']
         self.__left_time = url_resp['expires_in']
     def get_access_token(self):
