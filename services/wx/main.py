@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# filename: main.py
+# created by zwg in 20180617
 import web
-from handle import Handle
+from controller.handle import Handle
 
 urls = (
+    '/',   'Index',
     '/wx', 'Handle',
 )
+
 
 if __name__ == '__main__':
     app = web.application(urls, globals())

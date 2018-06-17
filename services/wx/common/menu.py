@@ -1,37 +1,37 @@
 # -*- coding: utf-8 -*-
 # filename: menu.py
 import urllib
-from basic import Basic
+from token_access import TokenAccess
 
 class Menu(object):
     def __init__(self):
         pass
-    def create(self, postData, accessToken):
-        postUrl = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s" % accessToken
-        if isinstance(postData, unicode):
-            postData = postData.encode('utf-8')
-        urlResp = urllib.urlopen(url=postUrl, data=postData)
-        print urlResp.read()
+    def create(self, post_data, access_token):
+        post_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s" % access_token
+        if isinstance(post_data, unicode):
+            post_data = post_data.encode('utf-8')
+        url_resp = urllib.urlopen(url=post_url, data=post_data)
+        print url_resp.read()
 
-    def query(self, accessToken):
-        postUrl = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=%s" % accessToken
-        urlResp = urllib.urlopen(url=postUrl)
-        print urlResp.read()
+    def query(self, access_token):
+        post_url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=%s" % access_token
+        url_resp = urllib.urlopen(url=post_url)
+        print url_resp.read()
 
-    def delete(self, accessToken):
-        postUrl = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s" % accessToken
-        urlResp = urllib.urlopen(url=postUrl)
-        print urlResp.read()
+    def delete(self, access_token):
+        post_url = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s" % access_token
+        url_resp = urllib.urlopen(url=post_url)
+        print url_resp.read()
 
     #获取自定义菜单配置接口
-    def get_current_selfmenu_info(self, accessToken):
-        postUrl = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s" % accessToken
-        urlResp = urllib.urlopen(url=postUrl)
-        print urlResp.read()
+    def get_current_selfmenu_info(self, access_token):
+        post_url = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s" % access_token
+        url_resp = urllib.urlopen(url=post_url)
+        print url_resp.read()
 
 if __name__ == '__main__':
-    myMenu = Menu()
-    postJson = """
+    my_menu = Menu()
+    post_json = """
     {
         "button":
         [
@@ -69,5 +69,5 @@ if __name__ == '__main__':
           ]
     }
     """
-    accessToken = Basic().get_access_token()
-    myMenu.create(postJson, accessToken)
+    access_token = TokenAccess.get_access_token()
+    my_menu.create(post_json, access_token)
