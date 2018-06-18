@@ -7,7 +7,7 @@ import reply
 import receive
 import web,hashlib
 
-class Handle(object):
+class Wx(object):
     # 处理信息交互
     def POST(self):
         web_data = web.data()

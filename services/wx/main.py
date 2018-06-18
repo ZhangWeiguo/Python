@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180617
 import web
-from controller.handle import Handle
+from controller.wx import Wx
 from controller.home import Home
+from controller.login import Login
 urls = (
-    '/',   'Home',
-    '/wx', 'Handle',
+    '/',        'Home',
+    '/wx',      'Wx',
+    '/login',   'Login',
 )
 
 app = web.application(urls, globals())

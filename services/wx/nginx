@@ -1,3 +1,0 @@
-sudo /usr/sbin/nginx -c /etc/nginx/wx-nginx.conf
-ps -ef | grep nginx
-/usr/sbin/nginx -s stop
