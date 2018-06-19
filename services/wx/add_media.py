@@ -11,10 +11,8 @@ if __name__ == '__main__':
     access_token = token_access.get_access_token()
     file_path = "static/test.jpg"
     media_type = "image"
-    res = my_media.uplaod(access_token, file_path, media_type)
-    print res
+    print my_media.uplaod(access_token, file_path, media_type)
     res = json.loads(res)
     media_id = res["media_id"]
     my_media.download(access_token=access_token, media_id=media_id, media_path="1.jpg")
-    res = my_media.upload_forever_media(access_token, file_path, media_type)
-    print res
+    print my_media.upload_forever_media(access_token, file_path, media_type)

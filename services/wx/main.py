@@ -4,10 +4,12 @@ import web
 from controller.wx import Wx
 from controller.home import Home
 from controller.login import Login
+from controller.user import User
 urls = (
     '/',        'Home',
     '/wx',      'Wx',
     '/login',   'Login',
+    '/user',    'User',
 )
 
 app = web.application(urls, globals())
