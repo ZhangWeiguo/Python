@@ -76,7 +76,7 @@ class ElasticClient:
         except:
             return None
 
-    def isIndexExist(self, index):
+    def is_index_exist(self, index):
         try:
             url = '%s/%s/' % (self.__server(), index)
             result = self.session.head(url, auth=(self.user, self.pwd), headers=self.headers)
