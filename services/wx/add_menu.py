@@ -22,7 +22,7 @@ if __name__ == '__main__':
                     {
                         "type": "view",
                         "name": "更新公告",
-                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                        "url": "http://111.230.222.74/login"
                     },
                     {
                         "type": "view",
@@ -39,7 +39,7 @@ if __name__ == '__main__':
             {
                 "type": "media_id",
                 "name": "旅行",
-                "media_id": "QXNMv6fmIXinfaX2V9Fij3Mx5y9JjZ-GoGvpBzkmjffs3_NT11awexIAh3Iqqj5m"
+                "media_id": "g9H60htjMlG0C6la55kXwvhuOSlfAj1V8QabYqdQfB0"
             }
           ]
     }'''
@@ -49,4 +49,5 @@ if __name__ == '__main__':
                                 app_id=ini_configer.get("app-test","app_id"),
                                 app_secret=ini_configer.get("app-test","app_secret"))
     access_token = token_access.get_access_token()
+    my_menu.delete(access_token)
     my_menu.create(post_json, access_token)

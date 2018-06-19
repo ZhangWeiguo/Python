@@ -40,7 +40,7 @@
   
  <body>  
   
-    <form>  
+    <form method="POST" action="/login">  
         <fieldset>  
             <legend>  
                 用户注册页面  
@@ -50,23 +50,23 @@
                 <caption>用户登录信息</caption>  
                 <tr>  
                     <td width="20%" >用户名</td>  
-                    <td width="40%"><input type="text" required="true" autofocus="true"></td>  
+                    <td width="40%"><input type="text" required="true" autofocus="true" name="username"></td>  
                     <td width="40%">*</td>  
                 </tr>  
                 <tr>  
                     <td>邮箱</td>  
-                    <td><input type="email" required="true"></td>  
+                    <td><input type="email" required="true" name="useremail"></td>  
                     <td>*</td>  
                 </tr>  
                 <tr>  
                     <td>密码</td>  
-                    <td><input type="password" id="pwd" required="true" onkeyup="checkLength()"></td>  
+                    <td><input type="password" id="pwd" required="true" onkeyup="checkLength()" name="password"></td>  
                     <td>* <span id="spanLen"></span></td>  
                     </td>  
                 </tr>  
                 <tr>  
                     <td>确认密码</td>  
-                    <td><input type="password"  id="pwd2" required="true" onblur="checkPSW()"></td>  
+                    <td><input type="password"  id="pwd2" required="true" onblur="checkPSW()" name="password2"></td>  
                     <td align="left">* <span id="pswInfo" style="color: #c41a15;"></span></td>  
       
                 </tr>  
@@ -79,7 +79,7 @@
                 <tr>  
                     <td width="20%">性别</td>  
                     <td width="40%">  
-                        <select size="1">  
+                        <select size="1" name="sex">  
                             <option>男</option>  
                             <option>女</option>  
                         </select>  
@@ -90,11 +90,11 @@
       
                 <tr>  
                     <td>出生年月</td>  
-                    <td><input type="date"></td>  
+                    <td><input type="date" name="birth"></td>  
                 </tr>  
                 <tr>  
                     <td>住址</td>  
-                    <td><input type="text"></td>  
+                    <td><input type="text" name="address"></td>  
                 </tr>  
                 <tr>  
                     <td colspan="2">  
