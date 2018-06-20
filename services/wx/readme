@@ -20,3 +20,7 @@ git remote add wego git@github.com:ZhangWeiguo/Python.git
 git clone https://github.com/ZhangWeiguo/Python.git
 ssh-keygen -t rsa -b 4096 -C "zhangweiguo717@163.com"
 cat /home/ubuntu/.ssh/id_rsa.pub # 写入github
+
+
+uwsgi 用一般用户权限运行
+nginx 用root用户运行

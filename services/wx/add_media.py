@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180617
-from common.token_access import TokenAccess
+from common.token import Token
 from common.media import Media
 import json
-from init import ini_configer
+from init import ini_configer,token
 
 if __name__ == '__main__':
     my_media = Media()
-    token_access = TokenAccess(app_id=ini_configer.get("app-test","app_id"),app_secret=ini_configer.get("app-test","app_secret"))
-    access_token = token_access.get_access_token()
+    access_token = token.get_access_token()
     file_path = "static/test.jpg"
     media_type = "image"
     print my_media.uplaod(access_token, file_path, media_type)

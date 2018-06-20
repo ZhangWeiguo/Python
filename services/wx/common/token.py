@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# # filename: basic.py
+# created by zwg in 20180620
+# 响应微信token验证
 import urllib
 import time
 import json
-class TokenAccess:    
+class Token:    
     def __init__(self, app_id, app_secret):        
         self.__access_token  =   '' 
         self.__left_time     =   0

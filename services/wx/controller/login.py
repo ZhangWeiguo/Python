@@ -2,7 +2,7 @@
 # created by zwg in 20180617
 import sys
 sys.path.append("..")
-from init import ini_configer,logger
+from init import logger
 import web
 
 class Login:
