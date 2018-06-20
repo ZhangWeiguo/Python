@@ -1,4 +1,14 @@
 sudo apt-get install python-pip
+python -m pip install --upgrade pip
+python -m pip install web.py
+python -m pip install numpy
+python -m pip install pandas
+python -m pip install sklearn
+python -m pip install matplotlib
+python -m pip install flask
+python -m pip install mysql-connector
+python -m pip install poster
 pip install poster
+sudo apt-get install nginx
 sudo apt-get install uwsgi
 sudo apt-get install uwsgi-plugin-python
