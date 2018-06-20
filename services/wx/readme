@@ -8,10 +8,10 @@ python -m pip install matplotlib
 python -m pip install flask
 python -m pip install mysql-connector
 python -m pip install poster
-pip install poster
 sudo apt-get install nginx
-sudo apt-get install uwsgi
 sudo apt-get install uwsgi-plugin-python
+# 有了上面那个，下面这个就不用了，且需要加上plugins=python的参数
+# sudo apt-get install uwsgi
 sudo apt install git
 git init
 git config --global user.name "Zhangweiguo"
