@@ -12,3 +12,11 @@ pip install poster
 sudo apt-get install nginx
 sudo apt-get install uwsgi
 sudo apt-get install uwsgi-plugin-python
+sudo apt install git
+git init
+git config --global user.name "Zhangweiguo"
+git config --global user.email "zhangweiguo717@163.com"
+git remote add wego git@github.com:ZhangWeiguo/Python.git
+git clone https://github.com/ZhangWeiguo/Python.git
+ssh-keygen -t rsa -b 4096 -C "zhangweiguo717@163.com"
+cat /home/ubuntu/.ssh/id_rsa.pub # 写入github
