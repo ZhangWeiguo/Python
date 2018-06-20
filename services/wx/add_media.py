@@ -3,11 +3,10 @@
 from common.token import Token
 from common.media import Media
 import json
-from init import ini_configer
+from init import ini_configer,token
 
 if __name__ == '__main__':
     my_media = Media()
-    token = Token(app_id=ini_configer.get("app-test","app_id"),app_secret=ini_configer.get("app-test","app_secret"))
     access_token = token.get_access_token()
     file_path = "static/test.jpg"
     media_type = "image"
