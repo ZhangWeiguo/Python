@@ -10,7 +10,7 @@ from common.token import Token
 
 
 ini_configer = IniConfiger("config.ini")
-app_id      =   ini_configer.get("app-test")
+app_id      =   ini_configer.get("app-test","app_id")
 app_name    =   ini_configer.get("app-test","app_name")
 app_token   =   ini_configer.get("app-test","token")
 app_secret  =   ini_configer.get("app-test","app_secret")
