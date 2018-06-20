@@ -1,1 +1,1 @@
-sudo uwsgi wx-uwsgi.ini
+uwsgi wx-uwsgi.ini

@@ -2,3 +2,5 @@ sudo apt-get install python-pip
 pip install poster
 sudo apt-get install uwsgi
 sudo apt-get install uwsgi-plugin-python
+uwsgi 用一般用户权限运行
+nginx 用root用户运行
