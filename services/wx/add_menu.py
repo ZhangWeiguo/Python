@@ -3,6 +3,7 @@
 from common.token_access import TokenAccess
 from common.menu import Menu
 import json
+from urllib import quote
 from init import ini_configer
 
 if __name__ == '__main__':
@@ -21,13 +22,13 @@ if __name__ == '__main__':
                 [
                     {
                         "type": "view",
-                        "name": "更新公告",
-                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                        "name": "直接登录",
+                        "url": "http://111.230.222.74/login"
                     },
                     {
                         "type": "view",
-                        "name": "接口权限说明",
-                        "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1418702138&token=&lang=zh_CN"
+                        "name": "授权登录",
+                        "url": "%s"
                     },
                     {
                         "type": "view",
@@ -39,7 +40,7 @@ if __name__ == '__main__':
             {
                 "type": "media_id",
                 "name": "旅行",
-                "media_id": "QXNMv6fmIXinfaX2V9Fij3Mx5y9JjZ-GoGvpBzkmjffs3_NT11awexIAh3Iqqj5m"
+                "media_id": "g9H60htjMlG0C6la55kXwvhuOSlfAj1V8QabYqdQfB0"
             }
           ]
     }'''
@@ -49,4 +50,13 @@ if __name__ == '__main__':
                                 app_id=ini_configer.get("app-test","app_id"),
                                 app_secret=ini_configer.get("app-test","app_secret"))
     access_token = token_access.get_access_token()
-    my_menu.create(post_json, access_token)
+    # print my_menu.delete(access_token)
+    app_id=ini_configer.get("app-test","app_id")
+    url = "http://111.230.222.74/user"
+    auth_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s" + \
+                "&redirect_uri=%s&response_type=code&scope=snsapi_userinfo" + \
+                "&state=zhangweiguo#wechat_redirect"
+    auth_url = auth_url%(app_id, quote(url))
+    print auth_url
+    button_json = post_json%(auth_url)
+    # print my_menu.create(button_json, access_token)
