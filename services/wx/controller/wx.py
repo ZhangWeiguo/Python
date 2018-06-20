@@ -2,7 +2,7 @@
 # created by zwg in 20180617
 import sys
 sys.path.append("..")
-from init import ini_configer,logger
+from init import app_token,logger
 import reply
 import receive
 import web,hashlib
@@ -52,7 +52,7 @@ class Wx(object):
             timestamp   = data.timestamp
             nonce       = data.nonce
             echostr     = data.echostr
-            token       = ini_configer.get("app","token")
+            token       = app_token
             L = [token, timestamp, nonce]
             L.sort()
             sha1 = hashlib.sha1()

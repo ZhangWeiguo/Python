@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180617
-from common.token_access import TokenAccess
+from common.token import Token
 from common.menu import Menu
 import json
 from urllib import quote
@@ -46,10 +46,10 @@ if __name__ == '__main__':
     }'''
 
     post_json = button_setting
-    token_access = TokenAccess(
-                                app_id=ini_configer.get("app-test","app_id"),
-                                app_secret=ini_configer.get("app-test","app_secret"))
-    access_token = token_access.get_access_token()
+    token = Token(
+                app_id=ini_configer.get("app-test","app_id"),
+                app_secret=ini_configer.get("app-test","app_secret"))
+    access_token = token.get_access_token()
     # print my_menu.delete(access_token)
     app_id=ini_configer.get("app-test","app_id")
     url = "http://111.230.222.74/user"

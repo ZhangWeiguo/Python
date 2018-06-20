@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180617
-from token_access import TokenAccess
+# 媒体相关
 import urllib2
 import poster.encode
 from poster.streaminghttp import register_openers

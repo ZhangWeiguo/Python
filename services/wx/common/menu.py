@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# filename: menu.py
+# created by zwg in 20180620
+# 菜单相关
 import urllib
-from token_access import TokenAccess
 
 class Menu(object):
     def __init__(self):
