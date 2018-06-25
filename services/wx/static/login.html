@@ -1,111 +1,154 @@
-<!doctype html>  
-<html lang="en">  
-    <head lang="en">  
-        <meta charset="UTF-8">  
-        <title></title>  
-      
-        <style>  
-            td input[type="text"],td input[type="email"],td input[type="password"], td input[type="date"]{  
-                width:98%;  
-            }  
-      
-      
-        </style>  
-        <script>  
-            function checkLength(){  
-                var pwd=document.getElementById("pwd").value;  
-                var spanLen=document.getElementById("spanLen");  
-      
-      
-                if(pwd.length<=3&&pwd.length>0)  
-                    spanLen.innerHTML="弱";  
-                else if(pwd.length<=6)  
-                    spanLen.innerText="中";  
-                else  
-                    spanLen.innerText="强";  
-      
-            }  
-      
-            function checkPSW(){  
-                var pwd1=document.getElementById("pwd").value;  
-                var pwd2=document.getElementById("pwd2").value;  
-                var pswInfo=document.getElementById("pswInfo");  
-                if(pwd1!=pwd2)  
-                    pswInfo.innerText="两次密码不同";   // alert("两次密码不同");  
-                else  
-                    pswInfo.innerText="";  
-            }  
-        </script>  
-    </head>  
-  
- <body>  
-  
-    <form method="POST" action="/login">  
-        <fieldset>  
-            <legend>  
-                用户注册页面  
-            </legend>  
-      
-            <table align="center" width="500px" >  
-                <caption>用户登录信息</caption>  
-                <tr>  
-                    <td width="20%" >用户名</td>  
-                    <td width="40%"><input type="text" required="true" autofocus="true" name="username"></td>  
-                    <td width="40%">*</td>  
-                </tr>  
-                <tr>  
-                    <td>邮箱</td>  
-                    <td><input type="email" required="true" name="useremail"></td>  
-                    <td>*</td>  
-                </tr>  
-                <tr>  
-                    <td>密码</td>  
-                    <td><input type="password" id="pwd" required="true" onkeyup="checkLength()" name="password"></td>  
-                    <td>* <span id="spanLen"></span></td>  
-                    </td>  
-                </tr>  
-                <tr>  
-                    <td>确认密码</td>  
-                    <td><input type="password"  id="pwd2" required="true" onblur="checkPSW()" name="password2"></td>  
-                    <td align="left">* <span id="pswInfo" style="color: #c41a15;"></span></td>  
-      
-                </tr>  
-            </table>  
-      
-            <br>  
-            <br>  
-            <table align="center" width="500px">  
-                <caption>用户基本信息</caption>  
-                <tr>  
-                    <td width="20%">性别</td>  
-                    <td width="40%">  
-                        <select size="1" name="sex">  
-                            <option>男</option>  
-                            <option>女</option>  
-                        </select>  
-                    </td>  
-                    <td width="40%"></td>  
-      
-                </tr>  
-      
-                <tr>  
-                    <td>出生年月</td>  
-                    <td><input type="date" name="birth"></td>  
-                </tr>  
-                <tr>  
-                    <td>住址</td>  
-                    <td><input type="text" name="address"></td>  
-                </tr>  
-                <tr>  
-                    <td colspan="2">  
-                        <input type="submit" value="注册新用户">  
-                    </td>  
-                    <td>  
-                        <input type="reset" value="重置">  
-                    </td>  
-                </tr>  
-            </table>  
-        </fieldset>  
-    </form>  
-    </body>  
-</html>  
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>    
+        <meta charset="UTF-8">   
+        <title>欢迎登录</title>   
+        <style>
+            a, address, b, big, blockquote, body, center, cite, code, dd, del, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, label, legend, li, ol, p, pre, small, span, strong, u, ul, var{   
+                padding: 0;   
+                margin: 0;
+            }
+            *{    
+            padding: 0;   
+                margin: 0;
+            }
+            body{    
+            background-color: #F2F2F2;      
+                text-align: center;
+            }
+            #panel{      
+            margin-top: 50px;    
+            display: inline-block;   
+                background-color: white;   
+                border: 1px solid #dddddd ;    
+            padding: 30px;   
+                border-radius: 6px;    
+            box-shadow: 0 0 10px #999;   
+                width: 260px;
+            }
+            #panel .panel-top{   
+                font-size: 13px;    
+            font-family: Arial;    
+            font-weight: normal;    
+            padding: 10px 0;    
+            border-bottom: 1px solid #dddddd;    
+            width: 220px;    
+            margin: 0 auto;
+            }
+            #panel .panel-content{   
+                margin-top: 20px;
+            }
+            #panel .panel-content .int{    
+            height: 36px;    
+            margin-bottom: 9px;    
+            position: relative;
+            }
+            #panel .panel-content label{    
+            position: absolute;    top: 7px;    
+            left: 6px;
+            }
+            #panel .panel-content .int input{    
+            width: 100%;    
+            height: 100%;    
+            border: 1px solid #dddddd;    
+            padding-left: 40px;    
+            box-sizing: border-box;    
+            border-radius: 6px;
+            }
+            #panel .panel-content input:focus{    
+                outline: none;   
+                border: 1px solid orangered;   
+                box-shadow: 0 0 2px orangered;
+            }
+            #panel .panel-content .pwd-login a{    
+            display: inline-block;    
+            color: gray;    
+            font-size: 13px;
+            }
+            #panel .panel-content .pwd-login{   
+                width: 260px;    
+            height: 30px;    
+            line-height: 30px;
+            }
+            #panel .panel-content .setting{   
+            background-color: red;
+            }
+            #panel .panel-content .setting .forget-pwd{    float: right;
+            }
+            #panel .panel-content .setting .auto-login{    float: left;    
+            text-decoration: none;
+            }
+            #panel .panel-content .pwd-login  input{      
+                display: inline-block;   
+                width: 18px;    
+                float: left;
+            }
+            #panel .login button{    
+            margin-top: 20px;    
+            width: 100%;    
+            height: 33px;   
+                border: 0;    
+            color: white;    
+            font-size: 18px;    
+            margin-bottom: 10px;   
+                border-radius: 6px;   
+                background-color: orangered;
+            }
+            #panel .reg{   
+                height: 30px;   
+                line-height: 30px;   
+                font-size: 13px;
+            }
+            #panel .reg a{   
+                color: orangered;    
+            text-decoration: none;    
+            margin-left: 5px;
+            }
+            #panel .panel-footer{   
+                height: 40px;    
+            line-height: 40px;
+            }
+            #panel .panel-footer img{   
+                vertical-align: middle;
+            }
+            #panel .panel-footer span{    
+            vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="panel">   
+            <div class="panel-top">       
+            <h2>欢迎登录WX</h2>    
+            </div>
+            <div class="panel-content">        
+                <div class="int">          
+                    <label>
+                        <img src="static/user.png" width="25px" height="25px">
+                    </label>    
+                    <input type="text" placeholder="你的手机号/用户名">       
+                </div>        
+                <div class="int">            
+                    <label>
+                        <img src="static/pass.png"  width="25px" height="25px" >
+                    </label>            
+                    <input type="password" placeholder="输入密码">        
+                </div>
+                <div class="setting">            
+                    <a href="#" class="auto-login">
+                        <input type="checkbox">下次自动登录
+                    </a>           
+                    <a href="#" class="forget-pwd">忘记密码</a>        
+                </div>        
+                <div class="login">            
+                    <button>登录</button>        
+                </div>        
+                <div class="reg">
+                    还没账号?
+                    <a href="#">马上注册</a>        
+                </div>    
+            </div>    
+        </div>
+    </body>
+</html>
