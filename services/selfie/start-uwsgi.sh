@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 set -e
 appname=`cat app.ini | grep "procname-master" | awk '{print $3}'`
 echo "AppName : $appname"
@@ -7,7 +7,7 @@ if [ -n "$pids" ]
 then
 	echo "App Is Already Running"
 else
-	uwsgi app.ini
+	uwsgi selfie-uwsgi.ini
 	echo "App Is Running"
 fi
 ps -ef | grep $appname
