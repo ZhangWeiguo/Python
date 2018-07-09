@@ -1,0 +1,1 @@
+sudo /usr/sbin/nginx -c /etc/nginx/nginx-selfie.conf
