@@ -10,8 +10,8 @@ web.config.debug = False
 urls = (
     '/',            'Index',
     '/login',       'Login',
-    '/self/.*',     'Self',
-    '/.*',          'Index',
+    '/self/(.*)',   'Self',
+    '/(.*)',        'Index',
 )
 
 # ToDo
