@@ -4,6 +4,7 @@ import web,os
 from controllers.index import Index
 from controllers.login import Login
 from controllers.self import Self
+from controllers.unknow import Unknow
 
 web.config.debug = False
 
@@ -11,7 +12,7 @@ urls = (
     '/',            'Index',
     '/login',       'Login',
     '/self/(.*)',   'Self',
-    '/(.*)',        'Index',
+    '/(.*)',        'Unknow',
 )
 
 # ToDo
