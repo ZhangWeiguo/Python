@@ -1,82 +1,79 @@
 <html>
-<head>
-<title>无耻小人</title>
-<link rel="icon" type="image/x-icon" href="/static/image/dog.ico">
-<script type="text/javascript" src='static/js/md5.js'></script>
-<script type="text/javascript">
+    <head>
+        <title>无耻小人</title>
+        <link rel="icon" type="image/x-icon" href="/static/image/dog.ico">
+        <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
+        <script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="/static/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src='static/js/md5.js'></script>
+        <script type="text/javascript">
 
-function register(){
-    location.href='#'
-    return true
-}
-function submit_form(){
-    var theForm = document.forms[0]; 
-    if(theForm.user_name.value !='' && theForm.pass_word.value !=''){ 
-        if(parent!=null){ 
-            theForm.target = "_parent";
-            theForm.pass_word.value = hex_md5(theForm.pass_word.value);
-            theForm.submit();
+        function register(){
+            location.href='#'
+            return true
         }
-    }else{
-        alert("请输入正确的用户名/密码");
-    }
-}
+        function submit_form(){
+            var theForm = document.forms[0]; 
+            if(theForm.user_name.value !='' && theForm.pass_word.value !=''){ 
+                if(parent!=null){ 
+                    theForm.target = "_parent";
+                    theForm.pass_word.value = hex_md5(theForm.pass_word.value);
+                    theForm.submit();
+                }
+            }else{
+                alert("请输入正确的用户名/密码");
+            }
+        }
 
+        </script>
+        <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:url(static/image/background1.jpg) no-repeat center;
+            font-size:13px;
+        }
+        td{
+            font-family: Georgia, serif;
+        }
+        h1{
+            font-family: Georgia, serif;
+        }
+        #user{
+            width:150px;
+            height:20px;
+        }
+        #pass{
+            width:150px;
+            height:20px;
+        }
+        </style>
 
+    </head>
+    <body>
+        <br><br>
+        <br><br><br>
+        <h1 align="center"><big>登录页</big></h1>
+        <form method="post" action="/login">
+            <table border="0" align="center">
+                <tr>
+                    <td>用户名</td>
+                    <td><input type="text" class="form-control" name="user_name" value="" id="user"/></td>
+                </tr>
+                <tr>
+                    <td>密码</td>
+                    <td><input type="password" class="form-control" name="pass_word" value="" id="pass"/></td>
+                </tr>
+            </table>
 
+            <p align="center"><input id="remember" type="checkbox">请记住我</p>
+            <table align="center">
+            <tr>
+                <td><input type="button" class="btn btn-default" value="确认" onclick="submit_form()" autofocus="autofocus"/></td>
+                <td><input type="reset"  class="btn btn-default" value="重置"/></td>
+                <td><input type="button" class="btn btn-default" value="注册" onclick="register()"/></td>
+            </tr>
+            </table>
+        </form>
 
-</script>
-<title>
-Login Page
-</title>
-<style>
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:url(static/image/background1.jpg) no-repeat center;
-    font-size:13px;
-}
-td{
-    font-family: Georgia, serif;
-}
-h1{
-    font-family: Georgia, serif;
-}
-#user{
-    width:150px;
-    height:20px;
-}
-#pass{
-    width:150px;
-    height:20px;
-}
-</style>
-
-</head>
-<body>
-<br><br>
-<br><br><br>
-<h1 align="center"><big>登录页</big></h1>
-<form method="post" action="/login">
-    <table border="0" align="center">
-        <tr>
-            <td>用户名</td>
-            <td><input type="text" name="user_name" value="" id="user"/></td>
-        </tr>
-        <tr>
-            <td>密码</td>
-            <td><input type="password" name="pass_word" value="" id="pass"/></td>
-        </tr>
-    </table>
-
-    <p align="center"><input id="remember" type="checkbox">Remember Your PassWord</p>
-    <table align="center">
-    <tr>
-        <td><input type="button" value="确认" onclick="submit_form()" autofocus="autofocus"/></td>
-        <td><input type="reset"  value="重置"/></td>
-        <td><input type="button" value="注册" onclick="register()"/></td>
-    </tr>
-    </table>
-</form>
-
-</body>
+    </body>
 </html>
