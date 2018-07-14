@@ -14,7 +14,6 @@ function submit_form(){
             theForm.target = "_parent";
             theForm.pass_word.value = hex_md5(theForm.pass_word.value);
             theForm.submit();
-            alert(theForm.pass_word.value);
         }
     }else{
         alert("请输入正确的用户名/密码");
