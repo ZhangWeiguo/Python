@@ -1,22 +1,36 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180617
 import web,os
+from controllers.index import Index
+from controllers.login import Login
+
+web.config.debug = False
 
 urls = (
     '/',        'Index',
+    '/login',   'Login',
 )
 
-class Index:
-    def GET(self):
-        s = os.path.join('templates','index.html')
-        render = web.template.frender(s)
-        return render()
-    def POST(self):
-        s = os.path.join('templates','index.html')
-        render = web.template.frender(s)
-        return render()
+# ToDo
+#       Session
+#       Login
+#       Paper
+#       Comment
+#       Others
+
+web.config.session_parameters['cookie_name']        = 'session_id'
+web.config.session_parameters['cookie_domain']      = None
+web.config.session_parameters['timeout']            = 1200
+web.config.session_parameters['ignore_expiry']      = True
+web.config.session_parameters['ignore_change_ip']   = True
+web.config.session_parameters['secret_key']         = 'MaolongxiaIsDog'
+web.config.session_parameters['expired_message']    = 'Session expired'
 
 app = web.application(urls, globals())
+session_store = web.session.DiskStore('sessions')
+session = web.session.Session(app, session_store, initializer={"user_name":"","pass_word":""})
+web.config.session = session
+
 application = app.wsgifunc()
 
 if __name__ == '__main__':
