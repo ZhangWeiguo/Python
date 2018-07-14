@@ -3,12 +3,15 @@
 import web,os
 from controllers.index import Index
 from controllers.login import Login
+from controllers.self import Self
 
 web.config.debug = False
 
 urls = (
-    '/',        'Index',
-    '/login',   'Login',
+    '/',            'Index',
+    '/login',       'Login',
+    '/self/.*',     'Self',
+    '/.*',          'Index',
 )
 
 # ToDo

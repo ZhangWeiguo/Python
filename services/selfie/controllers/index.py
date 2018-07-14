@@ -7,8 +7,11 @@ class Index:
     def GET(self):
         try:
             user_name = web.config.session["user_name"]
-            user_page = "/%s"%(user_name)
+            user_page = "/self/%s"%(user_name)
         except:
+            user_name = "登录"
+            user_page = "/login"
+        if user_name == "":
             user_name = "登录"
             user_page = "/login"
         data = {"user_name":user_name,"user_page":user_page}
