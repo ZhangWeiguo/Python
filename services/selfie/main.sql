@@ -13,7 +13,7 @@ engine = innodb;
 
 insert into user_info values(
     "NoTeethSmallPerson",
-    "199f5f2ea963323178210a676b6e9029",
+    "0804835823445a2a03b34187adac1440",
     "1994-07-17",
     "male",
     "The Owner is too lazy to left anything",

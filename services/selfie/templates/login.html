@@ -1,57 +1,27 @@
 <html>
 <head>
-<script type="text/javascript" src='/static/js/md5.js'></script>
+<script type="text/javascript" src='static/js/md5.js'></script>
 <script type="text/javascript">
-$("#pass").val("dee");
+
 function register(){
     location.href='#'
     return true
 }
-function validate(form){
-    if(form.pass_word.value==''){
-        alert("Your PassWord Is Empty!")
-        return false;
-    }
-    if(form.user_name.value==''){
-        alert("Your userid Is Empty!")
-        return false;
-    }
-    
-
-    form.pass_word.value== hex_md5(form.pass_word.value);
-
-    if (confirm("Continue?")) {
-         return true;
-    } else {
-      return false;
-    }
-}
-
-var passKey = '4c05c54d952b11e691d76c0b843ea7f9';
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + encrypt(escape(cvalue), passKey) + "; " + expires;
-}
-//获取cookie
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) != -1){
-          var cnameValue = unescape(c.substring(name.length, c.length));
-          return decrypt(cnameValue, passKey);
+function submit_form(){
+    var theForm = document.forms[0]; 
+    if(theForm.user_name.value !='' && theForm.pass_word.value !=''){ 
+        if(parent!=null){ 
+            theForm.target = "_parent";
+            theForm.pass_word.value = hex_md5(theForm.pass_word.value);
+            theForm.submit();
+            alert(theForm.pass_word.value);
         }
+    }else{
+        alert("请输入正确的用户名/密码");
     }
-    return "";
 }
-//清除cookie
-function clearCookie(cname) {
-    setCookie(cname, "", -1);
-}
+
+
 
 
 </script>
@@ -100,8 +70,8 @@ h1{
     <p align="center"><input id="remember" type="checkbox">Remember Your PassWord</p>
     <table align="center">
     <tr>
-        <td><input type="submit" value=" Confirm " onclick="return validate(this.form)" autofocus="autofocus"/></td>
-        <td><input type="reset" value=" Reset "/></td>
+        <td><input type="button" value=" Confirm " onclick="submit_form()" autofocus="autofocus"/></td>
+        <td><input type="reset"  value=" Reset "/></td>
         <td><input type="button" value=" Register " onclick="register()"/></td>
     </tr>
     </table>
