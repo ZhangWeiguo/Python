@@ -37,27 +37,24 @@
     </head>
     <body>
         <br>
-        <h2 align="center"><big>登录页</big></h2>
-        <form method="post" action="/login">
-             <table border="0" align="center">
-                <tr>
-                    <td>用户名</td>
-                    <td><input type="text" class="form-control" name="user_name" value="" id="user"/></td>
-                </tr>
-                <tr>
-                    <td>密码</td>
-                    <td><input type="password" class="form-control" name="pass_word" value="" id="pass"/></td>
-                </tr>
-            </table> 
+         <img class="img-responsive center-block" src="static/image/dog_login.jpg" width="200px" height="50px">
+        <form method="post" action="/login" class="form-inline" role="form">
+            <p align="center">
+            <input type="text" class="form-control" name="user_name" value="" id="user" placeholder="用户名"/>
+            </p>
+            <p align="center">
+            <input type="password" class="form-control" name="pass_word" value="" id="pass" placeholder="密码"/>
+            </p>
 
-            <p align="center"><input id="remember" type="checkbox"><big>请记住我</big></p>
-            <table align="center">
-            <tr>
-                <td><input type="button" class="btn btn-default" value="确认" onclick="submit_form()" autofocus="autofocus"/></td>
-                <td><input type="reset"  class="btn btn-default" value="重置"/></td>
-                <td><input type="button" class="btn btn-default" value="注册" onclick="register()"/></td>
-            </tr>
-            </table>
+            <!-- <p class="text-center">
+                <input id="remember" type="checkbox" align="center">
+                <big>请记住我</big>
+            </p> -->
+            <p align="center">
+                <td><input type="button" class="btn btn-default" style = "width:60px;height:30px" value="确认" onclick="submit_form()" autofocus="autofocus"/></td>
+                <td><input type="reset"  class="btn btn-default" style = "width:60px;height:30px" value="重置"/></td>
+                <td><input type="button" class="btn btn-default" style = "width:60px;height:30px" value="注册" onclick="register()"/></td>
+            </p>
         </form>
 
     </body>
