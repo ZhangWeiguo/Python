@@ -8,15 +8,17 @@ function register(){
     return true
 }
 function validate(form){
-    if(form.password.value==''){
+    if(form.pass_word.value==''){
         alert("Your PassWord Is Empty!")
         return false;
     }
-    if(form.userid.value==''){
+    if(form.user_name.value==''){
         alert("Your userid Is Empty!")
         return false;
     }
+    
 
+    form.pass_word.value== hex_md5(form.pass_word.value);
 
     if (confirm("Continue?")) {
          return true;
