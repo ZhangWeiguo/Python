@@ -1,9 +1,8 @@
 from mysql.connector import connection
 
 class MysqlClient:
-    def __init__(self,config,logger):
+    def __init__(self,config):
         self.config = config
-        self.logger = logger
         self.conn = connection.MySQLConnection(user      =   config["user"], 
                                                password  =   config["password"],
                                                host      =   config["host"],
@@ -21,7 +20,6 @@ class MysqlClient:
         except Exception as e:
             msg = str(e)
             succ = False
-            self.logger("Execute Sql Failed:%s"%sql)
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -37,7 +35,6 @@ class MysqlClient:
         except Exception as e:
             msg = str(e)
             succ = False
-            self.logger("ExecuteMany Sql Failed:%s"%sql)
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -53,7 +50,6 @@ class MysqlClient:
         except Exception as e:
             msg = str(e)
             succ = False
-            self.logger("Query Data Failed:%s"%sql)
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -73,7 +69,6 @@ class MysqlClient:
             result["succ"] = True
             result["msg"] = ""
         except Exception as e:
-            self.logger("Conn Close Failed:%s"%str(e))
             result["succ"] = False
             result["msg"] = str(e)
         return result

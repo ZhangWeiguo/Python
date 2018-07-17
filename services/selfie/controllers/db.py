@@ -13,4 +13,7 @@ def check_user(user_name, pass_word):
         n = len(result['data'])
         if n == 1:
             return True,result['data'][0]
+    else:
+        msg = result['msg']
+        logger.info("Mysql Query Data Failed:"+msg)
     return False,{}
