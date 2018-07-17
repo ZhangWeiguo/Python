@@ -1,7 +1,7 @@
 from mysql.connector import pooling
 
 class MysqlClient:
-    def __init__(self,config,logger):
+    def __init__(self,config):
         self.pool = pooling.MySQLConnectionPool(pool_name           =   config["pool_name"],
                                                 pool_size           =   config["pool_size"],
                                                 host                =   config["host"],
@@ -13,22 +13,20 @@ class MysqlClient:
                                                 pool_reset_session  =   True)
 
         self.config = config
-        self.logger = logger
 
     def execute(self,sql):
+        msg = "succ"
         try:
             conn = self.pool.get_connection()
             cursor = conn.cursor(dictionary = True)
         except:
-            self.logger("Connect Mysql Failed")
-        msg = "succ"
+            msg = "Connect Failed"
         succ = True
         try:
             cursor.execute(sql)
         except Exception as e:
             msg = str(e)
             succ = False
-            self.logger("Execute Sql Failed:%s"%sql)
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -38,19 +36,18 @@ class MysqlClient:
         return result
 
     def execute_many(self,sql,data):
+        msg = "succ"
         try:
             conn = self.pool.get_connection()
             cursor = conn.cursor(dictionary = True)
         except:
-            self.logger("Connect Mysql Failed")
-        msg = "succ"
+            msg = "Connect Failed"
         succ = True
         try:
             cursor.executemany(sql,data)
         except Exception as e:
             msg = str(e)
             succ = False
-            self.logger("ExecuteMany Sql Failed:%s"%sql)
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -60,19 +57,18 @@ class MysqlClient:
         return result
 
     def query(self,sql):
+        msg = "succ"
         try:
             conn = self.pool.get_connection()
             cursor = conn.cursor(dictionary = True)
         except:
-            self.logger("Connect Mysql Failed")
-        msg = "succ"
+            msg = "Connect Failed"
         succ = True
         try:
             cursor.execute(sql)
         except Exception as e:
             msg = str(e)
             succ = False
-            self.logger("Query Data Failed:%s"%sql)
         result = {}
         result["msg"] = msg
         result["succ"] = succ
