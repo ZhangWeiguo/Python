@@ -12,61 +12,35 @@ logger = logClient("Test","test", rotate = "None")
 
 
 
-class Logger:
-    def __init__(self, 
-            app_name, 
+def Logger(app_name, 
             file_name, 
             rotate       =   "None", 
             when         =   'H', 
             keep_num     =   24, 
             max_bytes    =   1024*1024*10,
             max_buffer   =   100 ):
-        '''
-        rotate : None,Time,Size
-        '''
-        self.logger = logging.getLogger(app_name)
-        self.file_name = file_name
-        self.app_name = app_name,
-        formater = logging.Formatter(
-            fmt         = "%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)-8s %(message)s",
-            datefmt     = "%Y-%m-%d %H:%M:%S")
-        
-        if rotate == 'Time':
-            file_handler = TimedRotatingFileHandler(file_name, 
-                                                    when        =   when, 
-                                                    interval    =   1, 
-                                                    backupCount =   keep_num)
-            file_handler.suffix = "%Y%m%d%H%M.log"
-        elif rotate == 'Size':
-            file_handler = RotatingFileHandler(filename = file_name, 
-                                            maxBytes = max_bytes, 
-                                            backupCount = keep_num)
-        else:
-            file_handler = logging.FileHandler(filename = file_name)
-
-        file_handler.formatter = formater
-        self.logger.addHandler(file_handler)
-        self.logger.setLevel(logging.DEBUG)
+    logger = logging.getLogger(app_name)
+    formater = logging.Formatter(
+        fmt         = "%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)-8s %(message)s",
+        datefmt     = "%Y-%m-%d %H:%M:%S")
     
+    if rotate == 'Time':
+        file_handler = TimedRotatingFileHandler(file_name, 
+                                                when        =   when, 
+                                                interval    =   1, 
+                                                backupCount =   keep_num)
+        file_handler.suffix = "%Y%m%d%H%M.log"
+    elif rotate == 'Size':
+        file_handler = RotatingFileHandler(filename = file_name, 
+                                        maxBytes = max_bytes, 
+                                        backupCount = keep_num)
+    else:
+        file_handler = logging.FileHandler(filename = file_name)
 
-    def info(self, message):
-        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
-        self.logger.info(location + message)
-    def error(self, message):
-        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
-        self.logger.error(location + message)
-    def debug(self, message):
-        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
-        self.logger.debug(location + message)
-    def warning(self, message):
-        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
-        self.logger.warning(location + message)       
-    def fatal(self, message):
-        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
-        self.logger.fatal(location + message)
-    def critical(self, message):
-        location = "%s[line:%d]: "%(sys._getframe().f_back.f_code.co_filename,sys._getframe().f_back.f_lineno)
-        self.logger.critical(location + message)    
+    file_handler.formatter = formater
+    logger.addHandler(file_handler)
+    logger.setLevel(logging.DEBUG)
+    return logger   
 
 
 class LoggerCustom:
