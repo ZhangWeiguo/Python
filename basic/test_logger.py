@@ -11,7 +11,7 @@ def test(process_name):
         logger.info(message)
         time.sleep(1)
 if __name__ == "__main__":
-    q1 = multiprocessing.Process(target=test, kwargs={"process_name":"process one"})
-    q1.start()
-
+    # q1 = multiprocessing.Process(target=test, kwargs={"process_name":"process one"})
+    # q1.start()
+    test("I am a Process")
 

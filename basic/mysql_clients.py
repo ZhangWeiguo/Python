@@ -1,18 +1,18 @@
 from mysql.connector import pooling
 
 class MysqlClient:
-    def __init__(self,config):
-        self.pool = pooling.MySQLConnectionPool(pool_name           =   config["pool_name"],
-                                                pool_size           =   config["pool_size"],
-                                                host                =   config["host"],
-                                                port                =   config["port"],
-                                                database            =   config["database"],
-                                                user                =   config["user"],
-                                                password            =   config["password"],
+    def __init__(self,**kwargs):
+        self.pool = pooling.MySQLConnectionPool(pool_name           =   kwargs["pool_name"],
+                                                pool_size           =   kwargs["pool_size"],
+                                                host                =   kwargs["host"],
+                                                port                =   kwargs["port"],
+                                                database            =   kwargs["database"],
+                                                user                =   kwargs["user"],
+                                                password            =   kwargs["password"],
                                                 charset             =   "utf8",
                                                 pool_reset_session  =   True)
 
-        self.config = config
+        self.config = kwargs
 
     def execute(self,sql):
         msg = "succ"
