@@ -26,5 +26,5 @@ mysql_config["host"]        = ini_configer.get("mysql","host")
 mysql_config["port"]        = int(ini_configer.get("mysql","port"))
 mysql_config["database"]    = ini_configer.get("mysql","database")
 
-mysql_client                = MysqlClient(mysql_config)
+mysql_client                = MysqlClient(**mysql_config)
 

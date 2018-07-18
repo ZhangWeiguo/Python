@@ -1,15 +1,24 @@
 from mysql.connector import connection
 
 class MysqlClient:
-    def __init__(self,config):
-        self.config = config
-        self.conn = connection.MySQLConnection(user      =   config["user"], 
-                                               password  =   config["password"],
-                                               host      =   config["host"],
-                                               port      =   config["port"],
-                                               database  =   config["database"],
+    def __init__(self,**kwargs):
+        self.config = kwargs
+        self.conn = connection.MySQLConnection(user      =   kwargs["user"], 
+                                               password  =   kwargs["password"],
+                                               host      =   kwargs["host"],
+                                               port      =   kwargs["port"],
+                                               database  =   kwargs["database"],
                                                charset   =   "utf8")
         self.cursor = self.conn.cursor(dictionary = True)
+    
+    def reconnect(self):
+        self.conn = connection.MySQLConnection(user      =   self.config["user"], 
+                                               password  =   self.config["password"],
+                                               host      =   self.config["host"],
+                                               port      =   self.config["port"],
+                                               database  =   self.config["database"],
+                                               charset   =   "utf8")
+        self.cursor = self.conn.cursor(dictionary = True)   
 
     def execute(self,sql):
         cursor = self.cursor
@@ -53,12 +62,13 @@ class MysqlClient:
         result = {}
         result["msg"] = msg
         result["succ"] = succ
-        try:
-            result["data"] = cursor.fetchall()
-        except Exception as e:
-            result["data"] = []
-            result["succ"] = False
-            result["msg"] = str(e)
+        if succ:
+            try:
+                result["data"] = cursor.fetchall()
+            except Exception as e:
+                result["data"] = []
+                result["succ"] = False
+                result["msg"] = str(e)
         return result
     
     def close(self):
