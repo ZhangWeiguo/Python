@@ -12,6 +12,7 @@ class MysqlClient:
         self.cursor = self.conn.cursor(dictionary = True)
     
     def reconnect(self):
+        self.close()
         self.conn = connection.MySQLConnection(user      =   self.config["user"], 
                                                password  =   self.config["password"],
                                                host      =   self.config["host"],
@@ -27,8 +28,15 @@ class MysqlClient:
         try:
             cursor.execute(sql)
         except Exception as e:
-            msg = str(e)
-            succ = False
+            if "Lost connection" in str(e):
+                try:
+                    self.reconnect()
+                except Exception as e:
+                    msg = str(e)
+                    succ = False
+            else:
+                msg = str(e)
+                succ = False
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -42,8 +50,15 @@ class MysqlClient:
         try:
             cursor.executemany(sql,data)
         except Exception as e:
-            msg = str(e)
-            succ = False
+            if "Lost connection" in str(e):
+                try:
+                    self.reconnect()
+                except Exception as e:
+                    msg = str(e)
+                    succ = False
+            else:
+                msg = str(e)
+                succ = False
         result = {}
         result["msg"] = msg
         result["succ"] = succ
@@ -57,8 +72,15 @@ class MysqlClient:
         try:
             cursor.execute(sql)
         except Exception as e:
-            msg = str(e)
-            succ = False
+            if "Lost connection" in str(e):
+                try:
+                    self.reconnect()
+                except Exception as e:
+                    msg = str(e)
+                    succ = False
+            else:
+                msg = str(e)
+                succ = False
         result = {}
         result["msg"] = msg
         result["succ"] = succ
