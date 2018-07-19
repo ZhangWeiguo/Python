@@ -29,7 +29,12 @@ def Logger(app_name,
                                                 when        =   when, 
                                                 interval    =   1, 
                                                 backupCount =   keep_num)
-        file_handler.suffix = "%Y%m%d%H%M.log"
+        if when == 'H':
+            file_handler.suffix = "%Y%m%d%H.log"
+        elif when  == 'M':
+            file_handler.suffix = "%Y%m%d%H%M.log"
+        else:
+            raise Exception("when Must in (M,H)")
     elif rotate == 'Size':
         file_handler = RotatingFileHandler(filename = file_name, 
                                         maxBytes = max_bytes, 
