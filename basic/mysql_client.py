@@ -44,15 +44,15 @@ class MysqlClient:
         return result
 
     def execute_many(self,sql,data):
-        cursor = self.cursor
         msg = "succ"
         succ = True
         try:
-            cursor.executemany(sql,data)
+            self.cursor.executemany(sql,data)
         except Exception as e:
             if "Lost connection" in str(e):
                 try:
                     self.reconnect()
+                    self.cursor.executemany(sql,data)
                 except Exception as e:
                     msg = str(e)
                     succ = False
@@ -66,15 +66,15 @@ class MysqlClient:
         return result
 
     def query(self,sql):
-        cursor = self.cursor
         msg = "succ"
         succ = True
         try:
-            cursor.execute(sql)
+            self.cursor.execute(sql)
         except Exception as e:
             if "Lost connection" in str(e):
                 try:
                     self.reconnect()
+                    self.cursor.execute(sql)
                 except Exception as e:
                     msg = str(e)
                     succ = False
@@ -86,7 +86,7 @@ class MysqlClient:
         result["succ"] = succ
         if succ:
             try:
-                result["data"] = cursor.fetchall()
+                result["data"] = self.cursor.fetchall()
             except Exception as e:
                 result["data"] = []
                 result["succ"] = False
