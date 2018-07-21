@@ -7,6 +7,9 @@ from mysql_client import MysqlClient
 from config_parse import IniConfiger
 
 ini_configer 	            = IniConfiger("main.ini")
+data_path                   = ini_configer.get("path","data_path")
+log_path                    = ini_configer.get("path","log_path")
+html_path                   = ini_configer.get("path","html_path")
 app_name    	            = ini_configer.get("log","app_name")
 file_name    	            = ini_configer.get("log","file_name")
 keep_num    	            = ini_configer.get("log","keep_num")
@@ -14,7 +17,7 @@ when    	                = ini_configer.get("log","when")
 rotate    	                = ini_configer.get("log","rotate")
 logger      	            = Logger(
                                 app_name    = app_name,
-                                file_name   = file_name,
+                                file_name   = log_path + file_name,
                                 keep_num    = keep_num,
                                 when        = when,
                                 rotate      = rotate)

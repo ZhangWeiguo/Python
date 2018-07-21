@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>无耻小人</title>
+        <link rel="icon" type="image/x-icon" href="/static/image/dog.ico">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+        <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src='md5.js'></script>
+        <script type="text/javascript">
+
+        function register(){
+            location.href='#'
+            return true
+        }
+        function submit_form(){
+            var theForm = document.forms[0]; 
+            if(theForm.user_name.value !='' && theForm.pass_word.value !=''){ 
+                if(parent!=null){ 
+                    theForm.target = "_parent";
+                    theForm.pass_word.value = hex_md5(theForm.pass_word.value);
+                    theForm.submit();
+                }
+            }else{
+                alert("请输入正确的用户名/密码");
+            }
+        }
+
+        </script>
+        <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:url(background1.jpg) no-repeat center;
+            font-size:13px;
+        }
+        </style>
+
+    </head>
+    <body>
+        <br>
+         <img class="img-responsive center-block" src="dog_login.jpg" width="200px" height="50px">
+        <form method="post" action="/login" class="form-inline" role="form">
+            <p align="center">
+            <input type="text" class="form-control" name="user_name" value="" id="user" placeholder="用户名"/>
+            </p>
+            <p align="center">
+            <input type="password" class="form-control" name="pass_word" value="" id="pass" placeholder="密码"/>
+            </p>
+
+            <!-- <p class="text-center">
+                <input id="remember" type="checkbox" align="center">
+                <big>请记住我</big>
+            </p> -->
+            <p align="center">
+                <td><input type="button" class="btn btn-default" style = "width:60px;height:30px" value="确认" onclick="submit_form()" autofocus="autofocus"/></td>
+                <td><input type="reset"  class="btn btn-default" style = "width:60px;height:30px" value="重置"/></td>
+                <td><input type="button" class="btn btn-default" style = "width:60px;height:30px" value="注册" onclick="register()"/></td>
+            </p>
+        </form>
+
+    </body>
+</html>

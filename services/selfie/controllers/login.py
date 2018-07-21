@@ -3,11 +3,13 @@
 import web,os,sys
 sys.path.append("..")
 from init import logger
+from utils import get_template_path
 from db import check_user
 
 class Login:
     def GET(self):
-        render = web.template.frender("templates/login.html")
+        path = get_template_path("login.html")
+        render = web.template.frender(path)
         return render()
 
     def POST(self):
@@ -25,5 +27,6 @@ class Login:
             result, info = check_user(user_name, pass_word)
             if result:
                 web.seeother("/")
-        render = web.template.frender("templates/login.html")
+        path = get_template_path("login.html")
+        render = web.template.frender(path)
         return render()

@@ -11,7 +11,7 @@ web.config.debug = False
 urls = (
     '/',            'Index',
     '/login',       'Login',
-    '/self/(.*)',   'Self',
+    '/user/(.*)',   'User',
     '/(.*)',        'Unknow',
 )
 

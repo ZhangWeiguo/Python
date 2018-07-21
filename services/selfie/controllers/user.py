@@ -3,7 +3,7 @@
 import web,os
 
 
-class Self:
+class User:
     def GET(self,user_name):
         return "hello %s"%(user_name)
     def POST(self,user_name):
