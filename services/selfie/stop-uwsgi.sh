@@ -10,5 +10,5 @@ function killapp()
 		echo "Killed $pid"
 	done
 }
-uwsgi --stop log/uwsgi.pid || killapp $appname
+uwsgi --stop uwsgi.pid || killapp $appname
 echo "App Is Stopped!"
