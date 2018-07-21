@@ -3,7 +3,7 @@
 import web,os
 from controllers.index import Index
 from controllers.login import Login
-from controllers.self import Self
+from controllers.user import User
 from controllers.unknow import Unknow
 
 web.config.debug = False
