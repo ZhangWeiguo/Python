@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180713
-import sys
+import sys,os
 sys.path.append("../../basic")
 from logger import Logger
 from mysql_client import MysqlClient
@@ -17,7 +17,7 @@ when    	                = ini_configer.get("log","when")
 rotate    	                = ini_configer.get("log","rotate")
 logger      	            = Logger(
                                 app_name    = app_name,
-                                file_name   = log_path + file_name,
+                                file_name   = os.path.join(log_path,file_name),
                                 keep_num    = keep_num,
                                 when        = when,
                                 rotate      = rotate)
