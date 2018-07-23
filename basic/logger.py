@@ -33,8 +33,12 @@ def Logger(app_name,
             file_handler.suffix = "%Y%m%d%H.log"
         elif when  == 'M':
             file_handler.suffix = "%Y%m%d%H%M.log"
+        elif when  == 'S':
+            file_handler.suffix = "%Y%m%d%H%M%S.log"
+        elif when  == 'D':
+            file_handler.suffix = "%Y%m%d.log"
         else:
-            raise Exception("when Must in (M,H)")
+            raise Exception("when Must in (S,M,H,D)")
     elif rotate == 'Size':
         file_handler = RotatingFileHandler(filename = file_name, 
                                         maxBytes = max_bytes, 
