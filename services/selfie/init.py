@@ -6,6 +6,24 @@ from logger import Logger
 from mysql_client import MysqlClient
 from config_parse import IniConfiger
 
+def get_blog_cate(mysql_client):
+    sql = "select * from blog_info order by cate_position sub_cate_position"
+    result = mysql_client.query(sql)
+    data  = result["data"]
+    blog_cate = {}
+    for unit in data:
+        cate = unit["cate"]
+        sub_cate = unit["sub_cate"]
+        if cate in blog_cate:
+            if sub_cate in blog_cate[cate]:
+                pass
+            else:
+                blog_cate[cate].append(sub_cate)
+        else:
+            blog_cate[cate] = [sub_cate]
+    return blog_cate
+
+
 ini_configer 	            = IniConfiger("main.ini")
 data_path                   = ini_configer.get("path","data_path")
 log_path                    = ini_configer.get("path","log_path")
@@ -28,6 +46,9 @@ mysql_config["password"]    = ini_configer.get("mysql","password")
 mysql_config["host"]        = ini_configer.get("mysql","host")
 mysql_config["port"]        = int(ini_configer.get("mysql","port"))
 mysql_config["database"]    = ini_configer.get("mysql","database")
-
 mysql_client                = MysqlClient(**mysql_config)
 
+
+global_data                 = {}
+global_data["user_data"]    = {}
+global_data["html_data"]    = { "blog_cate": get_blog_cate(mysql_client) }

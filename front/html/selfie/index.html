@@ -1,4 +1,4 @@
-$def with (data)
+$def with (data,cate)
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,10 +29,8 @@ $def with (data)
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                  <li><a href="#">有些得做</a></li>
-                  <li><a href="#">有些要想</a></li>
-                  <li><a href="#">有些做过</a></li>
-                  <li><a href="#">有些忘了</a></li>
+                  $for i in cate
+                    <li><a href="$i["url"]">$i["name"]</a></li>
                 </ul>
               </div>
             </div>
