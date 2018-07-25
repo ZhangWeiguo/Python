@@ -7,7 +7,7 @@ from mysql_client import MysqlClient
 from config_parse import IniConfiger
 
 def get_blog_cate(mysql_client):
-    sql = "select * from blog_info order by cate_position sub_cate_position"
+    sql = "select * from blog_cate order by cate_position,sub_cate_position"
     result = mysql_client.query(sql)
     data  = result["data"]
     blog_cate = {}
