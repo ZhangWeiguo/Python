@@ -21,7 +21,7 @@ class Index:
         render = web.template.frender(path)
         logger.info("POST: %s Login The Index Page"%user_name)
         cate = []
-        blog_cate = global_data["blog_cate"].keys()
+        blog_cate = global_data["html_data"]["blog_cate"].keys()
         for one in blog_cate:
             cate.append({"name":one,"url":"#"})
         return render(data, cate)
