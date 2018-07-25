@@ -19,7 +19,7 @@ class Index:
         data = {"user_name":user_name,"user_page":user_page}
         path = get_template_path("index.html")
         render = web.template.frender(path)
-        logger.info("POST: %s Login The Index Page"%user_name)
+        logger.info("GET: %s Login The Index Page"%user_name)
         cate = []
         blog_cate = global_data["html_data"]["blog_cate"].keys()
         for one in blog_cate:
@@ -38,7 +38,7 @@ class Index:
         data = {"user_name":user_name,"user_page":user_page}
         path = get_template_path("index.html")
         render = web.template.frender(path)
-        logger.info("GET: %s Login The Index Page"%user_name)
+        logger.info("POST: %s Login The Index Page"%user_name)
         cate = []
         blog_cate = global_data["blog_cate"].keys()
         for one in blog_cate:
