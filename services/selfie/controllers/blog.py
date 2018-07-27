@@ -8,6 +8,7 @@ from db import check_user
 
 class Blog:
     def GET(self):
+        logger.info("%s Get The Blog Page"%web.cookies().get("session_id"))
         path = get_template_path("blog.html")
         render = web.template.frender(path)
         return render()

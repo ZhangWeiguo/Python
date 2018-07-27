@@ -8,6 +8,7 @@ from db import check_user
 
 class Catalog:
     def GET(self, cate):
+        logger.info("%s Get The Catalog Page"%web.cookies().get("session_id"))
         path = get_template_path("catalog.html")
         render = web.template.frender(path)
         return render()

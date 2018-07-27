@@ -8,6 +8,7 @@ from db import check_user
 
 class User:
     def GET(self):
+        logger.info("")
         path = get_template_path("user.html")
         render = web.template.frender(path)
         return render()
