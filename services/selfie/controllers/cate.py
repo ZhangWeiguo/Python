@@ -25,5 +25,9 @@ class Cate:
         blog_cate = global_data["html_data"]["blog_cate"].keys()
         for one in blog_cate:
             cate_data.append({"name":one,"url":"/cate/%s"%one})
-        return render(user_data, cate_data)
+        
+        catalog_url = "/catalog/%s"%cate
+        blog_url = "/blog?id=1"
+
+        return render(user_data, cate_data, catalog_url, blog_url)
 

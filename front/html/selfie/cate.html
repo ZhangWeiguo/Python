@@ -1,4 +1,4 @@
-$def with (user_data, cate_data)
+$def with (user_data, cate_data, catalog_url, blog_url)
 <html>
     <head>
         <title>无耻小人</title>
@@ -30,10 +30,10 @@ $def with (user_data, cate_data)
 
                     <div class="row">
                         <div class="col-md-4">
-                            <iframe src="/catalog/理想" width="100%" height="100%" scrolling="no"></iframe>
+                            <iframe src="$catalog_url" width="100%" height="100%" scrolling="no"></iframe>
                         </div>
                         <div class="col-md-8">
-                            <iframe src="/blog" width="100%" height="100%" scrolling="no"></iframe>
+                            <iframe src="$blog_url" width="100%" height="100%" scrolling="no"></iframe>
                         </div>
                     </div>
 
