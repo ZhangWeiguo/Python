@@ -7,8 +7,8 @@ from utils import get_template_path
 from db import check_user
 
 class User:
-    def GET(self):
-        logger.info("")
+    def GET(self, user_name):
+        logger.info("%s Get The User Page"%web.cookies().get("session_id"))
         path = get_template_path("user.html")
         render = web.template.frender(path)
         return render()
