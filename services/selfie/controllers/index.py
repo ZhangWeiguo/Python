@@ -23,7 +23,7 @@ class Index:
         cate = []
         blog_cate = global_data["html_data"]["blog_cate"].keys()
         for one in blog_cate:
-            cate.append({"name":one,"url":"#"})
+            cate.append({"name":one,"url":"/cate/%s"%one})
         return render(data, cate)
     def POST(self):
         try:

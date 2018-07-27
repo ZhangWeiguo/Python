@@ -4,15 +4,21 @@ import web,os
 from controllers.index import Index
 from controllers.login import Login
 from controllers.user import User
+from controllers.cate import Cate
+from controllers.blog import Blog
+from controllers.catalog import Catalog
 from controllers.unknow import Unknow
 
 web.config.debug = False
 
 urls = (
-    '/',            'Index',
-    '/login',       'Login',
-    '/user/(.*)',   'User',
-    '/(.*)',        'Unknow',
+    '/',                'Index',
+    '/login',           'Login',
+    '/user/(.*)',       'User',
+    '/cate/(.+)',       'Cate',
+    '/blog',            'Blog',
+    '/catalog(.+)',     'Catalog',
+    '/(.*)',            'Unknow',
 )
 
 # ToDo

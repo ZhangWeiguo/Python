@@ -53,6 +53,7 @@ create table blog_info(
 default charset = 'utf8'
 engine = innodb; 
 
+alter table blog_info add pv bigint DEFAULT 0;
 
 insert into blog_info(
     user_name,title,abstract,content,create_time,cate,sub_cate
