@@ -1,3 +1,4 @@
+$def with (user_data, cate_data)
 <html>
     <head>
         <title>无耻小人</title>
@@ -17,15 +18,15 @@
                 <div class="collapse navbar-collapse" id="myNavbar" style="background-color:black">
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Home</a>
+                            <a class="nav-link active" href="/">首页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link active" href="$user_data['user_page']">$user_data['user_name']</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Messages</a>
-                        </li>
-
+                        $for i in cate_data
+                            <li class="nav-item">
+                                <a class="nav-link active" href="$i['url']">$i['name']</a>
+                            </li>
                     </ul>
                 </div>
             </div>
