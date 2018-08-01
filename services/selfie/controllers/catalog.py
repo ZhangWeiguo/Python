@@ -10,6 +10,12 @@ class Catalog:
     def GET(self, cate):
         logger.info("%s Get The Catalog Page"%web.cookies().get("session_id"))
         data = web.input()
+
+
+        path = get_template_path("catalog.html")
+        render = web.template.frender(path)
+        return render()
+
         try:
             page_num = data.page_num
             blog_id = data.blog_id
