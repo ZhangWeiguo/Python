@@ -23,7 +23,7 @@ class Catalog:
                 blog_id = min([one["blog_id"] for one in blog_cate])
             path = get_template_path("catalog.html")
             render = web.template.frender(path)
-            return render(blog_cate)
+            return render()
         else:
             web.seeother("/unknow")
 
