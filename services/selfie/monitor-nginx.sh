@@ -4,6 +4,7 @@ if [ -n "$pids" ]
 then
 	echo "App Is Already Running!"
 else
+	sudo killall -9 nginx
 	bash start-nginx.sh
 	echo "App Is Restarted!"
 fi
