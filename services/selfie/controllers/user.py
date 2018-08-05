@@ -21,8 +21,6 @@ class User:
             user_page = "/login"
         user_data = {"user_name":user_name,"user_page":user_page}
         cate_data = []
-        path = get_template_path("cate.html")
-        render = web.template.frender(path)
         blog_cate = global_data["html_data"]["blog_cate"].keys()
         for one in blog_cate:
             cate_data.append({"name":one,"url":"/cate/%s"%one})
