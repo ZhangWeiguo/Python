@@ -7,37 +7,32 @@ class TreeNode:
 
 class Solution:
     def reConstructBinaryTree(self, pre, tin):
-        def fun(A,p,t):
-            if len(p) == 1 :
-                A.val = p[0]
-                return
-            x = p[0]
-            A.val = x
-            n = t.index(x)
-            tt0 = t[0:n]
-            tt1 = t[n+1:]
-            pp0 = []
-            pp1 = []
-            for i in p:
-                if i in tt0:
-                    pp0.append(i)
-                elif i in tt1:
-                    pp1.append(i)
-            A0 = TreeNode(0)
-            A1 = TreeNode(0)
-            A.left = A0
-            A.right = A1
-            if len(pp0) != 0:
-                fun(A0,pp0,tt0)
-            else:
-                A.left = None
-            if len(pp1) != 0:
-                fun(A1,pp1,tt1)
-            else:
-                A.right = None
-        A = TreeNode(0)
-        fun(A,pre,tin)
-        return A
+        np = len(pre)
+        nt = len(tin)
+        if np == 0:
+            return None
+        elif np == 1:
+            return TreeNode(pre[0])
+        else:
+            T0 = TreeNode(pre[0])
+            t0 = pre[0]
+            t0x = tin.index(t0)
+            tin_left = tin[0:t0x]
+            tin_right = tin[t0x:]
+            pre_left = []
+            pre_right = []
+            for i in pre[1:]:
+                
+                if i in tin_left:
+                    pre_left.append(i)
+                else:
+                    pre_right.append(i)
+            print len(pre_left),len(tin_left),len(pre_right),len(tin_right)
+            T_left = self.reConstructBinaryTree(pre_left, tin_left)
+            T_right = self.reConstructBinaryTree(pre_right, tin_right)
+            T0.left = T_left
+            T0.right = T_right
+            return T0
 
 def PrintTree(A):
     if A != None:
