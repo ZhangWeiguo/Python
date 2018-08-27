@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180713
-import sys,time
+import sys,time,math
 sys.path.append("..")
 from init import logger,mysql_client
 
@@ -94,7 +94,13 @@ def add_blog_pv(blog_id):
     return False
 
 ###################################################################
+
+# 返回 这一页的数据，且返回总页数
 def get_cate_blog(page_size, page_num, cate):
+    blog_cate = []
+    all_page_num = 0
+    final_result = False
+
     start = (page_num-1)*page_size + 1
     end = page_num*page_size
     sql = '''select 
@@ -104,11 +110,29 @@ def get_cate_blog(page_size, page_num, cate):
             and blog_id<=%d 
             and cate="%s"
             order by pv desc'''%(start, end, cate)
+    sql_count = '''select count(1) as num 
+            from blog_info 
+            where cate="%s"'''%(cate)
     result = mysql_client.query(sql)
     if result["succ"] == True:
-        if len(result["data"]) == 1:
-            return True,result["data"]
-    msg = result["msg"]
-    logger.info("Mysql Get Cate Failed:" + msg )
-    return False,[]
+        blog_cate = result["data"]
+        final_result = True
+    else:
+        blog_cate = []
+        final_result = False
+        msg = result["msg"]
+        logger.info("Mysql Get Cate Failed:" + msg )
+
+    result = mysql_client.query(sql_count)
+    if result["succ"] == True:
+        final_result = True
+        all_page_num = result["data"][0]["num"]
+    else:
+        final_result = False
+        msg = result["msg"]
+        logger.info("Mysql Get Cate Num Failed:" + msg )
+
+    all_page_num = math.ceil(all_page_num/page_size)
+    
+    return final_result,blog_cate,all_page_num
 
