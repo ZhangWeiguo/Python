@@ -2,3 +2,6 @@
 /test/
 /tax/
 /.vscode
+/.gitignore
+/services/selfie/main.ini
+/services/selfie/main.sql
