@@ -94,7 +94,7 @@ def get_blog(blog_id):
     if result["succ"] == True:
         if len(result["data"]) == 1:
             add_blog_pv(blog_id)
-            data[0]["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[0]["create_time"]))
+            result["data"][0]["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(result["data"][0]["create_time"]))
             return True,result["data"][0]
     msg = result["msg"]
     logger.info("Mysql Get Blog Failed:" + msg )
