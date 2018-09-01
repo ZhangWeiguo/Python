@@ -59,7 +59,7 @@ $def with (user_data, cate_data, catalog_data)
                                             </thead>
                                             $for i in catalog_data["cate_blog"]:
                                             <tr>
-                                                <td><a src="#" onclick="change_blog">$i["title"]</a></td>
+                                                <td><a src="#" onclick="change_blog()" id=$i['blog_id']>$i["title"]</a></td>
                                                 <td>$i["pv"]</td>
                                                 <td>$i["sub_cate"]</td>
                                             </tr>         
