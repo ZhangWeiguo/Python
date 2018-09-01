@@ -25,6 +25,7 @@ $def with (user_data, cate_data, catalog_data)
             function next_page(){
                 if(page_num==all_page_num){
                     alert("已经是最后一页啦！")
+                    return
                 }
                 page_num += 1
                 new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
@@ -33,6 +34,7 @@ $def with (user_data, cate_data, catalog_data)
             function last_page(){
                 if(page_num==1){
                     alert("已经是第一页啦！")
+                    return
                 }
                 page_num -= 1
                 new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
