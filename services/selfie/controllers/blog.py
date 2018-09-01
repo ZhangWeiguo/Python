@@ -10,7 +10,7 @@ class Blog:
     def GET(self):
         logger.info("%s Get The Blog Page"%web.cookies().get("session_id"))
         data = web.input()
-        try
+        try:
             blog_id = int(data.blog_id)
         except:
             blog_id = get_default_blog()
