@@ -54,8 +54,12 @@ $def with (user_data, cate_data, catalog_data)
                                     </table>
                                     <ul class="pager">
                                             <li><a href="#">上一页</a></li>
+                                            <li>$catalog_data["page_num"]/$catalog_data["all_page_num"]</li>
                                             <li><a href="#">下一页</a></li>
                                     </ul>
+                                            
+
+                                    
                             </div>
                         <div class="col-md-8">
                             <iframe src="/blog?blog_id=$catalog_data['blog_id']" width="100%" height="100%" scrolling="yes" id="blog_frame" frameborder="0"></iframe>

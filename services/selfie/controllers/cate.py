@@ -44,7 +44,7 @@ class Cate:
         catalog_data = {}
         catalog_data["blog_id"] = blog_id
         catalog_data["all_page_num"] = all_page_num
-        catelog_data["page_num"] = page_num
+        catalog_data["page_num"] = page_num
         catalog_data["cate_blog"] = cate_blog
 
         path = get_template_path("cate.html")
