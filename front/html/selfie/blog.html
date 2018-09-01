@@ -11,7 +11,6 @@ $def with (blog_data)
     </head>
     <body>
         <div class="container-fluid">
-            <!-- $if len(blog_data) > 0: -->
                 <div>
                     <h3>$blog_data["title"]</h3>
                     <br>
@@ -22,8 +21,7 @@ $def with (blog_data)
                     </blockquote>
                 </div>
                     $blog_data["content"]
-            <!-- $else:
-                这篇文章不存在 -->
+
         </div>
 
       <!-- <div>
