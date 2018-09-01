@@ -73,7 +73,6 @@ $def with (user_data, cate_data)
                         $if len(user_data['user_blog']) > 0:
                             $for i in user_data['user_blog']
                                 <div class="well" style='background-color:white'>
-                                    <div class="caption">
                                         <div class="row">
                                             <h3>
                                                 $i['title']
@@ -96,7 +95,6 @@ $def with (user_data, cate_data)
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                         $else:
                         <div class="thumbnail">
