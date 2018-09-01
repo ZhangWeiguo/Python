@@ -21,7 +21,7 @@ def check_user(user_name, pass_word):
 
 def get_user_info(user_name):
     sql = '''select user_name,pass_word,birth,sex,about_me,
-    FROM_UNIXTIME(create_time,'%Y-%m-%d') as create_time 
+    FROM_UNIXTIME(create_time,'%%Y-%%m-%%d') as create_time 
     from user_info where user_name="%s"'''%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
@@ -37,12 +37,12 @@ def get_user_blog(user_name, content = False):
     if content:
         sql = '''select 
         blog_id,user_name,title,abstract,content,
-        FROM_UNIXTIME(create_time,'%Y-%m-%d') as create_time,cate,sub_cate,pv 
+        FROM_UNIXTIME(create_time,'%%Y-%%m-%%d') as create_time,cate,sub_cate,pv 
         from blog_info where user_name='%s' order by create_time desc'''%(user_name)
     else:
         sql = '''select 
         blog_id,user_name,title,abstract,
-        FROM_UNIXTIME(create_time,'%Y-%m-%d') as create_time,cate,sub_cate,pv 
+        FROM_UNIXTIME(create_time,'%%Y-%%m-%%d') as create_time,cate,sub_cate,pv 
         from blog_info where user_name='%s' order by create_time desc'''%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
@@ -94,7 +94,7 @@ def get_default_blog():
 def get_blog(blog_id):
     sql = '''select 
     blog_id,user_name,title,abstract,content,cate,sub_cate,pv,
-    FROM_UNIXTIME(create_time,'%Y-%m-%d') as create_time
+    FROM_UNIXTIME(create_time,'%%Y-%%m-%%d') as create_time
     from blog_info where blog_id=%d'''%(blog_id)
     result = mysql_client.query(sql)
     if result["succ"] == True:
@@ -128,13 +128,12 @@ def get_cate_blog(page_size, page_num, cate):
     end = page_num*page_size
     sql = '''select 
             blog_id,user_name,title,abstract,
-            FROM_UNIXTIME(create_time,'%Y-%m-%d') as create_time,
+            FROM_UNIXTIME(create_time,'%%Y-%%m-%%d') as create_time,
             sub_cate,pv 
             from blog_info 
             where blog_id>=%d 
             and blog_id<=%d 
-            and cate="%s"
-            order by pv desc'''%(start, end, cate)
+            and cate="%s" order by pv desc'''%(start, end, cate)
     sql_count = '''select count(1) as num 
             from blog_info 
             where cate="%s"'''%(cate)
