@@ -34,9 +34,7 @@ def get_user_blog(user_name):
     sql = "select blog_id,user_name,title,abstract,create_time,cate,sub_cate,pv from blog_info where user_name='%s'"%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
-        n = len(result['data'])
-        if n == 1:
-            return True,result['data']
+        return True,result['data']
     else:
         msg = result['msg']
         logger.info("Mysql Get User Info Failed:" + msg )
