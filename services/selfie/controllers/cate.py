@@ -26,9 +26,6 @@ class Cate:
         for one in blog_cate:
             cate_data.append({"name":one,"url":"/cate/%s"%one})
 
-        
-
-
         data = web.input()
         try:
             page_num = int(data.page_num)
@@ -39,11 +36,15 @@ class Cate:
         page_size = 20
         result,cate_blog,all_page_num = get_cate_blog(page_size, page_num, cate)
         if blog_id == -1:
-            blog_id = min([one["blog_id"] for one in cate_blog])
+            try:
+                blog_id = min([one["blog_id"] for one in cate_blog])
+            except:
+                pass
 
         catalog_data = {}
         catalog_data["blog_id"] = blog_id
         catalog_data["all_page_num"] = all_page_num
+        catelog_data["page_num"] = page_num
         catalog_data["cate_blog"] = cate_blog
 
         path = get_template_path("cate.html")
