@@ -37,7 +37,7 @@ $def with (user_data, cate_data, catalog_data)
                                 <table class="table">
                                         <caption>推荐阅读</caption>
                                         <tbody>
-                                            $for i in catalog_data:
+                                            $for i in catalog_data["cate_blog"]:
                                             <tr>
                                                 <td><a src="#">$i["title"]</a></td>
                                                 <td><a src="#">$i["pv"]</a></td>
@@ -52,7 +52,7 @@ $def with (user_data, cate_data, catalog_data)
                                     </ul>
                             </div>
                         <div class="col-md-8">
-                            <iframe src="/blog?blog_id=$catalog_data['blog_i']" width="100%" height="100%" scrolling="yes" id="blog_frame" frameborder="0"></iframe>
+                            <iframe src="/blog?blog_id=$catalog_data['blog_id']" width="100%" height="100%" scrolling="yes" id="blog_frame" frameborder="0"></iframe>
                         </div>
                     </div>
 
