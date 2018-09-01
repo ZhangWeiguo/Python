@@ -47,11 +47,11 @@ def get_user_data(user_name):
     result = False
     result,user_info = get_user_info(user_name)
     if result:
-        user_info['create_time'] = time.strftime('yyyy-mm-dd HH:MM:SS', time.localtime(user_info['create_time']))
+        user_info['create_time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(user_info['create_time']))
         result,user_blog = get_user_blog(user_name)
         if result:
             for blog in user_blog:
-                blog["create_time"] = time.strftime('yyyy-mm-dd HH:MM:SS', time.localtime(blog['create_time']))
+                blog["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(blog['create_time']))
     return result,user_info,user_blog
 
 
