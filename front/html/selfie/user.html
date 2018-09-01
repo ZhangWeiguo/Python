@@ -75,20 +75,24 @@ $def with (user_data, cate_data)
                                     <div class="caption">
                                         <h3>
                                             $i['title']
-                                            <small>创建于 $i['create_time']/</small>
+                                            <small>创建于 $i['create_time']</small>
                                             <small>浏览量 $i['pv']</small>
                                         </h3>
                                         <p>
                                             $i['abstract']
                                         </p>
-                                        <p class="text-right">
-                                                <strong>$i["cate"] - $i["sub_cate"]</strong>
-                                                <br>
-                                            <small>$i["create_time"]</small>
-                                        </p>
-                                        <p>
-                                                <a class="btn btn-primary" href="/blog?blog_id=$i['blog_id']">浏览</a>
-                                        </p>
+                                        <div class="col-sm-6">
+                                            <p>
+                                                    <a class="btn btn-primary" href="/blog?blog_id=$i['blog_id']">浏览</a>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="text-right">
+                                                    <strong>$i["cate"] - $i["sub_cate"]</strong>
+                                                    <br>
+                                                <small>$i["create_time"]</small>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                         $else:
