@@ -21,7 +21,7 @@ class User:
             user_page = "/login"
         if user_name != "登录":
             result,user_info,user_blog = get_user_data(user_name)
-        
+        user_data = {}
         if result:
             user_data["user_info"] = user_info
             user_data["user_blog"] = user_blog
