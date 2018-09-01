@@ -13,14 +13,13 @@ $def with (user_data, cate_data, catalog_data)
         var all_page_num = $catalog_data["all_page_num"]
         alert(all_page_num)
             function change_blog(e){
-                id = $(e).attr("id")
+                id = $$(e).attr("id")
                 new_blog_url = "/blog?blog_id=" + id
-                old_blog_url =  $("iframe").attr("src")
+                old_blog_url =  $$("iframe").attr("src")
                 if (new_blog_url!=old_blog_url){
-                    $("iframe").attr("src") = new_blog_url
+                    $$("iframe").attr("src") = new_blog_url
                     alert(new_blog_url)
                 }
-                
             }
             function next_page(){
 
