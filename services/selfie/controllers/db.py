@@ -31,7 +31,7 @@ def get_user_info(user_name):
     return False,{}
 
 def get_user_blog(user_name):
-    sql = "select * from blog_info where user_name='%s'"%(user_name)
+    sql = "select blog_id,user_name,title,abstract,create_time,cate,sub_cate,pv from blog_info where user_name='%s'"%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
         n = len(result['data'])
@@ -48,7 +48,12 @@ def get_user_data(user_name):
     user_blog = []
     result = False
     result,user_info = get_user_info(user_name)
-    result,user_blog = get_user_blog(user_name)
+    if result:
+        user_info['create_time'] = time.strftime('yyyy-mm-dd HH:MM:SS', time.localtime(user_info['create_time']))
+        result,user_blog = get_user_blog(user_name)
+        if result:
+            for blog in user_blog:
+                blog["create_time"] = time.strftime('yyyy-mm-dd HH:MM:SS', time.localtime(blog['create_time']))
     return result,user_info,user_blog
 
 
