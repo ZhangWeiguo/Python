@@ -74,14 +74,18 @@ $def with (user_data, cate_data)
                             $for i in user_data['user_blog']
                                 <div class="well well-lg" style='background-color:white'>
                                         <div class="row">
-                                            <h3>
-                                                $i['title']
-                                                <small>创建于 $i['create_time']</small>
-                                                <small>浏览量 $i['pv']</small>
-                                            </h3>
-                                            <p>
-                                                $i['abstract']
-                                            </p>
+                                            <div class="col-sm-12">
+                                                <h3>
+                                                    $i['title']
+                                                    <small>创建于 $i['create_time']</small>
+                                                    <small>浏览量 $i['pv']</small>
+                                                </h3>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <p>
+                                                    $i['abstract']
+                                                </p>
+                                            </div>
                                             <div class="col-sm-6" style="width:50%;float:left;">
                                                 <p>
                                                         <a class="btn btn-primary" href="/blog?blog_id=$i['blog_id']">浏览</a>
