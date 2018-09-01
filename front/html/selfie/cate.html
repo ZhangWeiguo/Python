@@ -1,5 +1,4 @@
 $def with (user_data, cate_data, catalog_data)
-<!DOCTYPE HTML>
 <html>
     <head>
         <title>无耻小人</title>
@@ -9,28 +8,45 @@ $def with (user_data, cate_data, catalog_data)
         <link rel="stylesheet" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap.min.css">
         <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://www.noteethsmallperson.xyz/static/js/jquery.url.js"></script>
         <script type="text/javascript">
         var page_num = $catalog_data["page_num"]
         var all_page_num = $catalog_data["all_page_num"]
+        var url = jQuery.url.attr("path")
+        var blog_id = $catalog_data["blog_id"]
             function change_blog(e){
-                id = $$(e).attr("id")
+                    id = $$(e).attr("id")
                     new_blog_url = "/blog?blog_id=" + id
                     old_blog_url =  $$("iframe").attr("src")
                     if (new_blog_url!=old_blog_url){
                         $$("iframe").attr("src",new_blog_url)
-                        alert($$("iframe").attr("src"))
+                        blog_id = id
                     }
             }
             function next_page(){
-
+                if(page_num==all_page_num){
+                    alert("已经是最后一页啦！")
+                }
+                page_num += 1
+                blog_id = id = $$(e).attr("id")
+                new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
+                alert(new_url)
+                window.location.href = new_url
             }
             function last_page(){
-
+                if(page_num==1){
+                    alert("已经是第一页啦！")
+                }
+                page_num -= 1
+                blog_id = id = $$(e).attr("id")
+                new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
+                alert(new_url)
+                window.location.href = new_url
             }
         </script>
     </head>
     <body>
-        <div class="container-fluid" style="min-height:100%">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
@@ -72,9 +88,9 @@ $def with (user_data, cate_data, catalog_data)
                                         </tbody>
                                     </table>
                                     <ul class="pager">
-                                            <li><a href="#">上一页</a></li>
+                                            <li><a href="#" onclick="last_page()">上一页</a></li>
                                             <li>$catalog_data["page_num"]/$catalog_data["all_page_num"]</li>
-                                            <li><a href="#">下一页</a></li>
+                                            <li><a href="#" onclick="next_page()">下一页</a></li>
                                     </ul>
                                             
 
