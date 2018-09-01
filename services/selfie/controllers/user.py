@@ -14,12 +14,12 @@ class User:
             user_name = web.config.session["user_name"]
             user_page = "/user/%s"%(user_name)
         except:
-            user_name = "登录"
+            user_name = u"登录"
             user_page = "/login"
         if user_name == "":
-            user_name = "登录"
+            user_name = u"登录"
             user_page = "/login"
-        if user_name != "登录":
+        if user_name != u"登录":
             result,user_info,user_blog = get_user_data(user_name)
         user_data = {}
         if result:
@@ -27,7 +27,7 @@ class User:
             user_data["user_blog"] = user_blog
         user_data["user_name"] = user_name
         user_data["user_page"] = user_page
-
+        print user_info,user_blog
         cate_data = []
         blog_cate = global_data["html_data"]["blog_cate"].keys()
         for one in blog_cate:
