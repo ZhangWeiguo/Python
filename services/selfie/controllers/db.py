@@ -124,7 +124,7 @@ def get_cate_blog(page_size, page_num, cate):
     start = (page_num-1)*page_size + 1
     end = page_num*page_size
     sql = '''select 
-            blog_id,user_name,title,abstract,create_time,sub_cate  
+            blog_id,user_name,title,abstract,create_time,sub_cate,pv 
             from blog_info 
             where blog_id>=%d 
             and blog_id<=%d 
