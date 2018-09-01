@@ -82,8 +82,8 @@ def get_default_blog():
     result = mysql_client.query(sql)
     if result["succ"] == True:
         if len(result["data"]) == 1:
-            add_blog_pv(result["data"]["blog_id"])
-            return True,result["data"]["blog_id"]
+            add_blog_pv(result["data"][0]["blog_id"])
+            return True,result["data"][0]["blog_id"]
     msg = result["msg"]
     logger.info("Mysql Get Blog Failed:" + msg )
     return False,-1
