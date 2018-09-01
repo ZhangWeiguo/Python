@@ -37,12 +37,22 @@ $def with (user_data, cate_data, catalog_data)
                                 <table class="table">
                                         <caption>推荐阅读</caption>
                                         <tbody>
+                                            <thead>
+                                                <tr>
+                                                    <th>标题</th>
+                                                    <th>浏览量</th>
+                                                    <th>作者</th>
+                                                    <th>创建时间</th>
+                                                    <th>类别</th>
+                                                </tr>
+                                            </thead>
                                             $for i in catalog_data["cate_blog"]:
                                             <tr>
                                                 <td><a src="#">$i["title"]</a></td>
-                                                <td><a src="#">$i["pv"]</a></td>
-                                                <td><a src="#">$i["sub_cate"]</a></td>
-                                                <td><small>编程思想</small></td>
+                                                <td>$i["pv"]</td>
+                                                <td>$i["user_name"]</td>
+                                                <td>$i["create_time"]</td>
+                                                <td>$i["sub_cate"]</td>
                                             </tr>         
                                         </tbody>
                                     </table>

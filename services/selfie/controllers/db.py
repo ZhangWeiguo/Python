@@ -20,7 +20,9 @@ def check_user(user_name, pass_word):
     return False,{}
 
 def get_user_info(user_name):
-    sql = "select * from user_info where user_name='%s'"%(user_name)
+    sql = '''select user_name,pass_word,birth,sex,about_me,
+    FROM_UNIXTIME(create_time,'yyyy-mm-dd') as create_time 
+    from user_info where user_name="%s"'''%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
         n = len(result['data'])
@@ -33,10 +35,15 @@ def get_user_info(user_name):
 
 def get_user_blog(user_name, content = False):
     if content:
-        sql = "select * from blog_info where user_name='%s' order by create_time desc"%(user_name)
+        sql = '''select 
+        blog_id,user_name,title,abstract,content,
+        FROM_UNIXTIME(create_time,'yyyy-mm-dd') as create_time,cate,sub_cate,pv 
+        from blog_info where user_name='%s' order by create_time desc'''%(user_name)
     else:
-        sql = "select blog_id,user_name,title,abstract,create_time,cate,sub_cate,pv \
-        from blog_info where user_name='%s' order by create_time desc"%(user_name)
+        sql = '''select 
+        blog_id,user_name,title,abstract,
+        FROM_UNIXTIME(create_time,'yyyy-mm-dd') as create_time,cate,sub_cate,pv 
+        from blog_info where user_name='%s' order by create_time desc'''%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
         return True,result['data']
@@ -52,11 +59,7 @@ def get_user_data(user_name):
     result = False
     result,user_info = get_user_info(user_name)
     if result:
-        user_info['create_time'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(user_info['create_time']))
         result,user_blog = get_user_blog(user_name)
-        if result:
-            for blog in user_blog:
-                blog["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(blog['create_time']))
     return result,user_info,user_blog
 
 
@@ -83,20 +86,20 @@ def get_default_blog():
     result = mysql_client.query(sql)
     if result["succ"] == True:
         if len(result["data"]) == 1:
-            add_blog_pv(result["data"][0]["blog_id"])
             return True,result["data"][0]["blog_id"]
     msg = result["msg"]
     logger.info("Mysql Get Blog Failed:" + msg )
     return False,-1
 
 def get_blog(blog_id):
-    sql = "select * from blog_info where blog_id=%d"%(blog_id)
+    sql = '''select 
+    blog_id,user_name,title,abstract,content,cate,sub_cate,pv,
+    FROM_UNIXTIME(create_time,'yyyy-mm-dd') as create_time
+    from blog_info where blog_id=%d'''%(blog_id)
     result = mysql_client.query(sql)
     if result["succ"] == True:
         if len(result["data"]) == 1:
             add_blog_pv(blog_id)
-            result["data"][0]["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', 
-                            time.localtime(result["data"][0]["create_time"]))
             result["data"][0]["content"] = result["data"][0]["content"]
             return True,result["data"][0]
     msg = result["msg"]
@@ -124,7 +127,9 @@ def get_cate_blog(page_size, page_num, cate):
     start = (page_num-1)*page_size + 1
     end = page_num*page_size
     sql = '''select 
-            blog_id,user_name,title,abstract,create_time,sub_cate,pv 
+            blog_id,user_name,title,abstract,
+            FROM_UNIXTIME(create_time,'yyyy-mm-dd') as create_time,
+            sub_cate,pv 
             from blog_info 
             where blog_id>=%d 
             and blog_id<=%d 
