@@ -157,6 +157,7 @@ def get_cate_blog(page_size, page_num, cate):
         logger.info("Mysql Get Cate Num Failed:" + msg )
 
     all_page_num = int(math.ceil(float(all_page_num)/page_size))
-    
+    if all_page_num <=0 :
+        all_page_num = 1
     return final_result,blog_cate,all_page_num
 
