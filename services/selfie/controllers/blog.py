@@ -13,7 +13,7 @@ class Blog:
         try:
             blog_id = int(data.blog_id)
         except:
-            blog_id = get_default_blog()
+            result,blog_id = get_default_blog()
         result,blog_data = get_blog(blog_id)
         path = get_template_path("blog.html")
         render = web.template.frender(path)
