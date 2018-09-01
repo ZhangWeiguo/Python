@@ -30,8 +30,12 @@ def get_user_info(user_name):
         logger.info("Mysql Get User Info Failed:" + msg )
     return False,{}
 
-def get_user_blog(user_name):
-    sql = "select blog_id,user_name,title,abstract,create_time,cate,sub_cate,pv from blog_info where user_name='%s'"%(user_name)
+def get_user_blog(user_name, content = False):
+    if content:
+        sql = "select * from blog_info where user_name='%s' order by create_time desc"%(user_name)
+    else:
+        sql = "select blog_id,user_name,title,abstract,create_time,cate,sub_cate,pv \
+        from blog_info where user_name='%s' order by create_time desc"%(user_name)
     result = mysql_client.query(sql)
     if result['succ'] == True:
         return True,result['data']
@@ -51,7 +55,7 @@ def get_user_data(user_name):
         result,user_blog = get_user_blog(user_name)
         if result:
             for blog in user_blog:
-                blog["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(blog['create_time']))
+                blog["create_time"] = time.strftime('%Y-%m-%d %H:%M:%Shttp://www.noteethsmallperson.xyz', time.localtime(blog['create_time']))
     return result,user_info,user_blog
 
 
@@ -73,7 +77,16 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
         logger.info("Mysql Add Blog Failed:" + msg )
     return False
 
-
+def get_default_blog():
+    sql = "select blog_id from blog_info order by pv desc limit 1"
+    result = mysql_client.query(sql)
+    if result["succ"] == True:
+        if len(result["data"]) == 1:
+            add_blog_pv(blog_id)
+            return True,result["data"]["blog_id"]
+    msg = result["msg"]
+    logger.info("Mysql Get Blog Failed:" + msg )
+    return False,{}
 
 def get_blog(blog_id):
     sql = "select * from blog_info where blog_id=%d"%(blog_id)
