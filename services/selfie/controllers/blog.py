@@ -18,4 +18,5 @@ class Blog:
         blog_data = get_blog(blog_id)
         path = get_template_path("blog.html")
         render = web.template.frender(path)
+        print blog_data
         return render(blog_data)
