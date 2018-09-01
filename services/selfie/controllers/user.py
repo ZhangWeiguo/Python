@@ -21,19 +21,21 @@ class User:
             user_page = "/login"
         if user_name != u"登录":
             result,user_info,user_blog = get_user_data(user_name)
-        user_data = {}
-        if result:
-            user_data["user_info"] = user_info
-            user_data["user_blog"] = user_blog
-        user_data["user_name"] = user_name
-        user_data["user_page"] = user_page
-        print user_info,user_blog
-        cate_data = []
-        blog_cate = global_data["html_data"]["blog_cate"].keys()
-        for one in blog_cate:
-            cate_data.append({"name":one,"url":"/cate/%s"%one})
-        
+            user_data = {}
+            if result:
+                user_data["user_info"] = user_info
+                user_data["user_blog"] = user_blog
+            user_data["user_name"] = user_name
+            user_data["user_page"] = user_page
+            print user_info,user_blog
+            cate_data = []
+            blog_cate = global_data["html_data"]["blog_cate"].keys()
+            for one in blog_cate:
+                cate_data.append({"name":one,"url":"/cate/%s"%one})
+            
 
-        path = get_template_path("user.html")
-        render = web.template.frender(path)
-        return render(user_data, cate_data)
+            path = get_template_path("user.html")
+            render = web.template.frender(path)
+            return render(user_data, cate_data)
+        else:
+            web.seeother("/")

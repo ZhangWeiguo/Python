@@ -1,4 +1,4 @@
-$def with (user_data, cate_data, catalog_data, blog_url)
+$def with (user_data, cate_data, catalog_data)
 <html>
     <head>
         <title>无耻小人</title>
@@ -37,42 +37,13 @@ $def with (user_data, cate_data, catalog_data, blog_url)
                                 <table class="table">
                                         <caption>推荐阅读</caption>
                                         <tbody>
+                                            $for i in catalog_data:
                                             <tr>
-                                                <td>
-                                                    <a src="#">人生得意须尽欢</a>
-                                                </td>
+                                                <td><a src="#">$i["title"]</a></td>
+                                                <td><a src="#">$i["pv"]</a></td>
+                                                <td><a src="#">$i["sub_cate"]</a></td>
                                                 <td><small>编程思想</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">莫使金樽空对月</a></td><td><small>编程思想</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">天生我材必有用</a></td><td><small>编程思想</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">千金散尽还复来</a></td><td><small>编程思想</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">但愿长醉不复醒</a></td><td><small>Web前端</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">钟鼓馔玉不足贵</a></td><td><small>Web前端</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">但愿长醉不复醒</a></td><td><small>机器学习</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">陈王昔时宴平乐</a></td><td><small>机器学习</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">斗酒十千恣欢谑</a></td><td><small>机器学习</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">主人何为言少钱</a></td><td><small>机器学习</small></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a src="#">径须沽取对君酌</a></td><td><small>机器学习</small></td>
-                                            </tr>            
+                                            </tr>         
                                         </tbody>
                                     </table>
                                     <ul class="pager">
@@ -81,7 +52,7 @@ $def with (user_data, cate_data, catalog_data, blog_url)
                                     </ul>
                             </div>
                         <div class="col-md-8">
-                            <iframe src="$blog_url" width="100%" height="100%" scrolling="yes" id="blog_frame" frameborder="0"></iframe>
+                            <iframe src="/blog?blog_id=$catalog_data['blog_i']" width="100%" height="100%" scrolling="yes" id="blog_frame" frameborder="0"></iframe>
                         </div>
                     </div>
 
