@@ -69,7 +69,7 @@ $def with (user_data, cate_data)
                                        <img src="http://www.noteethsmallperson.xyz/static/image/defaultuserhead.jpg" width="300px" height="100px">
                                 </div>
                         </div>
-
+                        $if len(user_data) > 0:
                             $for i in user_data['user_blog']
                                 <div class="thumbnail">
                                     <div class="caption">
@@ -88,6 +88,8 @@ $def with (user_data, cate_data)
                                         </p>
                                     </div>
                                 </div>
+                        $else:
+                                <p>您还没有创建任何文章哦</p>
 
                 </div>
             </div>
