@@ -15,12 +15,11 @@ $def with (user_data, cate_data, catalog_data)
         var url = jQuery.url.attr("path")
         var blog_id = $catalog_data["blog_id"]
             function change_blog(e){
-                    id = $$(e).attr("id")
-                    new_blog_url = "/blog?blog_id=" + id
-                    old_blog_url =  $$("iframe").attr("src")
-                    if (new_blog_url!=old_blog_url){
-                        $$("iframe").attr("src",new_blog_url)
+                    new_blog_id = $$(e).attr("id")
+                    if (new_blog_id!=blog_id){
                         blog_id = id
+                        new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
+                        window.location.href = new_url
                     }
             }
             function next_page(){
@@ -28,9 +27,7 @@ $def with (user_data, cate_data, catalog_data)
                     alert("已经是最后一页啦！")
                 }
                 page_num += 1
-                blog_id = id = $$(e).attr("id")
                 new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
-                alert(new_url)
                 window.location.href = new_url
             }
             function last_page(){
@@ -38,9 +35,7 @@ $def with (user_data, cate_data, catalog_data)
                     alert("已经是第一页啦！")
                 }
                 page_num -= 1
-                blog_id = id = $$(e).attr("id")
                 new_url = url+"?page_num="+page_num+"&blog_id="+ blog_id
-                alert(new_url)
                 window.location.href = new_url
             }
         </script>
@@ -81,7 +76,7 @@ $def with (user_data, cate_data, catalog_data)
                                             </thead>
                                             $for i in catalog_data["cate_blog"]:
                                             <tr>
-                                                <td><a src="#" onclick="change_blog(this)" id=$i['blog_id']>$i["title"]</a></td>
+                                                <td><a src="#" onclick="change_blog(this)" id="$i['blog_id']">$i["title"]</a></td>
                                                 <td>$i["pv"]</td>
                                                 <td>$i["sub_cate"]</td>
                                             </tr>         
