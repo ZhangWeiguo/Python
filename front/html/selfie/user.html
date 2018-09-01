@@ -6,8 +6,9 @@ $def with (user_data, cate_data)
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="http://www.noteethsmallperson.xyz/static/image/dog.ico">
         <link rel="stylesheet" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap.min.css">
-        <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
+        <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        
     </head>
     <body>
 
@@ -81,12 +82,12 @@ $def with (user_data, cate_data)
                                         <p>
                                             $i['abstract']
                                         </p>
-                                        <div style="width:50%;display:inline">
+                                        <div style="width:50%;float:left;">
                                             <p>
                                                     <a class="btn btn-primary" href="/blog?blog_id=$i['blog_id']">浏览</a>
                                             </p>
                                         </div>
-                                        <div style="width:50%;display:inline">
+                                        <div style="width:50%;float: right;">
                                             <p class="text-right">
                                                     <strong>$i["cate"] - $i["sub_cate"]</strong>
                                                     <br>
