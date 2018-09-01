@@ -8,7 +8,20 @@ $def with (user_data, cate_data, catalog_data)
         <link rel="stylesheet" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap.min.css">
         <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        var page_num = $catalog_data["page_num"]
+        var all_page_num = $catalog_data["all_page_num"]
+        alert(all_page_num)
+            function change_blog(){
+                alert("Are you sure to choose this blog")
+            }
+            function next_page(){
 
+            }
+            function last_page(){
+
+            }
+        </script>
     </head>
     <body>
         <div class="container-fluid">
@@ -46,7 +59,7 @@ $def with (user_data, cate_data, catalog_data)
                                             </thead>
                                             $for i in catalog_data["cate_blog"]:
                                             <tr>
-                                                <td><a src="#">$i["title"]</a></td>
+                                                <td><a src="#" onclick="change_blog">$i["title"]</a></td>
                                                 <td>$i["pv"]</td>
                                                 <td>$i["sub_cate"]</td>
                                             </tr>         
