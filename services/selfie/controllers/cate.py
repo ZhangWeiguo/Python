@@ -4,6 +4,7 @@ import web,os,sys
 sys.path.append("..")
 from init import logger,global_data
 from utils import get_template_path
+from db import get_cate_blog
 
 
 class Cate:
