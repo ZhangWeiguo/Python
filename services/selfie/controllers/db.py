@@ -55,7 +55,7 @@ def get_user_data(user_name):
         result,user_blog = get_user_blog(user_name)
         if result:
             for blog in user_blog:
-                blog["create_time"] = time.strftime('%Y-%m-%d %H:%M:%Shttp://www.noteethsmallperson.xyz', time.localtime(blog['create_time']))
+                blog["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(blog['create_time']))
     return result,user_info,user_blog
 
 
@@ -94,6 +94,7 @@ def get_blog(blog_id):
     if result["succ"] == True:
         if len(result["data"]) == 1:
             add_blog_pv(blog_id)
+            data[0]["create_time"] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[0]["create_time"]))
             return True,result["data"][0]
     msg = result["msg"]
     logger.info("Mysql Get Blog Failed:" + msg )
