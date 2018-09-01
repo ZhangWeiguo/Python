@@ -15,7 +15,7 @@ class Blog:
         except:
             blog_id = get_default_blog()
         
-        blog_data = get_blog(blog_id, False)
+        blog_data = get_blog(blog_id)
         path = get_template_path("blog.html")
         render = web.template.frender(path)
         return render(blog_data)
