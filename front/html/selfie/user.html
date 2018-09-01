@@ -72,9 +72,9 @@ $def with (user_data, cate_data)
                         </div>
                         $if len(user_data['user_blog']) > 0:
                             $for i in user_data['user_blog']
-                                <div class="thumbnail">
+                                <div class="well well-lg" style='background-color:white'>
                                     <div class="caption">
-                                        <div class="col-sm-12">
+                                        <div class="row">
                                             <h3>
                                                 $i['title']
                                                 <small>创建于 $i['create_time']</small>

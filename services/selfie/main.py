@@ -30,7 +30,7 @@ urls = (
 
 web.config.session_parameters['cookie_name']        = 'session_id'
 web.config.session_parameters['cookie_domain']      = None
-web.config.session_parameters['timeout']            = 1200
+web.config.session_parameters['timeout']            = 120000
 web.config.session_parameters['ignore_expiry']      = True
 web.config.session_parameters['ignore_change_ip']   = True
 web.config.session_parameters['secret_key']         = 'MaolongxiaIsDog'
