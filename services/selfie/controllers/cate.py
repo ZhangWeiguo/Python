@@ -40,7 +40,9 @@ class Cate:
             page_num = 1
         if page_num >= all_page_num:
             page_num = all_page_num
-        if blog_id == -1:
+        result,cate_blog,all_page_num = get_cate_blog(page_size, page_num, cate)
+
+        if blog_id == -1 or blog_id not in [one["blog_id"] for one in cate_blog]:
             try:
                 blog_id = min([one["blog_id"] for one in cate_blog])
             except:
