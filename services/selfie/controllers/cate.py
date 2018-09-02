@@ -4,7 +4,7 @@ import web,os,sys
 sys.path.append("..")
 from init import logger,global_data
 from utils import get_template_path
-from db import get_cate_blog,add_blog_pv
+from db import get_cate_blog,add_blog_pv,get_blog_cate
 
 
 class Cate:
@@ -36,13 +36,19 @@ class Cate:
         page_size = 20
         add_blog_pv(blog_id)
         result,cate_blog,all_page_num = get_cate_blog(page_size, page_num, cate)
-        if page_num <= 0:
-            page_num = 1
-        if page_num >= all_page_num:
-            page_num = all_page_num
-        result,cate_blog,all_page_num = get_cate_blog(page_size, page_num, cate)
 
-        if blog_id == -1 or blog_id not in [one["blog_id"] for one in cate_blog]:
+        # 防止page_num乱输入
+        if page_num <= 0 or page_num >= all_page_num:
+            if page_num <= 0:
+                page_num = 1
+            if page_num >= all_page_num:
+                page_num = all_page_num
+            result,cate_blog,all_page_num = get_cate_blog(page_size, page_num, cate)
+
+        # blog_id=-1 返回默认的blog，没有默认的则继续返回-1
+        # blog_id 必须是属于该cate的类型，否则也返回默认的
+        result,blog_id_cate = get_blog_cate(blog_id)
+        if blog_id == -1 or blog_id_cate != cate:
             try:
                 blog_id = min([one["blog_id"] for one in cate_blog])
             except:
