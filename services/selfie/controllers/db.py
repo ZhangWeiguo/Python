@@ -99,7 +99,6 @@ def get_blog(blog_id):
     result = mysql_client.query(sql)
     if result["succ"] == True:
         if len(result["data"]) == 1:
-            add_blog_pv(blog_id)
             result["data"][0]["content"] = result["data"][0]["content"]
             return True,result["data"][0]
     msg = result["msg"]
@@ -107,7 +106,7 @@ def get_blog(blog_id):
     return False,{}
 
 def add_blog_pv(blog_id):
-    sql = "update blog_info set pv=pv+1 where blog_id = '%s'"%blog_id
+    sql = "update blog_info set pv=pv+1 where blog_id = %d"%blog_id
     result = mysql_client.execute(sql)
     if result['succ'] == True:
         return True

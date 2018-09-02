@@ -4,7 +4,7 @@ import web,os,sys
 sys.path.append("..")
 from init import logger,global_data
 from utils import get_template_path
-from db import get_cate_blog
+from db import get_cate_blog,add_blog_pv
 
 
 class Cate:
@@ -34,7 +34,12 @@ class Cate:
             page_num = 1
             blog_id = -1
         page_size = 20
+        add_blog_pv(blog_id)
         result,cate_blog,all_page_num = get_cate_blog(page_size, page_num, cate)
+        if page_num <= 0:
+            page_num = 1
+        if page_num >= all_page_num:
+            page_num = all_page_num
         if blog_id == -1:
             try:
                 blog_id = min([one["blog_id"] for one in cate_blog])
