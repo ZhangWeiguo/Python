@@ -7,7 +7,7 @@ from controllers.user import User
 from controllers.cate import Cate
 from controllers.blog import Blog
 from controllers.catalog import Catalog
-from controllers.catalog import EditBlog
+from controllers.edit_blog import EditBlog
 from controllers.unknow import Unknow
 
 web.config.debug = False
