@@ -7,7 +7,6 @@ from utils import get_template_path
 
 class EditBlog:
     def GET(self):
-        logger.info("%s Get The EditBlog Page"%web.cookies().get("session_id"))
         path = get_template_path("edit_blog.html")
         render = web.template.frender(path)
         return render()
