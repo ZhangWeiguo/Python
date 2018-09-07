@@ -7,6 +7,7 @@ from controllers.user import User
 from controllers.cate import Cate
 from controllers.blog import Blog
 from controllers.catalog import Catalog
+from controllers.catalog import EditBlog
 from controllers.unknow import Unknow
 
 web.config.debug = False
@@ -18,6 +19,7 @@ urls = (
     '/cate/(.+)',       'Cate',
     '/blog',            'Blog',
     '/catalog(.+)',     'Catalog',
+    '/edit_blog',       'EditBlog',
     '/(.*)',            'Unknow',
 )
 
