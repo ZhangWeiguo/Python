@@ -10,4 +10,4 @@ class EditBlog:
         logger.info("%s Get The EditBlog Page"%web.cookies().get("session_id"))
         path = get_template_path("edit_blog.html")
         render = web.template.frender(path)
-        return render(user_data, cate_data)
+        return render()
