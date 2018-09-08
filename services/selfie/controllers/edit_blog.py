@@ -4,7 +4,7 @@ import web,os,sys
 sys.path.append("..")
 from utils import get_template_path
 from init import logger,global_data
-
+from db import get_blog
 
 class EditBlog:
     def GET(self):
@@ -29,4 +29,13 @@ class EditBlog:
 
         path = get_template_path("edit_blog.html")
         render = web.template.frender(path)
-        return render(user_data, cate_data)
+
+        data = web.input()
+        try:
+            blog_id = int(data.blog_id)
+            query_result = get_blog(blog_id)
+            if query_result["succ"] == True:
+                blog_info = query_result["data"]
+        except:
+            blog_info = {}
+        return render(user_data, cate_data, blog_info)

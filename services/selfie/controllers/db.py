@@ -113,7 +113,6 @@ def get_blog(blog_id):
     result = mysql_client.query(sql)
     if result["succ"] == True:
         if len(result["data"]) == 1:
-            result["data"][0]["content"] = result["data"][0]["content"]
             return True,result["data"][0]
     msg = result["msg"]
     logger.info("Mysql Get Blog Failed:" + msg )
