@@ -16,37 +16,6 @@ $def with (user_data,cate_data,blog_id)
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
-  <script type="text/javascript">
-    var blog_id = $blog_id
-    if (blog_id!=-1){
-
-    }
-    cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
-    var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
-    var cate_select = document.getElementById("cate");
-    for (var key in cate_detail.data){
-      var textNode = document.createTextNode(key);
-      var opEle = document.createElement("option");
-      opEle.appendChild(textNode);
-      cate_select.appendChild(opEle);
-    }
-
-    function change_cate(val){
-      var sub_cate_select = document.getElementById("sub_cate");
-      sub_cate_select.options.length=0;
-      for(var key in cate_detail.data){
-          if(val==key){
-              for(var j=0;j<cate_detail.data[key].length;j++){
-                  var textNode = document.createTextNode(cate_detail.data[key][j]);
-                  var opEle = document.createElement("option");
-                  opEle.appendChild(textNode);
-                  sub_cate_select.appendChild(opEle);
-              }
-          }
-      }
-    }
-
-  </script>
 
 
 
@@ -133,6 +102,43 @@ $def with (user_data,cate_data,blog_id)
     autofocus: true,
     language: 'zh',
   })
+
+  var blog_id = $blog_id
+  if (blog_id!=-1){
+
+  }
+  cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
+  var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
+  var cate_select = document.getElementById("cate");
+  for (var key in cate_detail.data){
+    var textNode = document.createTextNode(key);
+    var opEle = document.createElement("option");
+    opEle.appendChild(textNode);
+    cate_select.appendChild(opEle);
+  }
+
+  function change_cate(val){
+    var sub_cate_select = document.getElementById("sub_cate");
+    sub_cate_select.options.length=0;
+    for(var key in cate_detail.data){
+        if(val==key){
+            for(var j=0;j<cate_detail.data[key].length;j++){
+                var textNode = document.createTextNode(cate_detail.data[key][j]);
+                var opEle = document.createElement("option");
+                opEle.appendChild(textNode);
+                sub_cate_select.appendChild(opEle);
+            }
+        }
+    }
+  }
+
+
+
+
+
+
+
+
   </script>
 </body>
 </html>
