@@ -13,80 +13,85 @@ $def with (user_data,cate_data)
 
 </head>
 <body>
-  <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="$user_data['user_page']">$user_data['user_name']</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            $for i in cate_data
-              <li><a href="$i["url"]">$i["name"]</a></li>
-          </ul>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="collapse navbar-collapse" id="myNavbar" style="background-color:black">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="$user_data['user_page']">$user_data['user_name']</a>
+                </li>
+                $for i in cate_data
+                    <li class="nav-item">
+                        <a class="nav-link active" href="$i['url']">$i['name']</a>
+                    </li>
+            </ul>
         </div>
     </div>
-  </nav>
-  <div class="col-md-12">
-      <div class="container">
-          <form role="form">
-              <div class="row">            
+    <div class="col-md-12">
+        <div class="container">
+            <form role="form">
+              <div class="row">     
+                  <label for="name">请输入标题</label>       
                   <input type="text" class="form-control" id="title" placeholder="请输入标题">
-              </div>>
-              <div class="row">
-                  <input type="text" class="form-control" rows="3" id="abstract" placeholder="请输入摘要">
               </div>
-            <div class="row">
-              <form>
-                  <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="content"></textarea>
-              </form> 
-              <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
-              <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
-              <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-              <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
-              <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
-              <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
-              <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
-              <script type="text/javascript">
-              (function ($$) {
-                $$.fn.markdown.messages.zh = {
-                  'Bold': "粗体",
-                  'Italic': "斜体",
-                  'Heading': "标题",
-                  'URL/Link': "链接",
-                  'Image': "图片",
-                  'List': "列表",
-                  'Unordered List': "无序列表",
-                  'Ordered List': "有序列表",
-                  'Code': "代码",
-                  'Quote': "引用",
-                  'Preview': "预览",
-                  'strong text': "粗体",
-                  'emphasized text': "强调",
-                  'heading text': "标题",
-                  'enter link description here': "输入链接说明",
-                  'Insert Hyperlink': "URL地址",
-                  'enter image description here': "输入图片说明",
-                  'Insert Image Hyperlink': "图片URL地址",
-                  'enter image title here': "在这里输入图片标题",
-                  'list text here': "这里是列表文本",
-                  'code text here': "这里输入代码",
-                  'quote here': "这里输入引用文本"
-                };
-              }(jQuery));
-              $$("#editor").markdown({
-                autofocus: true,
-                language: 'zh',
-              })
-              </script>
-            </div>
-            <button type="button" class="btn btn-info btn-lg">提交</button>
-          </form>
-      </div>
+              <div class="row">
+                  <label for="name">请输入摘要</label>
+                  <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <div class="row">
+                <form>
+                    <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="20" id="editor"></textarea>
+                </form> 
+                <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
+                <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
+                <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+                <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
+                <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
+                <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+                <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
+                <script type="text/javascript">
+                (function ($$) {
+                  $$.fn.markdown.messages.zh = {
+                    'Bold': "粗体",
+                    'Italic': "斜体",
+                    'Heading': "标题",
+                    'URL/Link': "链接",
+                    'Image': "图片",
+                    'List': "列表",
+                    'Unordered List': "无序列表",
+                    'Ordered List': "有序列表",
+                    'Code': "代码",
+                    'Quote': "引用",
+                    'Preview': "预览",
+                    'strong text': "粗体",
+                    'emphasized text': "强调",
+                    'heading text': "标题",
+                    'enter link description here': "输入链接说明",
+                    'Insert Hyperlink': "URL地址",
+                    'enter image description here': "输入图片说明",
+                    'Insert Image Hyperlink': "图片URL地址",
+                    'enter image title here': "在这里输入图片标题",
+                    'list text here': "这里是列表文本",
+                    'code text here': "这里输入代码",
+                    'quote here': "这里输入引用文本"
+                  };
+                }(jQuery));
+                $$("#editor").markdown({
+                  autofocus: true,
+                  language: 'zh',
+                })
+                </script>
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-info btn-lg">提交</button>
+              </div>
+            </form>
+        </div>
+    </div>
   </div>
+
 </body>
 </html>
