@@ -69,7 +69,9 @@ $def with (user_data,cate_data,blog_id)
                       <option>--请选择二级类别--</option>
                   </select>
                 </div>
-                <type="button" class="btn btn-primary btn-lg btn-block" onclick="add_blog()">提交编辑</button>
+                <div class="col-md-12">
+                  <type="button" class="btn btn-primary btn-lg btn-block" onclick="add_blog()">提交编辑</button>
+                </div>
               </div>
         </div>
     </div>
@@ -142,8 +144,8 @@ $def with (user_data,cate_data,blog_id)
   }
 
   function add_blog(){
-    $$('#cate').selectpicker('val',"算法");
-    $$('#sub_cate').selectpicker('val',"随笔");
+    $$('#cate').attr("val","理想")
+    $$('#sub_cate').attr("val","算法");
   }
 
 
