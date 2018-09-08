@@ -72,9 +72,7 @@ $def with (user_data, cate_data)
                                 </div>
                         </div>
                         <div class="row">
-                            <p>
-                                <a class="btn btn-primary" href="/edit_blog">创建文章</a>
-                            </p>
+                            <a class="btn btn-primary" href="/edit_blog">创建文章</a>
                         </div>
                         $if len(user_data['user_blog']) > 0:
                             $for i in user_data['user_blog']
@@ -107,9 +105,11 @@ $def with (user_data, cate_data)
                                         </div>
                                 </div>
                         $else:
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <p class="text-info">您还没有创建任何文章哦 </p>
+                        <div class="row">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <p class="text-info">您还没有创建任何文章哦 </p>
+                                </div>
                             </div>
                         </div>
                 </div>
