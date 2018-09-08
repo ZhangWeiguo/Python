@@ -9,7 +9,13 @@ $def with (user_data,cate_data)
 	<link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/css/bootstrap-markdown.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap-markdown/font-awesome/css/font-awesome.min.css">
-
+  <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
+  <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
 
 </head>
 <body>
@@ -43,7 +49,6 @@ $def with (user_data,cate_data)
               </div>
               <br>
               <div class="row">
-                  <nav class="navbar navbar-inverse" role="navigation"></nav>
                   <form>
                       <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="editor"></textarea>
                   </form> 
@@ -55,13 +60,7 @@ $def with (user_data,cate_data)
         </div>
     </div>
   </div>
-  <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
-  <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
-  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
-  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
-  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
-  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
+
   <script type="text/javascript">
   (function ($$) {
     $$.fn.markdown.messages.zh = {
