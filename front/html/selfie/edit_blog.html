@@ -19,7 +19,7 @@ $def with (user_data,cate_data,blog_info)
   <script type="text/javascript">
     cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
     var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
-    for (var key in cate_detail_json){
+    for (var key in cate_detail){
       alert(cate_detail[key])
     }
   </script>
