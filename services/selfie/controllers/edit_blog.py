@@ -27,7 +27,6 @@ class EditBlog:
         for one in blog_cate:
             cate_data.append({"name":one,"url":"/cate/%s"%one})
 
-
         path = get_template_path("edit_blog.html")
         render = web.template.frender(path)
         return render(user_data, cate_data)
