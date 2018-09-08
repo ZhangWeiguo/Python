@@ -36,17 +36,21 @@ $def with (user_data,cate_data)
                   <label for="name">请输入标题</label>       
                   <input type="text" class="form-control" id="title" placeholder="请输入标题">
               </div>
+              <br>
               <div class="row">
                   <label for="name">请输入摘要</label>
                   <textarea class="form-control" rows="3"></textarea>
               </div>
+              <br>
               <div class="row">
-                <form>
-                    <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="20" id="editor"></textarea>
-                </form> 
+                  <nav class="navbar navbar-inverse" role="navigation"></nav>
+                  <form>
+                      <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="editor"></textarea>
+                  </form> 
               </div>
+              <br>
               <div class="row">
-                <button type="button" class="btn btn-info btn-lg">提交</button>
+                <type="button" class="btn btn-primary btn-lg btn-block">提交编辑</button>
               </div>
         </div>
     </div>
