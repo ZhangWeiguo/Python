@@ -72,7 +72,9 @@ $def with (user_data, cate_data)
                                 </div>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-success">创建文章</button>
+                            <p>
+                                <a class="btn btn-primary" href="/edit_blog">创建文章</a>
+                            </p>
                         </div>
                         $if len(user_data['user_blog']) > 0:
                             $for i in user_data['user_blog']
