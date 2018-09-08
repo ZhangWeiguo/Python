@@ -8,10 +8,12 @@ $def with (user_data,cate_data,blog_id)
   <link rel="icon" type="image/x-icon" href="http://www.noteethsmallperson.xyz/static/image/dog.ico">
 	<link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/css/bootstrap-markdown.min.css">
-	<link rel="stylesheet" type="text/css" href="/static/bootstrap-markdown/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap-markdown/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap-select.css">
   <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
   <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap-select.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
@@ -58,11 +60,11 @@ $def with (user_data,cate_data,blog_id)
               <br>
               <div class="row">
 
-                  <select id="cate" onchange="change_cate(this.value)">
-                      <option>--请选择Cate--</option>
+                  <select class="selectpicker" id="cate" onchange="change_cate(this.value)">
+                      <option>--请选择一级类别--</option>
                   </select>
-                  <select id="sub_cate">
-                      <option>--请选择SubCate--</option>
+                  <select class="selectpicker" id="sub_cate">
+                      <option>--请选择二级类别--</option>
                   </select>
 
                 <type="button" class="btn btn-primary btn-lg btn-block">提交编辑</button>
@@ -120,6 +122,10 @@ $def with (user_data,cate_data,blog_id)
   function change_cate(val){
     var sub_cate_select = document.getElementById("sub_cate");
     sub_cate_select.options.length=0;
+    var textNode = document.createTextNode("--请选择二级类别--");
+    var opEle = document.createElement("option");
+    opEle.appendChild(textNode);
+    sub_cate_select.appendChild(opEle);
     for(var key in cate_detail.data){
         if(val==key){
             for(var j=0;j<cate_detail.data[key].length;j++){
