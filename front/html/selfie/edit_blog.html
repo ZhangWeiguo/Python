@@ -16,9 +16,12 @@ $def with (user_data,cate_data,blog_info)
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
   <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
-  <script type="text/script">
-    htmlobj=$$.ajax({url:"/api?source=cate_detail",async:true});
-    alert(htmlobj.responseText);
+  <script type="text/javascript">
+    cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
+    var cate_detail = eval ("(" + cate_detail_json + ")");
+    for (var key in cate_detail_json){
+      alert(cate_detail[key])
+    }
   </script>
 
 
