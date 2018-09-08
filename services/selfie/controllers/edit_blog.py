@@ -33,9 +33,6 @@ class EditBlog:
         data = web.input()
         try:
             blog_id = int(data.blog_id)
-            query_result = get_blog(blog_id)
-            if query_result["succ"] == True:
-                blog_info = query_result["data"]
         except:
-            blog_info = {}
-        return render(user_data, cate_data, blog_info)
+            blog_id = -1
+        return render(user_data, cate_data, blog_id)
