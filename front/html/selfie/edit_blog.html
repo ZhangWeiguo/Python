@@ -42,38 +42,36 @@ $def with (user_data,cate_data,blog_id)
     </div>
     <div class="col-md-12">
         <div class="container">
-              <div class="row">     
+              <div class="col-md-12">     
                   <label for="name">请输入标题</label>       
                   <input type="text" class="form-control" id="title" placeholder="请输入标题">
               </div>
               <br>
-              <div class="row">
+              <div class="col-md-12">
                   <label for="name">请输入摘要</label>
                   <textarea class="form-control" rows="3"></textarea>
               </div>
               <br>
-              <div class="row">
+              <div class="col-md-12">
                   <form>
                       <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="editor"></textarea>
                   </form> 
               </div>
               <br>
 
-              <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                 <select class="form-control" id="cate" onchange="change_cate(this.value)" style="height:100%">
                     <option>--请选择一级类别--</option>
                 </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                 <select class="form-control" id="sub_cate" style="height:100%">
                     <option>--请选择二级类别--</option>
                 </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-12">
                   <type="button" class="btn btn-primary btn-lg btn-block form-control" style="height:100%" onclick="add_blog()">提交编辑</button>
                 </div>
-              </div>
 
           </div>
     </div>
