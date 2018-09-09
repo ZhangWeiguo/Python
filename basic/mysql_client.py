@@ -26,7 +26,7 @@ class MysqlClient:
         msg = "succ"
         succ = True
         try:
-            cursor.execute(sql)
+            data = cursor.execute(sql)
         except Exception as e:
             if "Lost connection" in str(e):
                 try:
@@ -40,8 +40,9 @@ class MysqlClient:
         result = {}
         result["msg"] = msg
         result["succ"] = succ
+        print cursor.fetchall()
+        print data
         self.conn.commit()
-        result["data"] = cursor.fetchall()
         return result
 
     def execute_many(self,sql,data):
