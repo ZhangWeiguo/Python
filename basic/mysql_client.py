@@ -40,8 +40,7 @@ class MysqlClient:
         result = {}
         result["msg"] = msg
         result["succ"] = succ
-        print cursor.fetchall()
-        print data
+        result["data"] = data
         self.conn.commit()
         return result
 
