@@ -127,14 +127,15 @@ $def with (user_data,cate_data,blog_id)
   if (blog_id!=-1){
     res = $$.ajax({url:"/api?source=blog_info&blog_id="+blog_id,async:false});
     blog_info = eval ("(" + res.responseText + ")");
-    $$('#title').val(blog_info.title)
-    $$('#abstract').val(blog_info.abstract)
-    $$('#editor').val(blog_info.content)
-    $$('#cate').val(blog_info.cate)
-    change_cate(blog_info.cate)
-    $$('#sub_cate').val(blog_info.sub_cate)
+    if (blog_info.succ == true){
+    $$('#title').val(blog_info.data.title)
+    $$('#abstract').val(blog_info.data.abstract)
+    $$('#editor').val(blog_info.data.content)
+    $$('#cate').val(blog_info.data.cate)
+    change_cate(blog_info.data.cate)
+    $$('#sub_cate').val(blog_info.data.sub_cate)
+    }
   }
-
 
   function change_cate(val){
     var sub_cate_select = document.getElementById("sub_cate");
