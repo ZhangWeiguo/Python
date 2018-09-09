@@ -75,7 +75,7 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
             user_name,title,abstract,content,cate,sub_cate,create_time
             ) values
             (
-            %s,%s,%s,%s,%s,%s,%s
+            "%s","%s","%s","%s","%s","%s",%s
             ) '''%(user_name,title,abstract,content,cate,sub_cate,create_time)
     result = mysql_client.execute(sql)
     if result['succ'] == True:
