@@ -10,6 +10,7 @@ $def with (blog_data)
         <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/js/showdown.min.js"></script>
+        <script src="http://cdn.bootcss.com/pagedown/1.0/Markdown.Converter.js"></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -38,14 +39,15 @@ $def with (blog_data)
       </div> -->
       <script type="text/javascript"> 
         
-        var converter = new showdown.Converter();
+        //var converter = new showdown.Converter();
 
         function trim(str){ 
             return str.replace(/(^\s*)|(\s*$$)/g, ""); 
         }
 
         function markdown2html(s){
-            html  = converter.makeHtml(content)
+            var converter = new Markdown.Converter();
+            var htm = converter.makeHtml(s);
             return html
         }
 
