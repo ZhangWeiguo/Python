@@ -26,6 +26,11 @@ class API:
             result["succ"] = True
             result["data"] = global_data["html_data"]["blog_cate"]
         elif source == "blog_info":
+            blog_id = int(data.blog_id)
+            query_result = get_blog(blog_id)
+            if query_result["succ"] == True:
+                result["succ"] = True
+                result["data"] = query_result["data"]
             try:
                 blog_id = int(data.blog_id)
                 query_result = get_blog(blog_id)
@@ -50,6 +55,7 @@ class API:
             except:
                 source = ""
             if source == "add_blog":
+                blog_id = int(data.blog_id)
                 blog_title = data.title
                 blog_abstract = data.abstract
                 blog_content = data.content
