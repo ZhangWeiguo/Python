@@ -62,7 +62,7 @@ class API:
                 blog_creator = user_name
                 blog_cate = data.cate
                 blog_sub_cate = data.sub_cate
-                if blog_id ==1:
+                if blog_id == -1:
                     exec_result,blog_id = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
                 else:
                     exec_result,blog_id = update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
