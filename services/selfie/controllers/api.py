@@ -56,13 +56,13 @@ class API:
             except:
                 source = ""
             if source == "add_blog":
-                blog_id         = int(data.blog_id)
-                blog_title      = standard_sql_string(data.title)
-                blog_abstract   = standard_sql_string(data.abstract)
-                blog_content    = standard_sql_string(data.content)
-                blog_creator    = standard_sql_string(user_name)
-                blog_cate       = standard_sql_string(data.cate)
-                blog_sub_cate   = standard_sql_string(data.sub_cate)
+                blog_id = int(data.blog_id)
+                blog_title = data.title
+                blog_abstract = data.abstract
+                blog_content = data.content
+                blog_creator = user_name
+                blog_cate = data.cate
+                blog_sub_cate = data.sub_cate
                 if blog_id == -1:
                     exec_result,blog_id = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
                 else:

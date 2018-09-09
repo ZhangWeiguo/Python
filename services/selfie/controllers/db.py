@@ -5,6 +5,7 @@ sys.path.append("..")
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from init import logger,mysql_client
+from utils import standard_sql_string
 
 
 # 检查用户名和密码
