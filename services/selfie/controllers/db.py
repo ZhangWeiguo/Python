@@ -2,6 +2,8 @@
 # created by zwg in 20180713
 import sys,time,math
 sys.path.append("..")
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from init import logger,mysql_client
 
 
