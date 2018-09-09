@@ -56,8 +56,9 @@ class API:
                 blog_creator = user_name
                 blog_cate = data.cate
                 blog_sub_cate = data.sub_cate
-                exec_result = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
+                exec_result,blog_id = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
                 if exec_result == True:
                     result["succ"] = True
+                    result["data"] = {"blog_id":blog_id}
         return json.dumps(result)
         

@@ -67,7 +67,19 @@ def get_user_data(user_name):
 
 ###################################################################
 
-
+# 返回blog_id
+def get_blog_id(user_name, create_time):
+    sql = '''select blog_id from blog_info
+        where user_name="%s" and create_time=%d'''%(user_name,create_time)
+    result = mysql_client.query(sql)
+    if result['succ'] == True:
+        n = len(result['data'])
+        if n == 1:
+            return True,result['data'][0]["bllog_id"]
+    else:
+        msg = result['msg']
+        logger.info("Mysql Get Blog Id Failed:" + msg )
+    return False,-1
 
 # 增加一篇blog
 def add_blog(user_name,title,abstract,content,cate,sub_cate):
@@ -80,12 +92,13 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
             ) '''%(user_name,title,abstract,content,cate,sub_cate,create_time)
     result = mysql_client.execute(sql)
     if result['succ'] == True:
-        print result["data"]
-        return True
+        result,blog_id = get_blog_id(user_name, create_time)
+        if result == True:
+            return True,blog_id
     else:
         msg = result['msg']
         logger.info("Mysql Add Blog Failed:" + msg )
-    return False
+    return False,-1
 
 # 根据cate返回一个默认的blog_id
 def get_default_blog():
