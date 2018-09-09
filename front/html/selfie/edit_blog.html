@@ -198,6 +198,22 @@ $def with (user_data,cate_data,blog_id)
         // $$('#sub_cate').val("算法");
   }
 
+
+        var converter = new showdown.Converter();
+
+        function trim(str){ 
+            return str.replace(/(^\s*)|(\s*$)/g, ""); 
+        }
+
+        function markdown2html(s){
+            html  = converter.makeHtml(content)
+            return html
+        }
+
+        var content =trim($('#editor').val());
+        var htmlcontent = markdown2html(content)
+        $('#editor').val(htmlcontent);
+
   </script>
 </body>
 </html>
