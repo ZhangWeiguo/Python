@@ -75,7 +75,7 @@ def get_blog_id(user_name, create_time):
     if result['succ'] == True:
         n = len(result['data'])
         if n == 1:
-            return True,result['data'][0]["bllog_id"]
+            return True,result['data'][0]["blog_id"]
     else:
         msg = result['msg']
         logger.info("Mysql Get Blog Id Failed:" + msg )
