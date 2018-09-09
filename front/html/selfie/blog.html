@@ -40,18 +40,14 @@ $def with (blog_data)
         
         var converter = new showdown.Converter();
 
-        function trim(str){ 
-            return str.replace(/(^\s*)|(\s*$)/g, ""); 
-        }
-
         function markdown2html(s){
             html  = converter.makeHtml(content)
             return html
         }
 
-        var content =trim($('#content').html());
+        var content =$$('#content').html();
         var htmlcontent = markdown2html(content)
-        $('#content').html(htmlcontent);
+        $$('#content').html(htmlcontent);
 
     </script> 
     </body>
