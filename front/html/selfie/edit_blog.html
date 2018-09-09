@@ -185,8 +185,9 @@ $def with (user_data,cate_data,blog_id)
         success: function(res){
             var ress = eval ("(" + res + ")");
             if (ress.succ == true){
-                blog_id = ress.data.blog_id
-                alert("提交成功")
+                blog_id = ress.data.blog_id;
+                alert("提交成功");
+                window.location.href = "$user_data['user_page']";
             }else{
                 alert("提交失败")
             }
