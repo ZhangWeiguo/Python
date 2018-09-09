@@ -8,3 +8,8 @@ from init import html_path
 def get_template_path(name):
     path = os.path.join(html_path,name)
     return path
+
+def standard_sql_string(s):
+    s = s.replace('"','\"')
+    s = s.replace("'","\'")
+    return s
