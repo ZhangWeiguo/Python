@@ -27,10 +27,10 @@ class API:
             result["data"] = global_data["html_data"]["blog_cate"]
         elif source == "blog_info":
             blog_id = int(data.blog_id)
-            query_result = get_blog(blog_id)
-            if query_result["succ"] == True:
+            query_result,data = get_blog(blog_id)
+            if query_result == True:
                 result["succ"] = True
-                result["data"] = query_result["data"]
+                result["data"] = data
             try:
                 blog_id = int(data.blog_id)
                 query_result = get_blog(blog_id)
