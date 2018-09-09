@@ -10,7 +10,8 @@ $def with (blog_data)
         <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
         <script src="http://www.noteethsmallperson.xyz/static/js/showdown.min.js"></script>
-        
+        <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
+        <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -38,18 +39,19 @@ $def with (blog_data)
         <p>下一篇：<a href="#">莫使金樽空对月</a></p>
       </div> -->
       <script type="text/javascript"> 
-        
+
+        function markdown2html(s) {
+            var result = markdown.toHTML(s);
+            return result
+        }
+
+
         var converter = new showdown.Converter();
 
         function trim(str){ 
             return str.replace(/(^\s*)|(\s*$$)/g, ""); 
         }
 
-        function markdown2html(s){
-            alert(s)
-            html  = converter.makeHtml(s)
-            return html
-        }
 
         var content =trim($$('#content').html());
         var htmlcontent = markdown2html(content)
