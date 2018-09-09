@@ -180,7 +180,7 @@ $def with (user_data,cate_data,blog_id)
             cate:       $$('#cate').val(),
             sub_cate:   $$('#sub_cate').val(),
             source:     "add_blog",
-            blog_id:    blog_id
+            id:         blog_id
             },
         success: function(res){
             var ress = eval ("(" + res + ")");

@@ -2,7 +2,7 @@
 # created by zwg in 20180908
 import web,json,time
 from init import logger,global_data
-from db import get_blog,add_blog
+from db import get_blog,add_blog,update_blog
 '''
 Input
     GET
@@ -55,14 +55,17 @@ class API:
             except:
                 source = ""
             if source == "add_blog":
-                blog_id = int(data.blog_id)
+                blog_id = int(data.id)
                 blog_title = data.title
                 blog_abstract = data.abstract
                 blog_content = data.content
                 blog_creator = user_name
                 blog_cate = data.cate
                 blog_sub_cate = data.sub_cate
-                exec_result,blog_id = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
+                if blog_id ==1:
+                    exec_result,blog_id = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
+                else:
+                    exec_result,blog_id = update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
                 if exec_result == True:
                     result["succ"] = True
                     result["data"] = {"blog_id":blog_id}
