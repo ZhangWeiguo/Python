@@ -38,13 +38,13 @@ class API:
             pass
         return json.dumps(result)
     def POST(self):
+        result = {"succ":False,"data":{}}
         try:
             user_name = web.config.session["user_name"]
         except:
             user_name = ""
         if user_name != "":
             data = web.input()
-            result = {"succ":False,"data":{}}
             try:
                 source = data.source
             except:
