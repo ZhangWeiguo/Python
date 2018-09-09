@@ -112,6 +112,17 @@ $def with (user_data,cate_data,blog_id)
     language: 'zh',
   })
 
+
+  cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
+  var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
+  var cate_select = document.getElementById("cate");
+  for (var key in cate_detail.data){
+    var textNode = document.createTextNode(key);
+    var opEle = document.createElement("option");
+    opEle.appendChild(textNode);
+    cate_select.appendChild(opEle);
+  }
+
   var blog_id = $blog_id
   if (blog_id!=-1){
     res = $$.ajax({url:"/api?source=blog_info&blog_id="+blog_id,async:false});
@@ -123,15 +134,7 @@ $def with (user_data,cate_data,blog_id)
     change_cate(blog_info.cate)
     $$('#sub_cate').val(blog_info.sub_cate)
   }
-  cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
-  var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
-  var cate_select = document.getElementById("cate");
-  for (var key in cate_detail.data){
-    var textNode = document.createTextNode(key);
-    var opEle = document.createElement("option");
-    opEle.appendChild(textNode);
-    cate_select.appendChild(opEle);
-  }
+
 
   function change_cate(val){
     var sub_cate_select = document.getElementById("sub_cate");
