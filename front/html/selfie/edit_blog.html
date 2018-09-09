@@ -50,7 +50,7 @@ $def with (user_data,cate_data,blog_id)
               
               <div class="col-md-12">
                   <label for="name">请输入摘要</label>
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea class="form-control" rows="3" id="abstract"></textarea>
                   <br>
               </div>
               
@@ -147,9 +147,22 @@ $def with (user_data,cate_data,blog_id)
   }
 
   function add_blog(){
-    $$('#cate').val("理想");
-    change_cate("理想")
-    $$('#sub_cate').val("算法");
+      $$.ajax({
+        type: 'POST',
+        url: "/api",
+        data: {
+            title:      $$('#title').text(),
+            abstract:   $$('#abstract').text(),
+            content:    $$('#editor').text(),
+            cate:       $$('#cate').text(),
+            sub_cate:   $$('#sub_cate').text()
+            },
+        success: function(res){alert(res)},
+        dataType: "text"
+        });
+        // $$('#cate').val("理想");
+        // change_cate("理想")
+        // $$('#sub_cate').val("算法");
   }
 
   </script>

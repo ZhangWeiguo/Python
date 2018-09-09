@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 # created by zwg in 20180908
-import web,json
+import web,json,time
 from init import logger,global_data
-from db import get_blog
+from db import get_blog,add_blog
 '''
-Input   source=$source&data=data
+Input
+    GET
+        source=cate_detail
+        source=blog_info&blog_id=$blog_id
+    POST
+        source=add_blog&......
+    
+
 Output  {succ:True,data:{}}
 '''
 class API:
@@ -27,5 +34,30 @@ class API:
                     result["data"] = query_result["data"]
             except:
                 pass
+        else:
+            pass
+        return json.dumps(result)
+    def POST(self):
+        try:
+            user_name = web.config.session["user_name"]
+        except:
+            user_name = ""
+        if user_name != ""
+            data = web.input()
+            result = {"succ":False,"data":{}}
+            try:
+                source = data.source
+            except:
+                source = ""
+            if source == "add_blog":
+                blog_title = data.title
+                blog_abstract = data.abstract
+                blog_content = data.content
+                blog_creator = user_name
+                blog_cate = data.cate
+                blog_sub_cate = data.sub_cate
+            exec_result = add_blog(blog_creator,blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate)
+            if exec_result["succ"] == True:
+                result["succ"] = True
         return json.dumps(result)
         
