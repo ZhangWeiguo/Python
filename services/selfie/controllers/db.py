@@ -68,6 +68,7 @@ def get_user_data(user_name):
 ###################################################################
 
 
+
 # 增加一篇blog
 def add_blog(user_name,title,abstract,content,cate,sub_cate):
     create_time = int(time.time())
@@ -79,6 +80,7 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
             ) '''%(user_name,title,abstract,content,cate,sub_cate,create_time)
     result = mysql_client.execute(sql)
     if result['succ'] == True:
+        print result["data"]
         return True
     else:
         msg = result['msg']

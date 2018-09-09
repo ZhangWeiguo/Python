@@ -41,6 +41,7 @@ class MysqlClient:
         result["msg"] = msg
         result["succ"] = succ
         self.conn.commit()
+        result["data"] = cursor.fetchall()
         return result
 
     def execute_many(self,sql,data):
