@@ -42,7 +42,7 @@ class API:
             user_name = web.config.session["user_name"]
         except:
             user_name = ""
-        if user_name != ""
+        if user_name != "":
             data = web.input()
             result = {"succ":False,"data":{}}
             try:
