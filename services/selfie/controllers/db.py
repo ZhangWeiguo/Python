@@ -73,13 +73,13 @@ def update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,bl
             set title='%s',abstract='%s',content='%s',cate='%s',sub_cate='%s'
             where blog_id=%d
     '''%(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
+    print sql
     result = mysql_client.execute(sql)
     if result['succ'] == True:
-        if result == True:
-            return True,blog_id
+        return True,blog_id
     else:
         msg = result['msg']
-        logger.info("Mysql Add Blog Failed:" + msg )
+        logger.info("Mysql Update Blog Failed:" + msg )
     return False,-1
 
 # 返回blog_id

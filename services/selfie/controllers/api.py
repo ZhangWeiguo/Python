@@ -55,7 +55,7 @@ class API:
             except:
                 source = ""
             if source == "add_blog":
-                blog_id = int(data.id)
+                blog_id = int(data.blog_id)
                 blog_title = data.title
                 blog_abstract = data.abstract
                 blog_content = data.content
