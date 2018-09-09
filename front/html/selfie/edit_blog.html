@@ -114,8 +114,14 @@ $def with (user_data,cate_data,blog_id)
 
   var blog_id = $blog_id
   if (blog_id!=-1){
-    blog_info = {}
-
+    res = $$.ajax({url:"/api?source=blog_info&blog_id="+blog_id,async:false});
+    blog_info = eval ("(" + res.responseText + ")");
+    $$('#title').val(blog_info.title)
+    $$('#abstract').val(blog_info.abstract)
+    $$('#editor').val(blog_info.content)
+    $$('#cate').val(blog_info.cate)
+    change_cate(blog_info.cate)
+    $$('#sub_cate').val(blog_info.sub_cate)
   }
   cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
   var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
@@ -147,6 +153,20 @@ $def with (user_data,cate_data,blog_id)
   }
 
   function add_blog(){
+      if ($$('#title').val()=="" || $$('#abstract').val()=="" ||
+      $$('#editor').val() == "" || $$('#cate').val() == "--请选择一级类别--" ||
+      $$('#sub_cate').val() == "--请选择二级类别--"){
+          alert("输入不合法")
+          return
+      }
+      if(blog_id!=-1){
+            r=confirm("确认要进行更改？")
+            if (r==true){
+                break
+            }else{
+                return
+            }
+      }
       $$.ajax({
         type: 'POST',
         url: "/api",
@@ -157,7 +177,8 @@ $def with (user_data,cate_data,blog_id)
             content:    $$('#editor').val(),
             cate:       $$('#cate').val(),
             sub_cate:   $$('#sub_cate').val(),
-            source:     "add_blog"
+            source:     "add_blog",
+            blog_id:    blog_id
             },
         success: function(res){
             var ress = eval ("(" + res + ")");
