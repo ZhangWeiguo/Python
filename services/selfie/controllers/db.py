@@ -2,7 +2,10 @@
 # created by zwg in 20180713
 import sys,time,math
 sys.path.append("..")
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from init import logger,mysql_client
+from utils import standard_sql_string
 
 
 # 检查用户名和密码
@@ -67,6 +70,34 @@ def get_user_data(user_name):
 
 ###################################################################
 
+# 更新一篇blog
+def update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id):
+    sql = '''update blog_info
+            set title='%s',abstract='%s',content='%s',cate='%s',sub_cate='%s'
+            where blog_id=%d
+    '''%(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
+    print sql
+    result = mysql_client.execute(sql)
+    if result['succ'] == True:
+        return True,blog_id
+    else:
+        msg = result['msg']
+        logger.info("Mysql Update Blog Failed:" + msg )
+    return False,-1
+
+# 返回blog_id
+def get_blog_id(user_name, create_time):
+    sql = '''select blog_id from blog_info
+        where user_name="%s" and create_time=%d'''%(user_name,create_time)
+    result = mysql_client.query(sql)
+    if result['succ'] == True:
+        n = len(result['data'])
+        if n == 1:
+            return True,result['data'][0]["blog_id"]
+    else:
+        msg = result['msg']
+        logger.info("Mysql Get Blog Id Failed:" + msg )
+    return False,-1
 
 # 增加一篇blog
 def add_blog(user_name,title,abstract,content,cate,sub_cate):
@@ -75,15 +106,17 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
             user_name,title,abstract,content,cate,sub_cate,create_time
             ) values
             (
-            %s,%s,%s,%s,%s,%s
+            "%s","%s","%s","%s","%s","%s",%s
             ) '''%(user_name,title,abstract,content,cate,sub_cate,create_time)
     result = mysql_client.execute(sql)
     if result['succ'] == True:
-        return True
+        result,blog_id = get_blog_id(user_name, create_time)
+        if result == True:
+            return True,blog_id
     else:
         msg = result['msg']
         logger.info("Mysql Add Blog Failed:" + msg )
-    return False
+    return False,-1
 
 # 根据cate返回一个默认的blog_id
 def get_default_blog():
@@ -113,7 +146,6 @@ def get_blog(blog_id):
     result = mysql_client.query(sql)
     if result["succ"] == True:
         if len(result["data"]) == 1:
-            result["data"][0]["content"] = result["data"][0]["content"]
             return True,result["data"][0]
     msg = result["msg"]
     logger.info("Mysql Get Blog Failed:" + msg )

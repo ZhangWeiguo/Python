@@ -1,60 +1,204 @@
+$def with (user_data,cate_data,blog_id)
 <!DOCTYPE html>
 <html>
 <head>
-	<title>editor</title>
-	<meta charset="utf-8">
+  <title>无耻小人</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="http://www.noteethsmallperson.xyz/static/image/dog.ico">
 	<link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/css/bootstrap-markdown.min.css">
-	<link rel="stylesheet" type="text/css" href="/static/bootstrap-markdown/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap-markdown/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/css/bootstrap-select.css">
+  <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
+  <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap-select.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+  <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
+
 
 
 </head>
 <body>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="collapse navbar-collapse" id="myNavbar" style="background-color:black">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="$user_data['user_page']">$user_data['user_name']</a>
+                </li>
+                $for i in cate_data
+                    <li class="nav-item">
+                        <a class="nav-link active" href="$i['url']">$i['name']</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="container">
+              <div class="col-md-12">     
+                  <label for="name">请输入标题</label>       
+                  <input type="text" class="form-control" id="title" placeholder="请输入标题">
+                  <br>
+              </div>
+              
+              <div class="col-md-12">
+                  <label for="name">请输入摘要</label>
+                  <textarea class="form-control" rows="3" id="abstract"></textarea>
+                  <br>
+              </div>
+              
+              <div class="col-md-12">
+                  <form>
+                      <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="editor"></textarea>
+                  </form> 
+                  <br>
+              </div>
+              
 
-	<nav class="navbar navbar-inverse" role="navigation"></nav>
+                <div class="col-md-6">
+                <select class="form-control" id="cate" onchange="change_cate(this.value)" style="height:100%">
+                    <option>--请选择一级类别--</option>
+                </select>
+                </div>
+                <div class="col-md-6">
+                <select class="form-control" id="sub_cate" style="height:100%">
+                    <option>--请选择二级类别--</option>
+                </select>
+                </div>
+                <div class="col-md-12">
+                  <type="button" class="btn btn-primary btn-lg btn-block form-control" style="height:100%" onclick="add_blog()">提交编辑</button>
+                </div>
 
-	<form>
+          </div>
+    </div>
+  </div>
 
-	    <textarea name="content" data-provide="markdown" data-iconlibrary="fa" rows="10" id="editor"></textarea>
-	</form> 
-    <!-- 该jquery文件必须在bootstrap.min.js之前引入 -->
-    <script src="http://www.noteethsmallperson.xyz/static/js/jquery-3.3.1.min.js"></script>
-    <script src="http://www.noteethsmallperson.xyz/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/markdown.js"></script>
-    <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/to-markdown.js"></script>
-    <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.js"></script>
-    <script src="http://www.noteethsmallperson.xyz/static/bootstrap-markdown/js/bootstrap-markdown.fr.js"></script>
-    <script type="text/javascript">
-    (function ($$) {
-      $$.fn.markdown.messages.zh = {
-        'Bold': "粗体",
-        'Italic': "斜体",
-        'Heading': "标题",
-        'URL/Link': "链接",
-        'Image': "图片",
-        'List': "列表",
-        'Unordered List': "无序列表",
-        'Ordered List': "有序列表",
-        'Code': "代码",
-        'Quote': "引用",
-        'Preview': "预览",
-        'strong text': "粗体",
-        'emphasized text': "强调",
-        'heading text': "标题",
-        'enter link description here': "输入链接说明",
-        'Insert Hyperlink': "URL地址",
-        'enter image description here': "输入图片说明",
-        'Insert Image Hyperlink': "图片URL地址",
-        'enter image title here': "在这里输入图片标题",
-        'list text here': "这里是列表文本",
-        'code text here': "这里输入代码",
-        'quote here': "这里输入引用文本"
-      };
-    }(jQuery));
-    $$("#editor").markdown({
-    	autofocus: true,
-    	language: 'zh',
-    })
-    </script>
+  <script type="text/javascript">
+  (function ($$) {
+    $$.fn.markdown.messages.zh = {
+      'Bold': "粗体",
+      'Italic': "斜体",
+      'Heading': "标题",
+      'URL/Link': "链接",
+      'Image': "图片",
+      'List': "列表",
+      'Unordered List': "无序列表",
+      'Ordered List': "有序列表",
+      'Code': "代码",
+      'Quote': "引用",
+      'Preview': "预览",
+      'strong text': "粗体",
+      'emphasized text': "强调",
+      'heading text': "标题",
+      'enter link description here': "输入链接说明",
+      'Insert Hyperlink': "URL地址",
+      'enter image description here': "输入图片说明",
+      'Insert Image Hyperlink': "图片URL地址",
+      'enter image title here': "在这里输入图片标题",
+      'list text here': "这里是列表文本",
+      'code text here': "这里输入代码",
+      'quote here': "这里输入引用文本"
+    };
+  }(jQuery));
+  $$("#editor").markdown({
+    autofocus: true,
+    language: 'zh',
+  })
+
+
+  cate_detail_json = $$.ajax({url:"/api?source=cate_detail",async:false});
+  var cate_detail = eval ("(" + cate_detail_json.responseText + ")");
+  var cate_select = document.getElementById("cate");
+  for (var key in cate_detail.data){
+    var textNode = document.createTextNode(key);
+    var opEle = document.createElement("option");
+    opEle.appendChild(textNode);
+    cate_select.appendChild(opEle);
+  }
+
+  var blog_id = $blog_id
+  if (blog_id!=-1){
+    res = $$.ajax({url:"/api?source=blog_info&blog_id="+blog_id,async:false});
+    blog_info = eval ("(" + res.responseText + ")");
+    if (blog_info.succ == true){
+    $$('#title').val(blog_info.data.title)
+    $$('#abstract').val(blog_info.data.abstract)
+    $$('#editor').val(blog_info.data.content)
+    $$('#cate').val(blog_info.data.cate)
+    change_cate(blog_info.data.cate)
+    $$('#sub_cate').val(blog_info.data.sub_cate)
+    }
+  }
+
+  function change_cate(val){
+    var sub_cate_select = document.getElementById("sub_cate");
+    sub_cate_select.options.length=0;
+    var textNode = document.createTextNode("--请选择二级类别--");
+    var opEle = document.createElement("option");
+    opEle.appendChild(textNode);
+    sub_cate_select.appendChild(opEle);
+    for(var key in cate_detail.data){
+        if(val==key){
+            for(var j=0;j<cate_detail.data[key].length;j++){
+                var textNode = document.createTextNode(cate_detail.data[key][j]);
+                var opEle = document.createElement("option");
+                opEle.appendChild(textNode);
+                sub_cate_select.appendChild(opEle);
+            }
+        }
+    }
+  }
+
+  function add_blog(){
+      if ($$('#title').val()=="" || $$('#abstract').val()=="" ||
+      $$('#editor').val() == "" || $$('#cate').val() == "--请选择一级类别--" ||
+      $$('#sub_cate').val() == "--请选择二级类别--"){
+          alert("输入不合法")
+          return
+      }
+      if(blog_id!=-1){
+            r=confirm("确认要进行更改？")
+            if (r==false){
+                return
+            }
+      }
+      $$.ajax({
+        type: 'POST',
+        url: "/api",
+        async:true,
+        data: {
+            title:      $$('#title').val(),
+            abstract:   $$('#abstract').val(),
+            content:    $$('#editor').val(),
+            cate:       $$('#cate').val(),
+            sub_cate:   $$('#sub_cate').val(),
+            source:     "add_blog",
+            blog_id:     blog_id
+            },
+        success: function(res){
+            var ress = eval ("(" + res + ")");
+            if (ress.succ == true){
+                blog_id = ress.data.blog_id;
+                alert("提交成功");
+                window.location.href = "$user_data['user_page']";
+            }else{
+                alert("提交失败")
+            }
+        }
+        });
+        // $$('#cate').val("理想");
+        // change_cate("理想")
+        // $$('#sub_cate').val("算法");
+  }
+
+
+  </script>
 </body>
 </html>

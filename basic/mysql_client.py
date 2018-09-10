@@ -26,7 +26,7 @@ class MysqlClient:
         msg = "succ"
         succ = True
         try:
-            cursor.execute(sql)
+            data = cursor.execute(sql)
         except Exception as e:
             if "Lost connection" in str(e):
                 try:

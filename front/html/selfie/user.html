@@ -71,6 +71,12 @@ $def with (user_data, cate_data)
                                        <img src="http://www.noteethsmallperson.xyz/static/image/defaultuserhead.jpg" width="300px" height="100px">
                                 </div>
                         </div>
+                        <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary" href="/edit_blog">创建文章</a>
+                                </div>
+                        </div>
+                        <br>
                         $if len(user_data['user_blog']) > 0:
                             $for i in user_data['user_blog']
                                 <div class="well well-lg" style='background-color:white'>
@@ -90,6 +96,7 @@ $def with (user_data, cate_data)
                                             <div class="col-sm-6" style="width:50%;float:left;">
                                                 <p>
                                                         <a class="btn btn-primary" href="/blog?blog_id=$i['blog_id']">浏览</a>
+                                                        <a class="btn btn-primary" href="/edit_blog?blog_id=$i['blog_id']">编辑</a>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6" style="width:50%;float: right;">
@@ -103,10 +110,10 @@ $def with (user_data, cate_data)
                                 </div>
                         $else:
                         <div class="thumbnail">
-                                <div class="caption">
-                                <p class="text-info">您还没有创建任何文章哦</p>
-                                    </div>
-                                    </div>
+                            <div class="caption">
+                                <p class="text-info">您还没有创建任何文章哦 </p>
+                            </div>
+                        </div>
                 </div>
             </div>
 
