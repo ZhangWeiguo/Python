@@ -73,7 +73,7 @@ def get_user_data(user_name):
 # 更新一篇blog
 def update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id):
     sql = '''update blog_info
-            set title='%s',abstract='%s',content='%s',cate='%s',sub_cate='%s'
+            set title=%s,abstract=%s,content=%s,cate=%s,sub_cate=%s
             where blog_id=%d
     '''
     params = (blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
@@ -107,7 +107,7 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
             user_name,title,abstract,content,cate,sub_cate,create_time
             ) values
             (
-            "%s","%s","%s","%s","%s","%s",%s
+            %s,%s,%s,%s,%s,%s,%s
             ) '''
     params = (user_name,title,abstract,content,cate,sub_cate,create_time)
     result = mysql_client.execute(sql,params)
