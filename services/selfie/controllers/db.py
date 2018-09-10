@@ -74,7 +74,7 @@ def get_user_data(user_name):
 def update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id):
     sql = '''update blog_info
             set title=%s,abstract=%s,content=%s,cate=%s,sub_cate=%s
-            where blog_id=%d
+            where blog_id=%s
     '''
     params = (blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
     print sql
