@@ -20,13 +20,18 @@ class MysqlClient:
                                                database  =   self.config["database"],
                                                charset   =   "utf8")
         self.cursor = self.conn.cursor(dictionary = True)   
+    
 
-    def execute(self,sql):
+    def execute(self,sql,params=None):
+        # params is a tuple
         cursor = self.cursor
         msg = "succ"
         succ = True
         try:
-            data = cursor.execute(sql)
+            if params == None:
+                cursor.execute(sql)
+            else:
+                cursor.execute(sql,params)
         except Exception as e:
             if "Lost connection" in str(e):
                 try:

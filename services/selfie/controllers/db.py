@@ -75,9 +75,10 @@ def update_blog(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,bl
     sql = '''update blog_info
             set title='%s',abstract='%s',content='%s',cate='%s',sub_cate='%s'
             where blog_id=%d
-    '''%(blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
+    '''
+    params = (blog_title,blog_abstract,blog_content,blog_cate,blog_sub_cate,blog_id)
     print sql
-    result = mysql_client.execute(sql)
+    result = mysql_client.execute(sql,params)
     if result['succ'] == True:
         return True,blog_id
     else:
@@ -107,8 +108,9 @@ def add_blog(user_name,title,abstract,content,cate,sub_cate):
             ) values
             (
             "%s","%s","%s","%s","%s","%s",%s
-            ) '''%(user_name,title,abstract,content,cate,sub_cate,create_time)
-    result = mysql_client.execute(sql)
+            ) '''
+    params = (user_name,title,abstract,content,cate,sub_cate,create_time)
+    result = mysql_client.execute(sql,params)
     if result['succ'] == True:
         result,blog_id = get_blog_id(user_name, create_time)
         if result == True:
