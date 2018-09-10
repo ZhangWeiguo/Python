@@ -25,7 +25,7 @@ $def with (blog_data)
                     </blockquote>
                 </div>
                     <div class="well" id="content">
-                            $:blog_data["content"]
+
                     </div>
             $else:
                     <h3>站长太懒了，这里空空如也</h3>
@@ -48,11 +48,20 @@ $def with (blog_data)
             return str.replace(/(^\s*)|(\s*$$)/g, ""); 
         }
 
+        var blog_id = $blog_data["blog_id"]
+        if (blog_id!=-1){
+        res = $$.ajax({url:"/api?source=blog_info&blog_id="+blog_id,async:false});
+        blog_info = eval ("(" + res.responseText + ")");
+        if (blog_info.succ == true){
+            var content =trim($$('#content').html());
+            var htmlcontent = markdown2html(blog_info.data.content)
+            $$('#content').html(htmlcontent);
+            }
+        }
 
         var content =trim($$('#content').html());
         var htmlcontent = markdown2html(content)
         $$('#content').html(htmlcontent);
-        alert($:blog_data["content"])
     </script> 
     </body>
 
