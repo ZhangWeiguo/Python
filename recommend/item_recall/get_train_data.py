@@ -57,11 +57,11 @@ class WaApi():
         # table 使用table ID  string
         # result 使用原始日志名或tableId  string
         if local:
-            self.log_url    = "https://tunnel-in-wa.uc.cn/tunnel/get_log"
-            self.table_url  = "https://api-in-wa.uc.cn/api/queryStatKeyCode"
+            self.log_url    = "https://XXX/get_log"
+            self.table_url  = "https://XXX/queryStatKeyCode"
         else:
-            self.log_url    = 'http://tunnel.in.wa.uc.local:22310/tunnel/get_log'
-            self.table_url  = 'http://api.in.wa.uc.local:32006/api/queryStatKeyCode'
+            self.log_url    = 'http://XXX/tunnel/get_log'
+            self.table_url  = 'http://XXX/queryStatKeyCode'
 
         self.keyCode                    = "a9603ba96edd426eb47596f158eb579e"
         self.secretKey                  = "87986d6717c34c16b34c58289feeea73"
@@ -75,7 +75,7 @@ class WaApi():
         self.P2                         = {}
         self.P2["app"]                  = "30001"
         self.P2["code"]                 = result
-        self.P2["keyCode"]              = "a9603ba96edd426eb47596f158eb579e"
+        self.P2["keyCode"]              = "XXX"
 
     def get_result(self,ymdh,file_name):
         self.P2["type"]                 = "result"

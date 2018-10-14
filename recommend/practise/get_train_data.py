@@ -8,7 +8,7 @@ def write2txt(messages, filename):
     f.close()
 
 def get_log(month,day,hour,filename):
-    base_url = 'http://tunnel.in.wa.uc.local:22310/tunnel/get_log'
+    base_url = 'http://XXXX/get_log'
     P = {}
     P["app"] = "30001"
     P["type"] = "pre_rawlog"
@@ -16,8 +16,8 @@ def get_log(month,day,hour,filename):
     P["from"] = "2017%s%s%s"%(str(month).zfill(2),str(day).zfill(2),str(hour).zfill(2))
     P["to"] = "2017%s%s%s"%(str(month).zfill(2),str(day).zfill(2),str(hour).zfill(2))
     P["tm"] = long( time.time() ) * 1000
-    P["keyCode"] = "a9603ba96edd426eb47596f158eb579e"
-    secretKey = "87986d6717c34c16b34c58289feeea73"
+    P["keyCode"] = "XXX"
+    secretKey = "XXX"
     M = md5.new()
     M.update(P.get("app") + P.get("code") + str(P.get("tm")) + P.get("from") + P.get("to") + secretKey + P.get("keyCode"))
     P['sign'] = M.hexdigest()
