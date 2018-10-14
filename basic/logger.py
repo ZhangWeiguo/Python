@@ -21,7 +21,7 @@ def Logger(app_name,
             max_buffer   =   100 ):
     logger = logging.getLogger(app_name)
     formater = logging.Formatter(
-        fmt         = "%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)-8s %(message)s",
+        fmt         = "%(asctime)s %(filename)10s[line:%(lineno)5d] %(levelname)-8s %(message)s",
         datefmt     = "%Y-%m-%d %H:%M:%S")
     
     if rotate == 'Time':
