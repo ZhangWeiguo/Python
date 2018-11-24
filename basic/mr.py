@@ -29,7 +29,7 @@ $HADOOP_HOME/bin/hadoop  streaming
     -D mared.job.map.capacity=500
     -D mapred.reduce.tasks=0  
     -D mapred.map.tasks=500
-    -input      myInputDirs(你得HDFS路径) 
+    -input      myInputDirs(你的HDFS路径) 
     -output     myOutputDir(你的HDFS路径) 
     -mapper     "python  yourpythonfile.py"
     -reducer    "python  yourpythonfile.py"
