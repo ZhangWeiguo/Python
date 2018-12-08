@@ -1,10 +1,8 @@
 import numpy
+from sklearn import metrics
 
-Labels      = [0, 1, 1, 0, 1, 1, 0, 0]
-Predicts    = [0.1, 0.7, 0.8, 0.3, 0.9, 0.8, 0.1, 0.9]
 
-# from sklearn import metrics
-# print metrics.roc_auc_score(Labels, Predicts)
+
 
 
 def cal_result(labels, predicts):
@@ -22,16 +20,7 @@ def cal_result(labels, predicts):
     y = tp/(tp+fp)
     return x,y
 
-
-
-
-def auc_score(labels, predicts):
-    L = []
-    for i in [1-i*0.1 for i in range(1,10)]:
-        p = [0 if j<=i else 1 for j in predicts]
-        x,y = cal_result(labels, p)
-        L.append((x,y))
-    print L
+def area(L):
     score = 0
     for k,i in enumerate(L):
         x,y = i
@@ -41,5 +30,42 @@ def auc_score(labels, predicts):
             score += y*(x-L[k-1][0])
     return score
 
+def compare(x,y):
+    if x[0] > y[0]:
+        return 1
+    elif x[0] == y[0]:
+        if x[1] > y[1]:
+            return 1
+        elif x[1] == y[1]:
+            return 0
+        else:
+            return -1
+    else:
+        return -1
 
-print auc_score(Labels, Predicts)
+
+def auc_score_sklearn(labels, predicts):
+    f,t,s = metrics.roc_curve(labels, predicts)
+    L = [(i,j) for i,j in zip(f,t)]
+    # print L
+    score = metrics.auc(f,t)
+    # score = metrics.roc_auc_score(labels, predicts)
+    return score
+
+def auc_score(labels, predicts):
+    L = []
+    for i in [1-i*0.1 for i in range(1,10)]:
+        p = [0 if j<=i else 1 for j in predicts]
+        x,y = cal_result(labels, p)
+        L.append((x,y))
+    L = list(set(L))
+    L.sort(cmp=compare)
+    # print L
+    score = area(L)
+    return score
+
+for i in range(10):
+    Labels      = numpy.random.randint(0,2,1000)
+    Predicts    = numpy.random.random((1000))
+    print "Custom AUC: ", auc_score(Labels, Predicts)
+    print "Sklean AUC: ", auc_score_sklearn(Labels, Predicts)
