@@ -102,15 +102,17 @@ def auc_score_rank(labels, predicts):
     score = (p_ranksum - M*(M+1)/2.0)/(M*(N-M))
     return score
 
-
-# for i in range(10):
-#     Labels      = numpy.random.randint(0,2,1000)
-#     Predicts    = numpy.random.random((1000))
-#     print "Custom AUC: %2.4f  Sklearn AUC: %2.4f  Rank AUC: %2.4f"%(
-#         auc_score(Labels, Predicts),
-#         auc_score_sklearn(Labels, Predicts),
-#         auc_score_rank(Labels, Predicts)
-#     )
-pro = [('a',1),('b',2),('c',3),('d',4)]
-pre = [('a',4),('b',5),('c',6),('d',7)]
-print auc_score_compare_rank(pro, pre)
+if __name__ == "__main__":
+    print "AUC Classify"
+    for i in range(10):
+        Labels      = numpy.random.randint(0,2,1000)
+        Predicts    = numpy.random.random((1000))
+        print "Custom AUC: %2.4f  Sklearn AUC: %2.4f  Rank AUC: %2.4f"%(
+            auc_score(Labels, Predicts),
+            auc_score_sklearn(Labels, Predicts),
+            auc_score_rank(Labels, Predicts)
+        )
+    print "AUC Rank"
+    pro = [('a',1),('b',2),('c',3),('d',4)]
+    pre = [('a',4),('b',5),('c',6),('d',7)]
+    print auc_score_compare_rank(pro, pre)
