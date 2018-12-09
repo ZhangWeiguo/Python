@@ -1,4 +1,7 @@
-def getHOGfeat( image,stride = 8, orientations=8, pixels_per_cell=(8, 8),cells_per_block=(2, 2)):
+import numpy as np
+
+
+def get_hog( image,stride = 8, orientations=8, pixels_per_cell=(8, 8),cells_per_block=(2, 2)):
     cx, cy = pixels_per_cell
     bx, by = cells_per_block
     sx, sy = image.shape
