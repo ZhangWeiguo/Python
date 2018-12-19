@@ -49,6 +49,7 @@
         -reducer    "python  yourpythonfile.py"
         -file       yourpythonfile.py
         -cacheArchive "/xx/xx/xx/pythonwego.tar.gz#python2.7"
+        # -cacheArchive "hdfs:///xx/xx/xx/pythonwego.tar.gz#python2.7"
 
     # python文件中使用则可以
     import sys
