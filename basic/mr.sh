@@ -50,7 +50,10 @@
         -file       yourpythonfile.py
         -cacheArchive "/xx/xx/xx/pythonwego.tar.gz#python2.7"
         # -cacheArchive "hdfs:///xx/xx/xx/pythonwego.tar.gz#python2.7"
-
+            # 备注
+            # -file ：本地分发，不需先上传到集群。（属于临时上传到集群，任务结束时问从集群中消失）
+            # -cacheFile ：由集群上的文件分发到各个节点。（需人为先上传到集群）
+            # -cacheArchive ：与cacheFile类似，差别在于cacheArchive的方式的文件为压缩文件
     # python文件中使用则可以
     import sys
     sys.path.append("myvp/myvp/lib/python2.7")
