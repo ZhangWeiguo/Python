@@ -1,2 +1,2 @@
 This is a gite test
-IIt was write in master wego
+IIt was write in wego
