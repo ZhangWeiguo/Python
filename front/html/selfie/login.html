@@ -18,11 +18,8 @@
         function submit_form(){
             var theForm = document.forms[0]; 
             if(theForm.user_name.value !='' && theForm.pass_word.value !=''){ 
-                if(parent!=null){ 
-                    theForm.target = "_parent";
-                    theForm.pass_word.value = hex_md5(theForm.pass_word.value);
-                    theForm.submit();
-                }
+                theForm.pass_word.value = hex_md5(theForm.pass_word.value);
+                theForm.submit();
             }else{
                 alert("请输入正确的用户名/密码");
             }
