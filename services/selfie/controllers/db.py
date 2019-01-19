@@ -150,7 +150,7 @@ def get_blog(blog_id):
         if len(result["data"]) == 1:
             return True,result["data"][0]
     msg = result["msg"]
-    logger.info("Mysql Get Blog Failed:" + msg )
+    logger.info("Mysql Get Blog %d Failed:%s"%(blog_id,msg) )
     return False,{}
 
 # blog浏览量+1

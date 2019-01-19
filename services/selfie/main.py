@@ -6,7 +6,6 @@ from controllers.login import Login
 from controllers.user import User
 from controllers.cate import Cate
 from controllers.blog import Blog
-from controllers.catalog import Catalog
 from controllers.edit_blog import EditBlog
 from controllers.api import API
 from controllers.unknow import Unknow
@@ -19,7 +18,6 @@ urls = (
     '/user/(.*)',       'User',
     '/cate/(.+)',       'Cate',
     '/blog',            'Blog',
-    '/catalog(.+)',     'Catalog',
     '/edit_blog',       'EditBlog',
     '/api',             'API',
     '/(.*)',            'Unknow',

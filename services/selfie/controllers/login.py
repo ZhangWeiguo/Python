@@ -26,7 +26,10 @@ class Login:
             web.config.session["pass_word"] = pass_word
             result, info = check_user(user_name, pass_word)
             if result:
+                logger.info("%s login succed"%(user_name))
                 web.seeother("/")
+            else:
+                logger.info("%s login failed"%(user_name))
         path = get_template_path("login.html")
         render = web.template.frender(path)
         return render()
