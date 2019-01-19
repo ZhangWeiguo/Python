@@ -171,17 +171,21 @@ def get_cate_blog(page_size, page_num, cate):
     blog_cate = []
     all_page_num = 0
     final_result = False
-
     start = (page_num-1)*page_size + 1
     end = page_num*page_size
-    sql = '''select 
+    sql = '''
+            select * from(
+            select
+            a.*,@rowno:=@rowno+1 as rowno
+            from(
+            select 
             blog_id,user_name,title,abstract,
             FROM_UNIXTIME(create_time,'%%Y-%%m-%%d') as create_time,
             sub_cate,pv 
             from blog_info 
-            where blog_id>=%d 
-            and blog_id<=%d 
-            and cate="%s" order by pv desc'''%(start, end, cate)
+            where cate="%s" order by pv desc) a,
+            (select @rowno:=0) b
+            ) c where rowno >= %d and rowno <= %d'''%(cate, start, end)
     sql_count = '''select count(1) as num 
             from blog_info 
             where cate="%s"'''%(cate)
