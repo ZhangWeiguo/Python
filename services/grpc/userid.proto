@@ -1,0 +1,10 @@
+syntax = "proto3";
+package grpc;
+import "userinfo.proto";
+message UserId {
+    int32 id = 1;
+}
+
+service User {
+  rpc GetUserInfo (UserId) returns (UserInfo) {}
+}

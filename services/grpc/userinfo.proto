@@ -1,7 +1,7 @@
 syntax = "proto3";
 package grpc;
 
-message Send {
+message UserInfo {
     int32 id = 1;
     string name = 2;
     enum PhoneType {
@@ -10,8 +10,9 @@ message Send {
         WORK   = 2;
     }
     message Phone {
-        string number  = 3;
-        PhoneType type = 4;
+        string number  = 1;
+        PhoneType type = 2;
     }
+    repeated Phone phone = 4;
 }
 
